@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07110e">
+  <meta name="description" content="UZCYBER — o‘zbek tilidagi amaliy kiberxavfsizlik akademiyasi.">
+  <title>UZCYBER — Kiberxavfsizlik akademiyasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="UZCYBER bosh sahifa">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>UZ<span class="green">CYBER</span><small>CYBERSECURITY ACADEMY</small></span>
+      </a>
+      <div class="side-label">ASOSIY</div>
+      <nav class="nav">
+        <button class="nav-link active" data-view="dashboard"><span class="nav-icon">◫</span> Bosh sahifa</button>
+        <button class="nav-link" data-view="paths"><span class="nav-icon">⌘</span> O‘quv yo‘llari <span class="nav-count">5</span></button>
+        <button class="nav-link" data-view="labs"><span class="nav-icon">⌁</span> Laboratoriyalar</button>
+        <button class="nav-link" data-view="challenges"><span class="nav-icon">⚑</span> CTF topshiriqlar</button>
+        <button class="nav-link" data-view="leaderboard"><span class="nav-icon">♜</span> Reyting</button>
+      </nav>
+      <div class="side-label side-label-spaced">SHAXSIY</div>
+      <nav class="nav">
+        <button class="nav-link" data-view="achievements"><span class="nav-icon">✧</span> Yutuqlar</button>
+        <button class="nav-link" data-view="profile"><span class="nav-icon">◎</span> Profilim</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="upgrade-card">
+          <div class="upgrade-orb">✳</div>
+          <strong>Bilimingni sinab ko‘r</strong>
+          <p>Har kuni yangi vazifalar va amaliy mashqlar.</p>
+          <button class="text-button" data-go="labs">Laboratoriyalarni ko‘r <span>→</span></button>
+        </div>
+        <div class="user-mini">
+          <div class="avatar">F</div><div class="user-mini-info"><strong>Feruz</strong><small>Yangi boshlovchi</small></div><button class="dots" aria-label="Profil">···</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Menyuni ochish">☰</button>
+        <div class="breadcrumb"><span>UZCYBER</span><b>/</b><strong id="crumb">Bosh sahifa</strong></div>
+        <div class="top-actions">
+          <div class="status-pill"><i></i> TIZIM ISHLAMOQDA</div>
+          <button class="icon-btn" id="searchOpen" aria-label="Qidirish">⌕</button>
+          <button class="icon-btn notification" id="notifyBtn" aria-label="Bildirishnomalar">♧<i></i></button>
+          <div class="top-avatar">F</div>
+        </div>
+      </header>
+
+      <div class="content" id="content">
+        <section class="welcome-row">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> 2026 / KIBERXAVFSIZLIK AKADEMIYASI</div>
+            <h1>Xush kelibsan, <span class="gradient-text">Feruz.</span></h1>
+            <p class="muted welcome-sub">Bugun yangi bilim va ko‘nikmalarni egallash uchun ajoyib kun.</p>
+          </div>
+          <div class="date-chip"><span>◷</span><span id="todayDate">18-NOYABR, 2026</span></div>
+        </section>
+
+        <section class="hero">
+          <div class="hero-grid"></div><div class="hero-glow"></div>
+          <div class="hero-content">
+            <div class="hero-tag"><span class="pulse-dot"></span> SIZNING KIBER SAYOHATINGIZ</div>
+            <h2>Raqamli dunyoni<br><span>himoya qilishni</span> o‘rgan.</h2>
+            <p>Bilimni amaliyotga aylantir. Xavfsizlikni tushun. Kelajak mutaxassisi bo‘l.</p>
+            <button class="primary-btn" data-go="paths">O‘rganishni boshlash <span>→</span></button>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="shield"><div class="shield-inner">⌑</div></div>
+            <div class="float-code code-one">01001010<br>10110101</div>
+            <div class="float-code code-two">ACCESS_GRANTED<br><span>● SECURE</span></div>
+            <div class="hero-cross">+</div>
+          </div>
+          <div class="hero-footer"><span><b>01</b> / 05 BOSQICH</span><span>HAR BIR MUTAXASSIS NOLDAN BOSHLAGAN</span></div>
+        </section>
+
+        <section class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>UMUMIY TAJRIBA</span><span class="stat-icon green-icon">✳</span></div><div class="stat-value"><strong id="xpValue">120</strong><small>XP</small></div><div class="stat-foot"><span class="trend">↗ 20 XP</span> <span>so‘nggi 7 kunda</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>JORIY DARAJA</span><span class="stat-icon">⌁</span></div><div class="stat-value"><strong id="levelValue">02</strong><small>LEVEL</small></div><div class="level-track"><i id="levelBar" style="width:40%"></i></div><div class="stat-foot"><span>Keyingi darajagacha</span><b id="nextXp">180 XP</b></div></article>
+          <article class="stat-card"><div class="stat-top"><span>BAJARILGAN LABLAR</span><span class="stat-icon">▤</span></div><div class="stat-value"><strong id="labsDone">03</strong><small>/ 24</small></div><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="stat-foot"><span>Faollik ko‘rsatkichi</span><b>Yaxshi</b></div></article>
+          <article class="stat-card"><div class="stat-top"><span>KUNLIK SERIYA</span><span class="stat-icon orange-icon">♨</span></div><div class="stat-value"><strong>04</strong><small>KUN</small></div><div class="streak-dots"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i></i><i></i><i></i></div><div class="stat-foot"><span>Davom et!</span><b class="orange-text">🔥 4 kun</b></div></article>
+        </section>
+
+        <div class="section-grid">
+          <section class="panel learning-panel">
+            <div class="section-heading"><div><div class="eyebrow">SENING RIVOJLANISHING</div><h3>O‘quv yo‘ling</h3></div><button class="link-btn" data-go="paths">Barchasini ko‘r <span>→</span></button></div>
+            <div class="path-feature">
+              <div class="path-icon"><span>⌘</span></div>
+              <div class="path-info"><div class="path-meta"><span class="tag tag-green">BOSHLANG‘ICH</span><span>6 ta modul</span><span>•</span><span>4 soat</span></div><h4>Linux asoslari</h4><p>Terminal bilan tanishish va Linux tizimini boshqarish.</p><div class="progress-row"><div class="progress"><i style="width:35%"></i></div><b>35%</b></div></div>
+              <button class="round-arrow" data-go="paths" aria-label="Davom etish">↗</button>
+            </div>
+            <div class="path-list">
+              <div class="path-row"><div class="small-path-icon purple">⌁</div><div><strong>Tarmoq asoslari</strong><small>IP, DNS, portlar va protokollar</small></div><span class="difficulty">BOSHLANG‘ICH</span><span class="row-lock">◷</span></div>
+              <div class="path-row"><div class="small-path-icon blue">⌗</div><div><strong>Web xavfsizligi</strong><small>Veb zaifliklar va himoyalanish</small></div><span class="difficulty intermediate">O‘RTA</span><span class="row-lock">◷</span></div>
+            </div>
+          </section>
+
+          <section class="panel daily-panel">
+            <div class="section-heading"><div><div class="eyebrow">BUGUNGI MAQSAD</div><h3>Kunlik vazifalar</h3></div><span class="task-count" id="taskCount">1/3</span></div>
+            <div class="task-progress"><div class="progress"><i id="taskProgress" style="width:33%"></i></div></div>
+            <div class="task-list">
+              <label class="task-item completed"><input type="checkbox" checked disabled><span class="checkmark">✓</span><span class="task-copy"><strong>Platforma bilan tanish</strong><small>Profilni ko‘zdan kechir</small></span><b>+10 XP</b></label>
+              <label class="task-item"><input type="checkbox" class="task-check"><span class="checkmark"></span><span class="task-copy"><strong>Birinchi laboratoriya</strong><small>Linux terminaliga kir</small></span><b>+25 XP</b></label>
+              <label class="task-item"><input type="checkbox" class="task-check"><span class="checkmark"></span><span class="task-copy"><strong>Bilimingni tekshir</strong><small>5 ta savolga javob ber</small></span><b>+15 XP</b></label>
+            </div>
+            <div class="daily-footer"><span>Vazifalarni bajarsang, XP olasan.</span><span>✦</span></div>
+          </section>
+        </div>
+
+        <section class="panel labs-panel">
+          <div class="section-heading"><div><div class="eyebrow">AMALIY TAJRIBA</div><h3>Tavsiya etilgan laboratoriyalar</h3><p class="muted section-desc">Nazariyani amaliy ko‘nikmaga aylantir.</p></div><button class="link-btn" data-go="labs">Barcha lablar <span>→</span></button></div>
+          <div class="lab-grid" id="featuredLabs">
+            <article class="lab-card" data-level="Boshlang‘ich" data-title="Terminalga kirish"><div class="lab-art terminal-art"><span class="art-label">LAB_001</span><div class="terminal-window"><div class="terminal-head"><i></i><i></i><i></i><span>uzcyber@linux:~</span></div><div class="terminal-body"><span>$ whoami</span><b>student</b><span>$ <i class="cursor"></i></span></div></div></div><div class="lab-card-body"><div class="lab-card-meta"><span class="tag tag-green">BOSHLANG‘ICH</span><span>⏱ 15 daqiqa</span></div><h4>Terminalga kirish</h4><p>Linux terminalidagi dastlabki buyruqlarni o‘rgan.</p><div class="lab-bottom"><span>✦ 50 XP</span><button class="small-btn" data-lab="terminal">Boshlash <b>→</b></button></div></div></article>
+            <article class="lab-card" data-level="Boshlang‘ich" data-title="Tarmoqni kashf et"><div class="lab-art network-art"><span class="art-label">LAB_002</span><div class="network-nodes"><i></i><i></i><i></i><i></i><b>⌘</b><span></span><span></span><span></span></div></div><div class="lab-card-body"><div class="lab-card-meta"><span class="tag tag-green">BOSHLANG‘ICH</span><span>⏱ 20 daqiqa</span></div><h4>Tarmoqni kashf et</h4><p>IP manzillar va tarmoq tushunchalarini anglab ol.</p><div class="lab-bottom"><span>✦ 75 XP</span><button class="small-btn" data-lab="network">Boshlash <b>→</b></button></div></div></article>
+            <article class="lab-card" data-level="O‘rta" data-title="Web xavfsizligi"><div class="lab-art web-art"><span class="art-label">LAB_003</span><div class="browser-art"><div class="browser-top"><i></i><i></i><i></i></div><div class="browser-lines"><b></b><i></i><i></i><i></i><span>01</span></div></div></div><div class="lab-card-body"><div class="lab-card-meta"><span class="tag tag-purple">O‘RTA</span><span>⏱ 30 daqiqa</span></div><h4>Web xavfsizligi</h4><p>Veb ilovalar qanday himoyalanishini o‘rgan.</p><div class="lab-bottom"><span>✦ 100 XP</span><button class="small-btn" data-lab="web">Boshlash <b>→</b></button></div></div></article>
+          </div>
+        </section>
+
+        <div class="bottom-grid">
+          <section class="panel leaderboard-panel"><div class="section-heading"><div><div class="eyebrow">HAMJAMIYAT</div><h3>Haftalik reyting</h3></div><button class="link-btn" data-go="leaderboard">To‘liq reyting →</button></div>
+            <div class="leader-row"><span class="rank gold">01</span><div class="leader-avatar av1">A</div><div class="leader-name"><strong>Azizbek</strong><small>Cyber explorer</small></div><b>2 450 <small>XP</small></b></div>
+            <div class="leader-row"><span class="rank silver">02</span><div class="leader-avatar av2">M</div><div class="leader-name"><strong>Madina</strong><small>Web guardian</small></div><b>2 180 <small>XP</small></b></div>
+            <div class="leader-row"><span class="rank bronze">03</span><div class="leader-avatar av3">S</div><div class="leader-name"><strong>Sardor</strong><small>Linux beginner</small></div><b>1 960 <small>XP</small></b></div>
+            <div class="leader-row current-user"><span class="rank">14</span><div class="leader-avatar av4">F</div><div class="leader-name"><strong>Feruz <em>SEN</em></strong><small>Yangi boshlovchi</small></div><b id="leaderXp">120 <small>XP</small></b></div>
+          </section>
+          <section class="panel quote-panel"><div class="quote-mark">“</div><div class="eyebrow">HAFTANING FIKRI</div><h3>Eng kuchli himoya — bu bilim.</h3><p>Kiberxavfsizlik bir martalik manzil emas, doimiy o‘rganish yo‘lidir.</p><div class="quote-author"><span></span><b>UZCYBER AKADEMIYASI</b></div><div class="quote-decoration">⌑</div></section>
+        </div>
+        <footer class="footer"><span>© 2026 UZCYBER ACADEMY</span><span>O‘ZBEKISTONDA YARATILDI <b>✳</b></span><span>V 1.0.0 — BETA</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
