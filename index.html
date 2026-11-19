@@ -3,383 +3,460 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UZCYBER | Cybersecurity Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UZCYBER — Cybersecurity Academy</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-:root{--bg:#151e2e;--nav:#202c43;--card:#1d293f;--card2:#222f49;--line:#2c3a53;--text:#f4f6fc;--muted:#8799b7;--green:#a8ed19;--blue:#6d9df8}
+:root{--bg:#080d18;--panel:#101a2b;--panel2:#152238;--green:#00f5a0;--blue:#00b8ff;--text:#eaf2ff;--muted:#91a2bb;--red:#ff5577}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--text);font-size:14px}
-button,a,select{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-.top{height:77px;background:var(--nav);display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:10}
-.navinner{width:1120px;max-width:96%;display:flex;align-items:center;gap:24px;height:100%}
-.brand{display:flex;align-items:center;gap:7px;font-size:16px;font-weight:800;line-height:16px;width:100px}
-.brandmark{font-size:32px;color:white}
-.brand small{font-size:8px;display:block;letter-spacing:2px}
-.navlinks{display:flex;align-items:center;gap:27px;height:100%}
-.navlink{height:100%;display:flex;align-items:center;gap:8px;color:#aab5c9;font-size:13px;white-space:nowrap}
-.navlink.active,.navlink:hover{color:white}
-.navlink.active .navico{color:var(--green)}
-.navico{font-size:21px;color:#8796ad}
-.navright{margin-left:auto;display:flex;align-items:center;gap:15px}
-.navicon{font-size:20px;color:#aab5c9;cursor:pointer}
-.dot{background:#ff455c;color:white;border-radius:20px;font-size:9px;padding:2px 5px}
-.premium{background:var(--green);border:0;color:#18220d;padding:9px 17px;border-radius:4px;font-weight:700}
-.sep{height:29px;width:1px;background:#42516a}
-.counter{font-weight:700;color:white}
-.avatar{width:47px;height:47px;border:3px solid #465779;border-radius:50%;display:grid;place-items:center;background:#8019a7;font-size:23px}
-.lang{background:transparent;border:1px solid #4b5a71;color:white;padding:7px;border-radius:5px}
-.lang option{background:#202c43}
-.container{max-width:1120px;margin:20px auto 0;display:grid;grid-template-columns:minmax(0,737px) minmax(300px,358px);gap:20px}
-.left,.right{min-width:0}
-.panel{background:var(--card);border-radius:6px;margin-bottom:20px;overflow:hidden}
-.welcome{min-height:81px;display:flex;align-items:center;padding:13px 20px;gap:15px}
-.mascot{width:53px;height:54px;flex-shrink:0;position:relative}
-.mascot:before{content:"";position:absolute;width:45px;height:45px;background:var(--green);border-radius:65% 35% 55% 45%;transform:rotate(-20deg);top:3px;left:2px;border:2px solid #101c2a}
-.mascot:after{content:"◉";position:absolute;top:15px;left:13px;font-size:24px;color:#111b2a;text-shadow:8px 2px 0 white}
-.mascot span{position:absolute;right:0;top:2px;color:var(--green);font-size:22px}
-.welcome h2{font-size:19px;margin:0 0 6px}
-.welcome p{font-size:12px;margin:0;font-weight:600;line-height:1.5}
-.learning{padding:25px 21px 17px}
-.sectionhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:29px}
-.sectionhead h3{font-size:17px;margin:0}
-.tabs{display:flex;gap:16px;color:#b5c1d4}
-.tab{background:none;border:0;color:#b5c1d4;padding:9px 4px 12px;border-bottom:3px solid transparent}
-.tab.active{color:white;border-color:var(--green);font-weight:700}
-.module{min-height:92px;background:#222f48;border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:15px 26px;margin-bottom:20px;gap:12px}
-.module small{color:white;font-weight:600}
-.module h2{font-size:20px;margin:8px 0 0}
-.module-art{width:115px;height:67px;flex-shrink:0;border-radius:9px;background:linear-gradient(145deg,#075f83,#132b49);border:5px solid #34778c;display:grid;place-items:center;font-size:42px;box-shadow:inset 0 0 15px #071b31}
-.maparea{height:355px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 54% 50%,#202e45 0%,#1d293f 65%)}
-.binary{position:absolute;color:#46536b;opacity:.4;font-family:monospace;font-size:9px;line-height:14px;white-space:pre;top:150px;pointer-events:none}
-.binary.leftbin{left:0}.binary.rightbin{right:0;top:230px}
-.route{position:absolute;width:350px;height:260px;left:50%;top:48%;transform:translate(-50%,-50%)}
-.route svg{width:100%;height:100%;position:absolute}
-.node{position:absolute;width:108px;text-align:center}
-.node .platform{height:65px;width:95px;margin:auto;background:linear-gradient(145deg,#91a7b4,#485a70);clip-path:polygon(50% 0,100% 35%,50% 75%,0 40%);display:grid;place-items:center;font-size:36px;filter:drop-shadow(0 7px 5px #101827)}
-.node label{font-size:12px;font-weight:700;display:block;margin-top:5px}
-.node small{color:#92a1b8}
-.node.one{top:0;left:127px}
-.node.two{top:120px;left:0;opacity:.3}
-.node.three{top:195px;left:138px;opacity:.55}
-.node.four{top:245px;left:10px;opacity:.2}
-.continuebubble{position:absolute;top:-31px;left:5px;background:var(--green);color:#18220c;padding:7px 13px;border-radius:6px;font-weight:800;white-space:nowrap}
-.continuebubble:after{content:"";position:absolute;bottom:-7px;left:48%;border-width:8px 8px 0;border-style:solid;border-color:var(--green) transparent transparent}
-.percent{position:absolute;top:70px;left:50%;transform:translateX(-50%);width:49px;height:49px;border-radius:50%;background:#f3f5fa;color:#172033;border:4px solid var(--green);display:grid;place-items:center;font-weight:800}
-.mapbottom{display:flex;justify-content:space-between;align-items:center;padding-top:8px}
-.switch{display:flex;gap:9px;align-items:center;font-weight:600}
-.switch input{accent-color:var(--green);width:29px;height:17px}
-.outline{background:transparent;color:white;border:1px solid var(--green);border-radius:5px;padding:8px 14px}
-.outline:hover,.follow-user button:hover{background:#2c3c50}
-.bronze{padding:23px 22px 29px}
-.bronze h3{font-size:17px;margin:0 0 8px}
-.bronze>p{color:var(--muted);margin:0 0 30px}
-.bronzeinner{background:#222f48;border-radius:6px;min-height:286px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px}
-.medal{font-size:55px;margin-bottom:13px}
-.bronzeinner h3{max-width:390px;line-height:1.5;margin:0 0 10px;font-size:15px}
-.bronzeinner p{color:var(--muted);font-size:12px}
-.darkbtn{background:#151e2e;color:white;border:1px solid #34435c;padding:8px 14px;border-radius:5px}
-.darkbtn:hover{border-color:var(--green)}
-.session{padding:17px 20px;display:grid;grid-template-columns:1.4fr 1fr auto;align-items:center;gap:15px}
-.session small{color:#8ea0bc;font-size:9px;letter-spacing:1px}
-.session h3{font-size:16px;margin:5px 0}
-.session p{color:#9baac0;font-size:11px;line-height:1.5}
-.days{display:flex;gap:6px;margin:10px 0}
-.day{border:0;background:#27354e;color:#aab8cb;border-radius:50%;width:24px;height:24px;font-size:10px}
-.day.selected{background:var(--blue);color:white}
-.time{background:#26344d;border:1px solid #34435c;color:white;padding:7px 12px;border-radius:4px}
-.right .panel{padding:17px 14px}
-.countdown{text-align:center;color:#8ba1bd;background:#20334a;margin:-17px -14px 17px;padding:12px;font-size:12px}
-.welcomechallenge h3{font-size:16px;margin:0 0 7px}
-.welcomechallenge p{line-height:1.5;margin:0 0 23px}
-.challenge-row{margin:19px 0}
-.challenge-title{display:flex;justify-content:space-between;align-items:center;font-weight:700;margin-bottom:8px}
-.challenge-title span:last-child{color:#8fa2bd;font-size:12px;font-weight:400}
-.mini-progress{height:7px;background:#2b3850;border-radius:20px;overflow:hidden}
-.mini-progress i{height:100%;display:block;background:linear-gradient(90deg,#d6f51c,#28b51c);border-radius:20px}
-.bonus{border:1px solid #3a4860;border-radius:7px;padding:14px;display:flex;align-items:center;gap:12px;margin-top:23px}
-.bonusicon{font-size:28px}
-.bonus p{font-size:12px;line-height:1.6;margin:0;flex:1}
-.feed{text-align:center;background:#222f48;padding:22px 12px;border-radius:5px;color:#b4c2d8;font-size:12px;line-height:1.6;margin-top:20px}
-.right h3{font-size:16px;margin:0 0 17px}
-.statslock{background:#1c2d50;padding:25px 13px;text-align:center;border-radius:5px;color:#d7e0f2;line-height:1.5;font-size:12px}
-.lock{font-size:26px;color:#7da7f9;margin-right:12px}
-.follow{padding:20px}
-.follow-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.follow-head h3{margin:0}
-.follow-user{display:flex;align-items:center;gap:10px;margin:13px 0}
-.userpic{width:33px;height:33px;border-radius:50%;background:linear-gradient(140deg,#7fdc44,#245d9b);border:2px solid #50617a;display:grid;place-items:center}
-.follow-user span{flex:1;font-size:12px}
-.follow-user button{background:transparent;color:white;border:1px solid var(--green);border-radius:5px;padding:7px 11px;font-size:12px}
-.center{text-align:center;margin-top:20px}
-.watchtabs{display:flex;justify-content:space-around;border-bottom:1px solid #35435b;padding-bottom:12px;margin-bottom:22px}
-.watchtabs button{background:none;border:0;color:#bdc9dc;padding:7px}
-.watchtabs button.active{border-bottom:2px solid white;color:white;font-weight:700}
-footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:22px 0 30px;display:flex;justify-content:space-between;color:#d1d9e7;font-size:12px}
-.social{display:flex;gap:16px;color:#8795ac;font-weight:800;font-size:16px}
-.chat{position:fixed;right:17px;bottom:17px;width:43px;height:43px;border-radius:50%;background:#1e2e43;border:1px solid #30435c;display:grid;place-items:center;color:var(--green);font-size:22px}
-.toast{position:fixed;bottom:75px;right:20px;background:#25364e;border:1px solid #52647e;padding:14px 20px;border-radius:8px;z-index:30;display:none;max-width:300px;box-shadow:0 5px 25px #0006}
-.toast.show{display:block}
-@media(max-width:850px){.container{grid-template-columns:1fr;margin:12px}.right{display:grid;grid-template-columns:1fr 1fr;gap:12px}.right .panel{margin:0}.navinner{gap:10px}.navlinks{gap:10px}.navlink{font-size:11px}.premium{display:none}}
-@media(max-width:560px){.top{height:auto;min-height:68px}.navinner{flex-wrap:wrap;padding:10px 0}.brand{width:auto}.navlinks{order:3;width:100%;height:35px;justify-content:space-between}.navright{gap:9px}.container{display:block}.right{display:block}.right .panel{margin-bottom:15px}.welcome{height:auto;min-height:80px}.welcome p{font-size:10px}.sectionhead{align-items:flex-start;gap:10px;flex-direction:column}.tabs{gap:10px}.module{padding:12px}.module h2{font-size:15px}.module-art{width:70px}.maparea{height:340px}.route{transform:translate(-50%,-50%) scale(.85)}.session{grid-template-columns:1fr}.session>div{border:0!important}.bronzeinner{padding:20px 12px}footer{font-size:10px;gap:10px}.social{gap:7px}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:9px;padding:11px 16px;background:var(--green);color:#06130f;font-weight:bold}
+button:hover{filter:brightness(1.12)}
+button.secondary{background:#24334b;color:white}
+button.danger{background:#512338;color:#fff}
+input,select{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #30415b;border-radius:8px;background:#0b1423;color:white}
+header{height:68px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #233149;background:#0b1322;position:sticky;top:0;z-index:5}
+.logo{font-size:23px;font-weight:900;color:var(--green);letter-spacing:2px}
+.logo span{color:white}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav button{background:transparent;color:#c9d5e8;padding:9px}
+nav button.active,nav button:hover{color:var(--green);background:#14263a}
+.container{max-width:1200px;margin:auto;padding:28px 20px}
+.hero{padding:38px 0 25px}
+.hero h1{font-size:clamp(32px,5vw,55px);margin:0 0 12px}
+.hero h1 span{color:var(--green)}
+.muted{color:var(--muted);line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid #243650;border-radius:13px;padding:20px}
+.card h3{margin-top:5px}
+.card p{color:var(--muted);line-height:1.5}
+.tag{display:inline-block;padding:5px 9px;border-radius:20px;background:#123b35;color:var(--green);font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}
+.stat{background:var(--panel);padding:17px;border-radius:12px;border:1px solid #243650}
+.stat strong{display:block;color:var(--green);font-size:26px;margin-top:8px}
+.progress{height:8px;background:#27364c;border-radius:10px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;background:var(--green);width:0}
+.section-title{margin:28px 0 16px}
+.hidden{display:none!important}
+.auth-wrap{max-width:430px;margin:55px auto;padding:25px}
+.auth-wrap .card{padding:28px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.lesson-content{white-space:pre-wrap;line-height:1.8;color:#d7e4f5}
+.question{padding:15px;background:#152238;border-radius:10px;margin:13px 0}
+.option{display:block;width:100%;text-align:left;margin:8px 0;background:#26364f;color:white}
+.option.selected{outline:2px solid var(--green)}
+.notice{padding:12px;border-radius:8px;background:#172b35;color:var(--green);margin:12px 0}
+footer{text-align:center;color:#71839d;padding:30px;border-top:1px solid #233149;margin-top:45px}
+@media(max-width:650px){header{height:auto;padding:14px;align-items:flex-start;gap:10px;flex-direction:column}nav{width:100%}.container{padding:20px 14px}}
 </style>
 </head>
 <body>
-<header class="top">
- <div class="navinner">
-  <a class="brand" href="#"><span class="brandmark">☁</span><span>UZ<small>CYBER</small></span></a>
-  <nav class="navlinks">
-   <a class="navlink active" href="#dashboard"><span class="navico">▣</span><span data-t="dashboard">Boshqaruv paneli</span></a>
-   <a class="navlink" href="#learning"><span class="navico">▤</span><span data-t="learn">O‘rganish</span></a>
-   <a class="navlink" href="#practice"><span class="navico">◎</span><span data-t="practice">Amaliyot</span></a>
-   <a class="navlink" href="#ranking"><span class="navico">♜</span><span data-t="ranking">Raqobatlashish</span></a>
-  </nav>
-  <div class="navright">
-   <span class="navicon" id="searchButton" title="Search">⌕</span>
-   <span class="navicon" id="notificationButton">♧<b class="dot">1</b></span>
-   <button class="premium" id="premiumButton" data-t="premium">Premiumga o'ting</button>
-   <span class="sep"></span><span class="counter">◆ 0</span><span class="counter">🔥 0</span>
-   <select class="lang" id="language" aria-label="Language"><option value="uz">UZ</option><option value="ru">RU</option><option value="en">EN</option></select>
-   <div class="avatar">F</div>
-  </div>
- </div>
+
+<header>
+ <div class="logo">UZ<span>CYBER</span></div>
+ <nav id="nav" class="hidden">
+  <button onclick="showPage('home')" data-i="home">Bosh sahifa</button>
+  <button onclick="showPage('lessons')" data-i="lessons">Darslar</button>
+  <button onclick="showPage('labs')" data-i="labs">Laboratoriya</button>
+  <button onclick="showPage('profile')" data-i="profile">Profil</button>
+ </nav>
+ <select id="language" style="width:105px;margin:0" onchange="setLanguage(this.value)">
+  <option value="uz">O‘zbek</option><option value="ru">Русский</option><option value="en">English</option>
+ </select>
 </header>
 
-<div class="container" id="dashboard">
- <main class="left">
-  <section class="panel welcome">
-   <div class="mascot"><span>⌁</span></div>
-   <div><h2><span data-t="hello">Salom</span> Feruz!</h2><p data-t="fact">Qiziqarli fakt: men bilan suhbatlashgan o‘quvchilar ko‘pincha o‘rganganlarini ko‘proq eslab qolishadi.</p></div>
-  </section>
+<main id="authPage" class="auth-wrap">
+ <div class="card">
+  <h2 id="authTitle">UZCYBER hisobiga kirish</h2>
+  <p class="muted" id="authDesc">Kiberxavfsizlikni biz bilan o‘rganing.</p>
+  <div id="registerName" class="hidden">
+   <label>Ismingiz</label><input id="name" placeholder="Ismingiz">
+  </div>
+  <label>Email</label><input id="email" type="email" placeholder="email@example.com">
+  <label id="passwordLabel">Parol</label><input id="password" type="password" placeholder="Kamida 6 ta belgi">
+  <button id="authButton" style="width:100%" onclick="authenticate()">Kirish</button>
+  <p id="authMessage" class="muted"></p>
+  <p class="muted"><span id="switchText">Hisobingiz yo‘qmi?</span>
+   <a href="#" onclick="toggleAuth();return false" id="switchLink" style="color:var(--green)">Ro‘yxatdan o‘tish</a>
+  </p>
+ </div>
+</main>
 
-  <section class="panel learning" id="learning">
-   <div class="sectionhead">
-    <h3 data-t="mylearning">Mening o‘rganishim</h3>
-    <div class="tabs">
-     <button class="tab active" data-tab="current" data-t="current">▣ Hozirgi</button>
-     <button class="tab" data-tab="recent" data-t="recent">◴ Yaqinda</button>
-     <button class="tab" data-tab="saved" data-t="saved">♧ Saqlandi</button>
+<div id="app" class="hidden">
+ <div class="container">
+  <section id="homePage">
+   <div class="hero">
+    <span class="tag">CYBERSECURITY LEARNING PLATFORM</span>
+    <h1>Kelajakni <span>himoya qil.</span></h1>
+    <p class="muted">UZCYBER — kiberxavfsizlikni noldan o‘rganish, bilimlarni sinash va amaliy topshiriqlarni bajarish platformasi.</p>
+    <div class="actions">
+     <button onclick="showPage('lessons')">Darslarni boshlash</button>
+     <button class="secondary" onclick="showPage('labs')">Laboratoriyaga o‘tish</button>
     </div>
    </div>
-   <div class="module">
-    <div><small data-t="module">1- modul</small><h2 data-t="startjourney">Kiberxavfsizlik bo‘yicha sayohatingizni boshlang</h2></div>
-    <div class="module-art">🖥️</div>
+   <div class="stats">
+    <div class="stat">Tugatilgan darslar<strong id="statLessons">0</strong></div>
+    <div class="stat">To‘plangan XP<strong id="statXP">0</strong></div>
+    <div class="stat">Bajarilgan testlar<strong id="statTests">0</strong></div>
    </div>
-   <div class="maparea">
-    <div class="binary leftbin">00000111001<br>11100111011<br>11010<br>0111001111<br>0001100100<br>110010011101<br>0011001001</div>
-    <div class="binary rightbin">001010<br>1100110101<br>1100011<br>001011</div>
-    <div class="route">
-     <svg viewBox="0 0 350 260"><path d="M180 30 L65 145 L185 220 L65 250" fill="none" stroke="#17243a" stroke-width="8"/><path d="M180 30 L65 145 L185 220" fill="none" stroke="#293a53" stroke-width="2" stroke-dasharray="5 8"/></svg>
-     <div class="node one"><div class="continuebubble" data-t="continue">Davom eting</div><div class="platform">⚔️</div><div class="percent">40%</div><label data-t="attack">Hujumkor xavfsizlikka kirish</label></div>
-     <div class="node two"><div class="platform">🛡️</div><label data-t="defense">Mudofaa xavfsizligi bo‘yicha kirish</label></div>
-     <div class="node three"><div class="platform">🔎</div><label data-t="searchskills">Qidiruv ko‘nikmalari</label></div>
-     <div class="node four"><div class="platform">💻</div></div>
+   <h2 class="section-title">O‘quv yo‘nalishlari</h2>
+   <div class="grid" id="homeCourses"></div>
+  </section>
+
+  <section id="lessonsPage" class="hidden">
+   <h1>Darslar</h1><p class="muted">Mavzuni tanlang, darsni o‘qing va testni bajaring.</p>
+   <div class="grid" id="lessonList"></div>
+  </section>
+
+  <section id="labsPage" class="hidden">
+   <h1>Amaliy laboratoriyalar</h1>
+   <p class="muted">Quyidagi topshiriqlar xavfsiz, o‘quv maqsadidagi simulyatsiyalardir.</p>
+   <div class="grid" id="labList"></div>
+  </section>
+
+  <section id="profilePage" class="hidden">
+   <h1>Profil</h1>
+   <div class="card">
+    <h2 id="profileName">Foydalanuvchi</h2>
+    <p id="profileEmail" class="muted"></p>
+    <div class="stats">
+     <div class="stat">XP<strong id="profileXP">0</strong></div>
+     <div class="stat">Daraja<strong id="profileLevel">1</strong></div>
+     <div class="stat">Darslar<strong id="profileLessons">0</strong></div>
     </div>
-   </div>
-   <div class="mapbottom">
-    <label class="switch"><input type="checkbox" id="classic"><span data-t="classic">Klassik ko‘rinish</span></label>
-    <button class="outline" id="viewRoute" data-t="viewroute">Yo‘lni ko‘rish</button>
-   </div>
-  </section>
-
-  <section class="panel bronze">
-   <h3 data-t="bronze">Bronza ligasi</h3>
-   <p data-t="leftdays">Faqat 3 kun qoldi!</p>
-   <div class="bronzeinner">
-    <div class="medal">🟤</div>
-    <h3 data-t="bronzetext">Siz baribir bunga erisha olasiz. Bugun 2 ta xona yoki viktorinalarni yakunlang va bronza o‘riningizni egallang.</h3>
-    <p>🥇🥈🥉 <span data-t="bestplayers">Eng yaxshi o‘yinchilar allaqachon ichkarida.</span></p>
-    <button class="darkbtn" id="viewLeague" data-t="viewleague">Ligani ko‘rish</button>
+    <h3>O‘quv jarayoni</h3>
+    <div class="progress"><div id="profileProgress"></div></div>
+    <p id="progressText" class="muted"></p>
+    <button class="danger" onclick="logout()">Hisobdan chiqish</button>
    </div>
   </section>
 
-  <section class="panel session">
-   <div>
-    <small>▦ <span data-t="nextsession">KEYINGI SESSIYA</span></small>
-    <h3 data-t="plan">Keyingi mashg‘ulotingizni rejalashtiring</h3>
-    <p data-t="reminder">Yo‘lingizni davom ettirish uchun vaqt belgilang. Sizga eslatib o‘tamiz.</p>
-   </div>
-   <div style="border-left:1px solid #39465c;border-right:1px solid #39465c;padding:0 15px">
-    <small data-t="choose">KUN VA VAQTNI TANLANG</small>
-    <div class="days">
-     <button class="day">T</button><button class="day selected">F</button><button class="day">S</button><button class="day">S</button><button class="day">M</button><button class="day">T</button><button class="day">G‘</button>
+  <section id="detailPage" class="hidden">
+   <button class="secondary" onclick="showPage('lessons')">← Orqaga</button>
+   <div class="card" style="margin-top:18px">
+    <span class="tag" id="detailTag">DARS</span>
+    <h1 id="detailTitle"></h1>
+    <div id="detailContent" class="lesson-content"></div>
+    <div class="actions">
+     <button onclick="startQuiz()">Testni boshlash</button>
+     <button class="secondary" onclick="completeCurrentLesson()">Darsni tugatdim</button>
     </div>
-    <button class="time" id="previousTime">‹</button>
-    <button class="time" id="time">13:30 PM</button>
-    <button class="time" id="nextTime">›</button>
+    <div id="quizArea"></div>
    </div>
-   <button class="premium" id="bookSession" data-t="book">Kitob sessiyasi</button>
   </section>
- </main>
 
- <aside class="right">
-  <section class="panel">
-   <div class="countdown">◷ <span data-t="countdown">Keyingi missiyaga 3 kun qoldi</span></div>
-   <div class="welcomechallenge">
-    <h3>🧰 <span data-t="welcome">UZCYBER’ga xush kelibsiz!</span></h3>
-    <p data-t="welcomeinfo">Birinchi haftalik topshiriqni bajarish bilan sayohatingizni boshlang.</p>
+  <section id="labDetailPage" class="hidden">
+   <button class="secondary" onclick="showPage('labs')">← Orqaga</button>
+   <div class="card" style="margin-top:18px">
+    <h1 id="labTitle"></h1>
+    <p id="labDescription" class="muted"></p>
+    <div id="labTask"></div>
+    <input id="labAnswer" placeholder="Javobni kiriting">
+    <button onclick="checkLab()">Javobni tekshirish</button>
+    <p id="labResult"></p>
    </div>
-   <div class="challenge-row"><div class="challenge-title"><span data-t="questions">10 ta savolga javob bering</span><span>2 / 10</span></div><div class="mini-progress"><i style="width:20%"></i></div></div>
-   <div class="challenge-row"><div class="challenge-title"><span data-t="rooms3">3 ta to‘liq xona</span><span>0 / 3</span></div><div class="mini-progress"><i style="width:0%"></i></div></div>
-   <div class="challenge-row"><div class="challenge-title"><span data-t="streak2">2 kunlik seriyani davom ettiring</span><span>1 / 2</span></div><div class="mini-progress"><i style="width:50%"></i></div></div>
-   <div class="bonus"><div class="bonusicon">🧊</div><p><b data-t="bonus">4 ta topshiriqni bajaring</b> <span>0 / 4</span><br><span style="color:var(--muted)" data-t="bonusdesc">Bonus sandig‘ini oching.</span></p><span>›</span></div>
   </section>
-
-  <section class="panel">
-   <h3 data-t="feed">Oziqlantirish</h3>
-   <div class="feed" data-t="feedempty">Tarmog‘ingizdan hali hech qanday faollik yo‘q. Yangilanishlarni bu yerda ko‘rish uchun odamlarni kuzatib boring.</div>
-  </section>
-
-  <section class="panel">
-   <div class="follow-head"><h3 data-t="statistics">Sizning statistikangiz</h3><button class="darkbtn" id="profileButton" data-t="profile">Profilga o'tish</button></div>
-   <div class="statslock"><span class="lock">🔒</span><span data-t="locked">Ushbu xususiyatni ochish uchun yo‘lingizdagi birinchi xonani to‘ldiring.</span></div>
-  </section>
-
-  <section class="panel follow">
-   <div class="follow-head"><h3 data-t="recommended">Tavsiya etilgan kuzatuvchilar</h3><button class="darkbtn" id="searchPeople">⌕</button></div>
-   <div class="follow-user"><div class="userpic">🟢</div><span>siprob</span><button class="follow-button" data-following="no" data-t="follow">Kuzatib boring</button></div>
-   <div class="follow-user"><div class="userpic">🌌</div><span>.RCDM.exe</span><button class="follow-button" data-following="no" data-t="follow">Kuzatib boring</button></div>
-   <div class="follow-user"><div class="userpic">🌊</div><span>Nirajstha10</span><button class="follow-button" data-following="no" data-t="follow">Kuzatib boring</button></div>
-   <div class="center"><button class="darkbtn" id="seeAll" data-t="seeall">Barchasini ko‘rish</button></div>
-  </section>
-
-  <section class="panel follow">
-   <div class="watchtabs"><button class="active" data-watch="following" data-t="watching">Kuzatilmoqda</button><button data-watch="followers" data-t="followers">Kuzatuvchilar</button></div>
-   <div class="feed" id="watchcontent" data-t="watchempty">Siz hali hech kimni kuzatmayapsiz</div>
-  </section>
- </aside>
+ </div>
 </div>
-<footer><span data-t="copyright">Mualliflik huquqi UZCYBER 2026 yilga tegishli</span><div class="social"><span>𝕏</span><span>in</span><span>◉</span><span>f</span><span>▶</span><span>◎</span></div></footer>
-<button class="chat" id="chatButton">☁</button>
-<div class="toast" id="toast"></div>
 
-<script>
-const translations={
-uz:{
-dashboard:"Boshqaruv paneli",learn:"O‘rganish",practice:"Amaliyot",ranking:"Raqobatlashish",premium:"Premiumga o'ting",
-hello:"Salom",fact:"Qiziqarli fakt: men bilan suhbatlashgan o‘quvchilar ko‘pincha o‘rganganlarini ko‘proq eslab qolishadi.",
-mylearning:"Mening o‘rganishim",current:"▣ Hozirgi",recent:"◴ Yaqinda",saved:"♧ Saqlandi",module:"1- modul",startjourney:"Kiberxavfsizlik bo‘yicha sayohatingizni boshlang",continue:"Davom eting",
-attack:"Hujumkor xavfsizlikka kirish",defense:"Mudofaa xavfsizligi bo‘yicha kirish",searchskills:"Qidiruv ko‘nikmalari",classic:"Klassik ko‘rinish",viewroute:"Yo‘lni ko‘rish",
-bronze:"Bronza ligasi",leftdays:"Faqat 3 kun qoldi!",bronzetext:"Siz bunga erisha olasiz. Bugun 2 ta xona yoki viktorinani yakunlang va bronza o‘riningizni egallang.",bestplayers:"Eng yaxshi o‘yinchilar allaqachon ichkarida.",viewleague:"Ligani ko‘rish",
-nextsession:"KEYINGI SESSIYA",plan:"Keyingi mashg‘ulotingizni rejalashtiring",reminder:"Yo‘lingizni davom ettirish uchun vaqt belgilang. Sizga eslatib o‘tamiz.",choose:"KUN VA VAQTNI TANLANG",book:"Sessiyani band qilish",
-countdown:"Keyingi missiyaga 3 kun qoldi",welcome:"UZCYBER’ga xush kelibsiz!",welcomeinfo:"Birinchi haftalik topshiriqni bajarish bilan sayohatingizni boshlang.",questions:"10 ta savolga javob bering",rooms3:"3 ta to‘liq xona",streak2:"2 kunlik seriyani davom ettiring",bonus:"4 ta topshiriqni bajaring",bonusdesc:"Bonus sandig‘ini oching.",
-feed:"Oziqlantirish",feedempty:"Tarmog‘ingizda hali faollik yo‘q. Yangilanishlarni ko‘rish uchun odamlarni kuzatib boring.",statistics:"Sizning statistikangiz",profile:"Profilga o'tish",locked:"Ushbu xususiyatni ochish uchun birinchi xonani to‘ldiring.",recommended:"Tavsiya etilgan kuzatuvchilar",follow:"Kuzatib boring",unfollow:"Kuzatishni to‘xtatish",seeall:"Barchasini ko‘rish",watching:"Kuzatilmoqda",followers:"Kuzatuvchilar",watchempty:"Siz hali hech kimni kuzatmayapsiz",copyright:"Mualliflik huquqi UZCYBER 2026 yilga tegishli",
-route:"O‘quv yo‘nalishi ochildi. Bu demo rejim.",league:"Bronza ligasi ochildi. Bu demo rejim.",session:"Mashg‘ulot vaqti tanlandi.",chat:"UZCYBER yordam markazi. Bu demo rejim.",profilemsg:"Profil demo rejimida.",premiummsg:"Premium xizmati hozircha ulanmagan.",searchmsg:"Qidiruv demo rejimida.",notifications:"Sizda 1 ta bildirishnoma bor.",people:"Tavsiya etilgan foydalanuvchilar."
-},
-ru:{
-dashboard:"Панель управления",learn:"Обучение",practice:"Практика",ranking:"Соревнование",premium:"Перейти на Premium",
-hello:"Привет",fact:"Интересный факт: ученики, которые общаются со мной, часто лучше запоминают изученное.",
-mylearning:"Моё обучение",current:"▣ Сейчас",recent:"◴ Недавно",saved:"♧ Сохранено",module:"Модуль 1",startjourney:"Начните свой путь в кибербезопасности",continue:"Продолжить",
-attack:"Введение в наступательную безопасность",defense:"Введение в защиту",searchskills:"Навыки поиска",classic:"Классический вид",viewroute:"Посмотреть путь",
-bronze:"Бронзовая лига",leftdays:"Осталось всего 3 дня!",bronzetext:"Вы можете этого достичь. Завершите сегодня 2 комнаты или викторины и получите место в бронзовой лиге.",bestplayers:"Лучшие игроки уже здесь.",viewleague:"Посмотреть лигу",
-nextsession:"СЛЕДУЮЩАЯ СЕССИЯ",plan:"Запланируйте следующую тренировку",reminder:"Выберите время для продолжения обучения. Мы напомним вам.",choose:"ВЫБЕРИТЕ ДЕНЬ И ВРЕМЯ",book:"Записать сессию",
-countdown:"До следующей миссии осталось 3 дня",welcome:"Добро пожаловать в UZCYBER!",welcomeinfo:"Начните своё путешествие с выполнения первого недельного задания.",questions:"Ответьте на 10 вопросов",rooms3:"Завершите 3 комнаты",streak2:"Продолжите серию из 2 дней",bonus:"Выполните 4 задания",bonusdesc:"Откройте бонусный сундук.",
-feed:"Лента активности",feedempty:"В вашей сети пока нет активности. Подписывайтесь на пользователей, чтобы видеть обновления.",statistics:"Ваша статистика",profile:"Перейти в профиль",locked:"Чтобы открыть эту функцию, завершите первую комнату.",recommended:"Рекомендуемые пользователи",follow:"Подписаться",unfollow:"Отписаться",seeall:"Посмотреть всех",watching:"Подписки",followers:"Подписчики",watchempty:"Вы пока ни на кого не подписаны",copyright:"Авторские права UZCYBER 2026",
-route:"Учебный путь открыт. Демонстрационный режим.",league:"Бронзовая лига открыта. Демонстрационный режим.",session:"Время тренировки выбрано.",chat:"Центр помощи UZCYBER. Демонстрационный режим.",profilemsg:"Профиль работает в демо-режиме.",premiummsg:"Премиум пока не подключён.",searchmsg:"Поиск работает в демо-режиме.",notifications:"У вас 1 уведомление.",people:"Рекомендуемые пользователи."
-},
-en:{
-dashboard:"Dashboard",learn:"Learn",practice:"Practice",ranking:"Compete",premium:"Go Premium",
-hello:"Hello",fact:"Interesting fact: students who talk with me often remember more of what they learn.",
-mylearning:"My learning",current:"▣ Current",recent:"◴ Recent",saved:"♧ Saved",module:"Module 1",startjourney:"Start your cybersecurity journey",continue:"Continue",
-attack:"Introduction to offensive security",defense:"Introduction to defensive security",searchskills:"Search skills",classic:"Classic view",viewroute:"View path",
-bronze:"Bronze league",leftdays:"Only 3 days left!",bronzetext:"You can still make it. Complete 2 rooms or quizzes today and claim your bronze position.",bestplayers:"The best players are already inside.",viewleague:"View league",
-nextsession:"NEXT SESSION",plan:"Plan your next training session",reminder:"Choose a time to continue your journey. We will remind you.",choose:"CHOOSE DAY AND TIME",book:"Book session",
-countdown:"3 days until the next mission",welcome:"Welcome to UZCYBER!",welcomeinfo:"Start your journey by completing your first weekly challenge.",questions:"Answer 10 questions",rooms3:"Complete 3 rooms",streak2:"Maintain a 2-day streak",bonus:"Complete 4 tasks",bonusdesc:"Open your bonus chest.",
-feed:"Activity feed",feedempty:"There is no activity in your network yet. Follow people to see updates here.",statistics:"Your statistics",profile:"Go to profile",locked:"Complete your first room to unlock this feature.",recommended:"Recommended users",follow:"Follow",unfollow:"Unfollow",seeall:"See all",watching:"Following",followers:"Followers",watchempty:"You are not following anyone yet",copyright:"Copyright UZCYBER 2026",
-route:"Learning path opened. Demo mode.",league:"Bronze league opened. Demo mode.",session:"Training time selected.",chat:"UZCYBER Help Center. Demo mode.",profilemsg:"Profile is currently in demo mode.",premiummsg:"Premium is not connected yet.",searchmsg:"Search is in demo mode.",notifications:"You have 1 notification.",people:"Recommended users."
-}
+<footer>© 2026 UZCYBER — Learn. Practice. Protect.</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import {
+ getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+ updateProfile, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {
+ getFirestore, doc, getDoc, setDoc
+} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+/* FIREBASE SOZLAMALARI */
+const firebaseConfig = {
+ apiKey: "AIzaSyCcLV_H1ckwoMZv8CgOpR-xnPZp2XEfUo",
+ authDomain: "uzcyber.firebaseapp.com",
+ projectId: "uzcyber",
+ storageBucket: "uzcyber.firebasestorage.app",
+ messagingSenderId: "167223769752",
+ appId: "1:167223769752:web:387dc14692067dddf2aeed",
+ measurementId: "G-55D887KQ4M"
 };
 
-let lang="uz";
-let timeIndex=0;
-const times=["13:30 PM","14:00 PM","15:00 PM","16:30 PM","17:00 PM"];
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
 
-function msg(key){return translations[lang][key]||key}
-function showToast(message){
- const toast=document.getElementById("toast");
- toast.textContent=message;
- toast.classList.add("show");
- clearTimeout(window.toastTimer);
- window.toastTimer=setTimeout(()=>toast.classList.remove("show"),3000);
-}
-function setLanguage(value){
+let currentUser = null;
+let userData = {xp:0,completed:[],tests:0,labs:[]};
+let isRegister = false;
+let currentLesson = null;
+let currentLab = null;
+let currentQuestion = 0;
+let selectedOption = -1;
+
+const translations = {
+ uz:{home:"Bosh sahifa",lessons:"Darslar",labs:"Laboratoriya",profile:"Profil",login:"Kirish",register:"Ro‘yxatdan o‘tish",noaccount:"Hisobingiz yo‘qmi?",haveaccount:"Hisobingiz bormi?",authdesc:"Kiberxavfsizlikni biz bilan o‘rganing.",wrong:"Email yoki parol noto‘g‘ri.",success:"Muvaffaqiyatli!",done:"Dars tugatildi!",correct:"To‘g‘ri javob!",incorrect:"Noto‘g‘ri javob. Qayta urinib ko‘ring.",completed:"Bajarilgan",start:"Boshlash"},
+ ru:{home:"Главная",lessons:"Уроки",labs:"Лаборатория",profile:"Профиль",login:"Войти",register:"Регистрация",noaccount:"Нет аккаунта?",haveaccount:"Уже есть аккаунт?",authdesc:"Изучайте кибербезопасность вместе с нами.",wrong:"Неверный email или пароль.",success:"Успешно!",done:"Урок завершён!",correct:"Правильный ответ!",incorrect:"Неверный ответ. Попробуйте ещё раз.",completed:"Выполнено",start:"Начать"},
+ en:{home:"Home",lessons:"Lessons",labs:"Labs",profile:"Profile",login:"Login",register:"Register",noaccount:"No account?",haveaccount:"Already have an account?",authdesc:"Learn cybersecurity with us.",wrong:"Incorrect email or password.",success:"Success!",done:"Lesson completed!",correct:"Correct answer!",incorrect:"Wrong answer. Try again.",completed:"Completed",start:"Start"}
+};
+let lang = "uz";
+function tr(key){return translations[lang][key] || key}
+window.setLanguage = function(value){
  lang=value;
- document.documentElement.lang=value;
- document.querySelectorAll("[data-t]").forEach(el=>{
-  const key=el.getAttribute("data-t");
-  if(translations[value][key])el.textContent=translations[value][key];
- });
- document.title="UZCYBER | Dashboard";
+ document.querySelectorAll("[data-i]").forEach(el=>el.textContent=tr(el.dataset.i));
+ document.getElementById("authTitle").textContent=tr(isRegister?"register":"login");
+ document.getElementById("authDesc").textContent=tr("authdesc");
+ document.getElementById("authButton").textContent=tr(isRegister?"register":"login");
+ document.getElementById("switchText").textContent=tr(isRegister?"haveaccount":"noaccount");
+ document.getElementById("switchLink").textContent=tr(isRegister?"login":"register");
+ renderLessons();renderLabs();renderStats();
+};
+
+const lessons = [
+ {id:"intro",title:"Kiberxavfsizlik asoslari",level:"Boshlang‘ich",description:"Kiberxavfsizlik tushunchasi, tahdidlar va himoya.",content:`Kiberxavfsizlik — kompyuterlar, serverlar, tarmoqlar va ma’lumotlarni raqamli hujumlardan himoya qilish amaliyotidir.\n\nAsosiy maqsadlar:\n1. Maxfiylik (Confidentiality) — ma’lumot faqat ruxsat berilgan odamlarga ochiq bo‘lishi.\n2. Yaxlitlik (Integrity) — ma’lumot ruxsatsiz o‘zgartirilmasligi.\n3. Mavjudlik (Availability) — tizim va ma’lumotlar kerakli vaqtda ishlashi.\n\nTahdidlar: zararli dasturlar, fishing, parol o‘g‘irlash va xizmatni rad etish hujumlari.`,questions:[{q:"CIA triadasidagi C nimani anglatadi?",a:["Confidentiality","Computer","Connection"],correct:0},{q:"Fishing nima?",a:["Ma’lumotni zaxiralash","Soxta xabar orqali ma’lumotni qo‘lga kiritish","Kompyuterni yangilash"],correct:1}]},
+ {id:"network",title:"Kompyuter tarmoqlari",level:"Boshlang‘ich",description:"IP, DNS, HTTP va tarmoq asoslari.",content:`Kompyuter tarmog‘i — qurilmalar o‘rtasida ma’lumot almashish tizimi.\n\nIP manzil qurilmani tarmoqda aniqlash uchun ishlatiladi.\nDNS domen nomini IP manzilga moslashtiradi.\nHTTP veb-ma’lumot almashish protokoli, HTTPS esa shifrlashdan foydalanadi.\n\nTCP ma’lumotni ishonchli yetkazishga, UDP esa tezkor uzatishga yo‘naltirilgan.`,questions:[{q:"DNS nima vazifani bajaradi?",a:["Domenni IP manzilga aylantiradi","Parol yaratadi","Faylni o‘chiradi"],correct:0},{q:"HTTPS nimani ta’minlaydi?",a:["Faqat tezlikni","Shifrlangan aloqa","Internetni o‘chiradi"],correct:1}]},
+ {id:"passwords",title:"Parollar va autentifikatsiya",level:"Boshlang‘ich",description:"Kuchli parol, MFA va hisob himoyasi.",content:`Kuchli parol uzun, taxmin qilish qiyin va boshqa saytlarda qayta ishlatilmaydigan bo‘lishi kerak.\n\nMFA — ko‘p faktorli autentifikatsiya. U paroldan tashqari qo‘shimcha tasdiqlashni talab qiladi.\n\nParollarni xavfsiz saqlash uchun ishonchli password manager ishlatish mumkin.\n\nHech qachon parol yoki tasdiqlash kodini boshqa odamlarga yubormang.`,questions:[{q:"MFA nimani anglatadi?",a:["Bir martalik parol","Ko‘p faktorli autentifikatsiya","Internet protokoli"],correct:1},{q:"Qaysi parol yaxshiroq?",a:["12345678","password","Uz!Cyber_2026#Safe"],correct:2}]},
+ {id:"web",title:"Web xavfsizligi",level:"O‘rta",description:"Veb-saytlar, HTTPS va keng tarqalgan xatolar.",content:`Veb xavfsizligi sayt va foydalanuvchi ma’lumotlarini himoya qiladi.\n\nXSS — zararli skriptni sahifada bajarishga olib keladigan zaiflik.\nSQL injection — noto‘g‘ri himoyalangan SQL so‘rovlariga zararli kiritma yuborish.\n\nHimoya: foydalanuvchi kiritmalarini tekshirish, parametrli so‘rovlar, chiqish ma’lumotlarini kodlash va xavfsiz cookie sozlamalari.`,questions:[{q:"XSS qaysi turdagi zaiflik?",a:["Skript bajarilishi","Elektr uzilishi","Monitor nosozligi"],correct:0},{q:"SQL injectiondan himoya usuli?",a:["Parametrli so‘rovlar","Parolni hammaga berish","HTTPSni o‘chirish"],correct:0}]},
+ {id:"linux",title:"Linux asoslari",level:"O‘rta",description:"Terminal va asosiy buyruqlar.",content:`Linux — serverlar va kiberxavfsizlik sohasida keng ishlatiladigan operatsion tizim.\n\npwd — joriy katalogni ko‘rsatadi.\nls — fayllarni ro‘yxatlaydi.\ncd — katalogni o‘zgartiradi.\ncat — fayl mazmunini chiqaradi.\nmkdir — yangi katalog yaratadi.\n\nBuyruqlarni faqat o‘zingizga tegishli yoki ruxsat berilgan tizimlarda bajaring.`,questions:[{q:"pwd buyrug‘i nima qiladi?",a:["Joriy katalogni ko‘rsatadi","Faylni o‘chiradi","Tarmoqni uzadi"],correct:0},{q:"ls buyrug‘i nima qiladi?",a:["Fayllarni ko‘rsatadi","Parolni almashtiradi","Kompyuterni o‘chiradi"],correct:0}]},
+ {id:"defense",title:"Himoya va xavfsizlik",level:"O‘rta",description:"Firewall, antivirus, zaxira va yangilanishlar.",content:`Tizim himoyasi bir necha qatlamdan iborat bo‘lishi kerak.\n\nFirewall — tarmoq trafikini belgilangan qoidalar asosida boshqaradi.\nAntivirus — zararli dasturlarni aniqlashga yordam beradi.\nZaxira nusxa — ma’lumot yo‘qolganida tiklash imkonini beradi.\nYangilanishlar — ma’lum zaifliklarni tuzatadi.\n\nMuhim hisoblarda MFA yoqing va muntazam zaxira nusxa oling.`,questions:[{q:"Firewall vazifasi nima?",a:["Tarmoq trafikini nazorat qilish","Rasm chizish","Parolni eslab qolish"],correct:0},{q:"Zaxira nusxa nima uchun kerak?",a:["Ma’lumotni tiklash","Internetni tezlatish","Ekranni kattalashtirish"],correct:0}]}
+];
+
+const labs=[
+ {id:"phishing",title:"Fishingni aniqlash",description:"Xabarni tahlil qiling va shubhali belgilarni aniqlang.",task:"Sizga bankdan kelgandek ko‘ringan xabar keldi: “Hisobingiz bloklandi! Kirish uchun noma’lum havolaga bosing va parolingizni kiriting.” Bu xabar qanday hujumga misol?",answer:["phishing","fishing","phishing hujumi"]},
+ {id:"password",title:"Parol xavfsizligi",description:"Kuchli parol tamoyilini aniqlang.",task:"Kuchli parolning eng muhim xususiyatlaridan birini yozing. Masalan: uzunlik, murakkablik yoki noyoblik.",answer:["uzunlik","murakkablik","noyoblik","unique","length"]},
+ {id:"https",title:"Xavfsiz ulanish",description:"Sayt xavfsizligini tekshirish.",task:"Brauzerda HTTPS nimani bildiradi? Javobda “shifrlangan” so‘zini ishlating.",answer:["shifrlangan","encrypted"]}
+];
+
+window.toggleAuth=function(){
+ isRegister=!isRegister;
+ document.getElementById("authTitle").textContent=tr(isRegister?"register":"login");
+ document.getElementById("authButton").textContent=tr(isRegister?"register":"login");
+ document.getElementById("switchText").textContent=tr(isRegister?"haveaccount":"noaccount");
+ document.getElementById("switchLink").textContent=tr(isRegister?"login":"register");
+ document.getElementById("registerName").classList.toggle("hidden",!isRegister);
+ document.getElementById("authMessage").textContent="";
+};
+
+window.authenticate=async function(){
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ const message=document.getElementById("authMessage");
+ if(!email||!password){message.textContent="Email va parolni kiriting.";return}
+ if(password.length<6){message.textContent="Parol kamida 6 ta belgidan iborat bo‘lsin.";return}
+ const btn=document.getElementById("authButton");btn.disabled=true;
+ try{
+  if(isRegister){
+   const name=document.getElementById("name").value.trim();
+   if(!name)throw new Error("Ismingizni kiriting.");
+   const result=await createUserWithEmailAndPassword(auth,email,password);
+   await updateProfile(result.user,{displayName:name});
+   currentUser=result.user;
+   userData={xp:0,completed:[],tests:0,labs:[]};
+   await saveData();
+  }else{
+   await signInWithEmailAndPassword(auth,email,password);
+  }
+ }catch(error){message.textContent=translateError(error)}
+ finally{btn.disabled=false}
+};
+
+function translateError(error){
+ const map={
+ "auth/email-already-in-use":"Bu email avval ro‘yxatdan o‘tgan.",
+ "auth/invalid-email":"Email manzili noto‘g‘ri.",
+ "auth/weak-password":"Parol juda oddiy.",
+ "auth/invalid-credential":"Email yoki parol noto‘g‘ri.",
+ "auth/network-request-failed":"Internet aloqasini tekshiring."
+ };
+ return map[error.code]||error.message||"Xatolik yuz berdi.";
 }
-document.getElementById("language").addEventListener("change",e=>setLanguage(e.target.value));
 
-document.querySelectorAll(".tabs .tab").forEach(button=>{
- button.addEventListener("click",()=>{
-  document.querySelectorAll(".tabs .tab").forEach(el=>el.classList.remove("active"));
-  button.classList.add("active");
-  showToast(button.textContent.trim());
- });
+onAuthStateChanged(auth,async user=>{
+ if(user){
+  currentUser=user;
+  await loadData();
+  document.getElementById("authPage").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  document.getElementById("nav").classList.remove("hidden");
+  renderAll();showPage("home");
+ }else{
+  currentUser=null;
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("nav").classList.add("hidden");
+  document.getElementById("authPage").classList.remove("hidden");
+ }
 });
 
-document.querySelectorAll(".follow-button").forEach(button=>{
- button.addEventListener("click",()=>{
-  const active=button.dataset.following==="yes";
-  button.dataset.following=active?"no":"yes";
-  button.textContent=active?msg("follow"):msg("unfollow");
-  showToast(button.parentElement.querySelector("span").textContent+" — "+(active?msg("unfollow"):msg("follow")));
- });
-});
-
-document.querySelectorAll(".watchtabs button").forEach(button=>{
- button.addEventListener("click",()=>{
-  document.querySelectorAll(".watchtabs button").forEach(el=>el.classList.remove("active"));
-  button.classList.add("active");
-  document.getElementById("watchcontent").textContent=msg("watchempty");
- });
-});
-
-document.querySelectorAll(".day").forEach(button=>{
- button.addEventListener("click",()=>{
-  document.querySelectorAll(".day").forEach(el=>el.classList.remove("selected"));
-  button.classList.add("selected");
- });
-});
-
-function updateTime(step){
- timeIndex=(timeIndex+step+times.length)%times.length;
- document.getElementById("time").textContent=times[timeIndex];
+async function loadData(){
+ try{
+  const ref=doc(db,"users",currentUser.uid);
+  const snap=await getDoc(ref);
+  if(snap.exists()){
+   const data=snap.data();
+   userData={xp:data.xp||0,completed:data.completed||[],tests:data.tests||0,labs:data.labs||[]};
+  }else{
+   userData={xp:0,completed:[],tests:0,labs:[]};
+   await saveData();
+  }
+ }catch(error){console.error(error);alert("Ma’lumotlarni yuklashda xatolik: "+error.message)}
 }
-document.getElementById("previousTime").addEventListener("click",()=>updateTime(-1));
-document.getElementById("nextTime").addEventListener("click",()=>updateTime(1));
 
-document.getElementById("classic").addEventListener("change",e=>{
- const map=document.querySelector(".maparea");
- map.style.background=e.target.checked?"#1b273a":"";
- showToast(e.target.checked?"Classic view enabled":"Classic view disabled");
-});
+async function saveData(){
+ if(!currentUser)return;
+ try{
+  await setDoc(doc(db,"users",currentUser.uid),{
+   name:currentUser.displayName||"",
+   email:currentUser.email,
+   xp:userData.xp,
+   completed:userData.completed,
+   tests:userData.tests,
+   labs:userData.labs,
+   updatedAt:new Date().toISOString()
+  },{merge:true});
+  renderStats();
+ }catch(error){console.error(error);alert("Saqlashda xatolik: "+error.message)}
+}
 
-document.getElementById("viewRoute").addEventListener("click",()=>showToast(msg("route")));
-document.getElementById("viewLeague").addEventListener("click",()=>showToast(msg("league")));
-document.getElementById("bookSession").addEventListener("click",()=>showToast(msg("session")));
-document.getElementById("premiumButton").addEventListener("click",()=>showToast(msg("premiummsg")));
-document.getElementById("profileButton").addEventListener("click",()=>showToast(msg("profilemsg")));
-document.getElementById("chatButton").addEventListener("click",()=>showToast(msg("chat")));
-document.getElementById("notificationButton").addEventListener("click",()=>showToast(msg("notifications")));
-document.getElementById("searchButton").addEventListener("click",()=>{
- const query=prompt(lang==="uz"?"Nimani qidirmoqchisiz?":lang==="ru"?"Что вы хотите найти?":"What do you want to search?");
- if(query)showToast((lang==="uz"?"Qidiruv: ":lang==="ru"?"Поиск: ":"Search: ")+query);
-});
-document.getElementById("searchPeople").addEventListener("click",()=>showToast(msg("people")));
-document.getElementById("seeAll").addEventListener("click",()=>showToast(msg("people")));
+window.logout=async function(){await signOut(auth)};
 
-document.querySelectorAll(".navlink").forEach(link=>{
- link.addEventListener("click",()=>{
-  document.querySelectorAll(".navlink").forEach(el=>el.classList.remove("active"));
-  link.classList.add("active");
+window.showPage=function(page){
+ ["home","lessons","labs","profile","detail","labDetail"].forEach(p=>{
+  document.getElementById(p+"Page").classList.toggle("hidden",p!==page);
  });
-});
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+ const navButton=document.querySelector(`nav button[onclick="showPage('${page}')"]`);
+ if(navButton)navButton.classList.add("active");
+ if(page==="profile")renderProfile();
+};
+
+function renderAll(){renderLessons();renderLabs();renderStats();renderProfile()}
+
+function renderLessons(){
+ const list=document.getElementById("lessonList");
+ const home=document.getElementById("homeCourses");
+ const makeCard=l=>`<div class="card"><span class="tag">${l.level}</span><h3>${l.title}</h3><p>${l.description}</p><div class="progress"><div style="width:${userData.completed.includes(l.id)?100:0}%"></div></div><button onclick="openLesson('${l.id}')">${userData.completed.includes(l.id)?tr("completed"):tr("start")}</button></div>`;
+ list.innerHTML=lessons.map(makeCard).join("");
+ home.innerHTML=lessons.slice(0,3).map(makeCard).join("");
+}
+
+window.openLesson=function(id){
+ currentLesson=lessons.find(l=>l.id===id);
+ if(!currentLesson)return;
+ document.getElementById("detailTag").textContent=currentLesson.level;
+ document.getElementById("detailTitle").textContent=currentLesson.title;
+ document.getElementById("detailContent").textContent=currentLesson.content;
+ document.getElementById("quizArea").innerHTML="";
+ showPage("detail");
+};
+
+window.completeCurrentLesson=async function(){
+ if(!currentLesson)return;
+ if(!userData.completed.includes(currentLesson.id)){
+  userData.completed.push(currentLesson.id);
+  userData.xp+=20;
+  await saveData();
+ }
+ alert(tr("done"));renderAll();
+};
+
+window.startQuiz=function(){
+ if(!currentLesson)return;
+ currentQuestion=0;selectedOption=-1;renderQuestion();
+};
+
+function renderQuestion(){
+ const q=currentLesson.questions[currentQuestion];
+ const area=document.getElementById("quizArea");
+ area.innerHTML=`<hr><h2>Test ${currentQuestion+1}/${currentLesson.questions.length}</h2><div class="question"><h3>${q.q}</h3>${q.a.map((a,i)=>`<button class="option" onclick="chooseOption(${i})">${String.fromCharCode(65+i)}. ${a}</button>`).join("")}<div class="actions"><button onclick="submitAnswer()">Javobni tekshirish</button></div><p id="answerFeedback"></p></div>`;
+}
+
+window.chooseOption=function(index){
+ selectedOption=index;
+ document.querySelectorAll(".option").forEach((b,i)=>b.classList.toggle("selected",i===index));
+};
+
+window.submitAnswer=async function(){
+ if(selectedOption<0){alert("Javobni tanlang.");return}
+ const q=currentLesson.questions[currentQuestion];
+ const feedback=document.getElementById("answerFeedback");
+ if(selectedOption===q.correct){
+  feedback.textContent=tr("correct");
+  feedback.style.color="var(--green)";
+  userData.xp+=10;
+ }else{
+  feedback.textContent=tr("incorrect");
+  feedback.style.color="var(--red)";
+ }
+ const buttons=document.querySelectorAll(".option");buttons.forEach(b=>b.disabled=true);
+ const next=document.createElement("button");
+ next.textContent=currentQuestion===currentLesson.questions.length-1?"Testni yakunlash":"Keyingi savol";
+ next.onclick=async()=>{
+  if(currentQuestion<currentLesson.questions.length-1){currentQuestion++;selectedOption=-1;renderQuestion()}
+  else{
+   userData.tests++;
+   await saveData();
+   document.getElementById("quizArea").innerHTML="<div class='notice'>Test yakunlandi! Natijangiz saqlandi.</div>";
+   renderAll();
+  }
+ };
+ feedback.after(next);
+ await saveData();
+};
+
+function renderLabs(){
+ document.getElementById("labList").innerHTML=labs.map(l=>`
+ <div class="card"><span class="tag">AMALIYOT</span><h3>${l.title}</h3><p>${l.description}</p>
+ <p>${userData.labs.includes(l.id)?"<span class='tag'>Bajarilgan</span>":""}</p>
+ <button onclick="openLab('${l.id}')">${tr("start")}</button></div>`).join("");
+}
+
+window.openLab=function(id){
+ currentLab=labs.find(l=>l.id===id);
+ document.getElementById("labTitle").textContent=currentLab.title;
+ document.getElementById("labDescription").textContent=currentLab.description;
+ document.getElementById("labTask").textContent=currentLab.task;
+ document.getElementById("labAnswer").value="";
+ document.getElementById("labResult").textContent="";
+ showPage("labDetail");
+};
+
+window.checkLab=async function(){
+ const answer=document.getElementById("labAnswer").value.trim().toLowerCase();
+ const result=document.getElementById("labResult");
+ if(!answer){result.textContent="Javobni kiriting.";return}
+ const correct=currentLab.answer.some(a=>answer.includes(a));
+ if(correct){
+  result.textContent="Ajoyib! Topshiriq to‘g‘ri bajarildi.";
+  result.style.color="var(--green)";
+  if(!userData.labs.includes(currentLab.id)){
+   userData.labs.push(currentLab.id);userData.xp+=25;await saveData();
+  }
+  renderLabs();renderStats();
+ }else{
+  result.textContent="Javob mos kelmadi. Yana urinib ko‘ring.";
+  result.style.color="var(--red)";
+ }
+};
+
+function renderStats(){
+ document.getElementById("statLessons").textContent=userData.completed.length;
+ document.getElementById("statXP").textContent=userData.xp;
+ document.getElementById("statTests").textContent=userData.tests;
+}
+
+function renderProfile(){
+ if(!currentUser)return;
+ document.getElementById("profileName").textContent=currentUser.displayName||"Foydalanuvchi";
+ document.getElementById("profileEmail").textContent=currentUser.email||"";
+ document.getElementById("profileXP").textContent=userData.xp;
+ document.getElementById("profileLevel").textContent=Math.floor(userData.xp/100)+1;
+ document.getElementById("profileLessons").textContent=userData.completed.length;
+ const percent=Math.round(userData.completed.length/lessons.length*100);
+ document.getElementById("profileProgress").style.width=percent+"%";
+ document.getElementById("progressText").textContent=`${userData.completed.length} / ${lessons.length} dars (${percent}%)`;
+}
+
+setLanguage("uz");
 </script>
 </body>
 </html>
