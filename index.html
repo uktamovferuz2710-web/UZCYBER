@@ -4,36 +4,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UZCYBER — Cybersecurity Academy</title>
+<title>UZCYBER | Cybersecurity Academy</title>
+
 <style>
-:root {
-  --bg:#080d12;
-  --panel:#101a22;
-  --panel2:#14232c;
-  --green:#00ff9c;
-  --green2:#00c878;
-  --text:#e8f5ef;
-  --muted:#8da49a;
-  --border:#203b35;
-  --red:#ff5263;
-  --yellow:#ffc857;
+:root{
+  --green:#00ffa3;
+  --blue:#00b7ff;
+  --bg:#07111c;
+  --panel:#101f2e;
+  --text:#eaf5ff;
+  --muted:#9aafc1;
+  --border:#254154;
+  --red:#ff5c70;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
-  background:var(--bg);
+  font-family:Arial,sans-serif;
   color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
   min-height:100vh;
+  background:
+    linear-gradient(120deg,rgba(3,12,25,.94),rgba(3,18,32,.86)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=85")
+    center/cover fixed;
 }
 button,input{font:inherit}
 button{cursor:pointer}
+.hidden{display:none!important}
+
+/* LOGIN */
+#authScreen{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+.auth-card{
+  width:100%;
+  max-width:440px;
+  padding:35px;
+  border:1px solid #00b7ff55;
+  border-radius:18px;
+  background:rgba(7,18,31,.94);
+  box-shadow:0 0 45px #00aaff20;
+  backdrop-filter:blur(14px);
+}
+.brand{
+  text-align:center;
+  color:var(--green);
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:3px;
+  margin-bottom:8px;
+}
+.auth-subtitle{
+  color:var(--muted);
+  text-align:center;
+  margin-bottom:25px;
+  line-height:1.5;
+}
+.auth-tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:22px;
+}
+.auth-tabs button{
+  flex:1;
+  padding:12px;
+  color:var(--muted);
+  background:#122536;
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.auth-tabs button.active{
+  color:var(--green);
+  border-color:var(--green);
+  background:#00ffa311;
+}
+.field{margin-bottom:15px}
+.field label{
+  display:block;
+  margin-bottom:8px;
+  color:#d6e7f3;
+  font-size:14px;
+}
+.field input{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  outline:none;
+  background:#071522;
+  color:white;
+}
+.field input:focus{border-color:var(--blue)}
+.main-btn{
+  width:100%;
+  padding:14px;
+  background:var(--green);
+  color:#03150e;
+  border:0;
+  border-radius:8px;
+  font-weight:bold;
+  margin-top:8px;
+}
+.main-btn:hover{background:#7dffca}
+.auth-message{
+  min-height:22px;
+  margin-top:14px;
+  text-align:center;
+  font-size:13px;
+  line-height:1.5;
+}
+.auth-note{
+  color:var(--muted);
+  text-align:center;
+  font-size:11px;
+  margin-top:20px;
+  line-height:1.5;
+}
+
+/* HEADER */
 header{
-  height:70px;
+  min-height:68px;
+  padding:12px 5%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 5%;
-  background:#0b141b;
+  gap:15px;
+  background:rgba(5,15,26,.96);
   border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
@@ -41,1009 +140,1135 @@ header{
 }
 .logo{
   font-size:24px;
-  font-weight:900;
   color:var(--green);
+  font-weight:900;
   letter-spacing:2px;
 }
 .logo span{color:white}
-.header-right{display:flex;gap:12px;align-items:center}
-select,.small-btn{
-  background:var(--panel);
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:9px 12px;
-}
-.small-btn:hover{border-color:var(--green);color:var(--green)}
-.layout{display:flex;min-height:calc(100vh - 70px)}
-.sidebar{
-  width:230px;
-  background:#0b141b;
-  border-right:1px solid var(--border);
-  padding:22px 14px;
-  flex-shrink:0;
-}
-.nav-title{
-  color:var(--muted);
-  font-size:11px;
-  letter-spacing:2px;
-  margin:15px 10px 10px;
-}
-.nav-btn{
+.header-right{
   display:flex;
   align-items:center;
   gap:12px;
+}
+.user-label{color:var(--muted);font-size:13px}
+.logout{
+  background:#281923;
+  color:#ff8a99;
+  border:1px solid #713747;
+  padding:9px 13px;
+  border-radius:7px;
+}
+
+/* LAYOUT */
+.layout{display:flex;min-height:calc(100vh - 68px)}
+aside{
+  width:225px;
+  padding:20px 13px;
+  background:rgba(5,15,26,.96);
+  border-right:1px solid var(--border);
+  flex-shrink:0;
+}
+.nav-title{
+  color:#668397;
+  font-size:11px;
+  letter-spacing:2px;
+  padding:15px 10px 8px;
+}
+.nav-btn{
   width:100%;
   padding:13px 12px;
-  background:transparent;
-  color:#b9cbc3;
+  margin:3px 0;
   border:0;
-  border-radius:9px;
+  border-radius:8px;
+  background:transparent;
+  color:#c0d2df;
   text-align:left;
-  margin:4px 0;
-  transition:.2s;
 }
 .nav-btn:hover,.nav-btn.active{
-  background:#102a25;
   color:var(--green);
+  background:#00ffa315;
 }
-main{flex:1;padding:30px 4%;min-width:0}
-.page{display:none;animation:fade .25s}
+main{
+  flex:1;
+  min-width:0;
+  padding:30px 4%;
+}
+.page{display:none}
 .page.active{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-h1{font-size:30px;margin-bottom:10px}
-h2{font-size:22px;margin-bottom:16px}
+h1{font-size:29px;margin-bottom:12px}
+h2{font-size:21px;margin-bottom:15px}
 h3{font-size:17px;margin-bottom:10px}
-.subtitle{color:var(--muted);line-height:1.6;margin-bottom:25px}
+.subtitle{color:var(--muted);line-height:1.6;margin-bottom:24px}
+
+/* DASHBOARD */
 .hero{
   padding:35px;
-  border:1px solid var(--border);
-  border-radius:16px;
-  background:linear-gradient(120deg,#10251f,#101a22 65%,#102b2b);
-  margin-bottom:25px;
-  position:relative;
-  overflow:hidden;
+  border:1px solid #00ffa344;
+  border-radius:15px;
+  background:linear-gradient(110deg,#082c32dd,#10223add);
+  margin-bottom:22px;
 }
-.hero:after{
-  content:"";
-  position:absolute;
-  width:220px;height:220px;
-  right:-65px;top:-90px;
-  border:1px solid #00ff9c33;
-  border-radius:50%;
-  box-shadow:0 0 0 25px #00ff9c0a,0 0 0 55px #00ff9c08;
-}
-.hero h1{font-size:36px;color:var(--green)}
-.hero p{max-width:650px;color:#b9cbc3;line-height:1.7;margin:12px 0 20px}
-.primary-btn{
-  border:0;
-  background:var(--green);
-  color:#06130e;
-  font-weight:bold;
-  border-radius:8px;
-  padding:12px 18px;
-}
-.primary-btn:hover{background:#6dffc2;transform:translateY(-1px)}
-.secondary-btn{
-  border:1px solid var(--green);
-  background:transparent;
-  color:var(--green);
-  border-radius:8px;
-  padding:11px 17px;
+.hero h1{color:var(--green);font-size:34px}
+.hero p{
+  color:#c2d6e3;
+  max-width:650px;
+  line-height:1.7;
+  margin:12px 0 20px;
 }
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-bottom:28px;
+  gap:13px;
+  margin-bottom:25px;
 }
 .stat,.card,.panel{
-  background:var(--panel);
+  background:rgba(13,29,43,.94);
   border:1px solid var(--border);
   border-radius:12px;
   padding:19px;
 }
-.stat-label{color:var(--muted);font-size:13px}
-.stat-value{font-size:27px;font-weight:bold;color:var(--green);margin-top:8px}
+.stat small{color:var(--muted)}
+.stat strong{
+  display:block;
+  color:var(--green);
+  font-size:25px;
+  margin-top:9px;
+}
 .grid{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:15px;
+  gap:14px;
 }
 .card{transition:.2s}
 .card:hover{border-color:var(--green);transform:translateY(-3px)}
-.card-icon{font-size:27px;margin-bottom:12px}
-.card p{font-size:13px;line-height:1.6;color:var(--muted);margin:8px 0 15px}
+.card-icon{font-size:28px;margin-bottom:12px}
+.card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin:8px 0 15px;
+}
 .tag{
   display:inline-block;
   color:var(--green);
-  background:#00ff9c13;
-  border:1px solid #00ff9c33;
-  padding:5px 9px;
+  background:#00ffa315;
+  border:1px solid #00ffa344;
   border-radius:20px;
+  padding:5px 9px;
   font-size:11px;
   margin-bottom:12px;
 }
+.primary-btn,.secondary-btn{
+  padding:11px 15px;
+  border-radius:7px;
+  font-weight:bold;
+}
+.primary-btn{
+  background:var(--green);
+  color:#03150e;
+  border:0;
+}
+.secondary-btn{
+  background:transparent;
+  color:var(--green);
+  border:1px solid var(--green);
+}
+.full-btn{width:100%}
+.section-title{margin:28px 0 15px}
+
+/* PROGRESS */
 .progress{
-  height:8px;
-  border-radius:10px;
-  background:#26352f;
+  height:9px;
+  background:#24394a;
+  border-radius:20px;
   overflow:hidden;
-  margin:10px 0;
+  margin:12px 0;
 }
-.progress div{height:100%;background:var(--green);width:0;transition:.3s}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:28px 0 15px;
-  gap:10px;
+.progress div{
+  height:100%;
+  width:0;
+  background:var(--green);
 }
-.muted{color:var(--muted)}
-.room-btn{width:100%;margin-top:8px}
+
+/* TERMINAL */
 .terminal{
-  background:#050a0d;
-  border:1px solid #245442;
-  border-radius:12px;
-  overflow:hidden;
   margin-top:15px;
+  border:1px solid #00ffa355;
+  border-radius:10px;
+  overflow:hidden;
+  background:#02090e;
 }
 .terminal-top{
-  padding:12px 16px;
-  background:#101c20;
-  display:flex;
-  justify-content:space-between;
+  background:#10212c;
+  padding:12px;
   color:var(--muted);
   font-size:12px;
 }
 .terminal-output{
-  height:330px;
+  height:290px;
+  padding:16px;
   overflow-y:auto;
-  padding:17px;
   font-family:Consolas,monospace;
   font-size:13px;
-  line-height:1.7;
+  line-height:1.8;
   white-space:pre-wrap;
-  color:#c5e7d7;
+  color:#d4f2e5;
 }
-.terminal-line{margin-bottom:5px}
-.terminal-line.success{color:var(--green)}
-.terminal-line.error{color:var(--red)}
-.terminal-line.info{color:#80baff}
+.terminal-output .good{color:var(--green)}
+.terminal-output .bad{color:var(--red)}
 .terminal-input-row{
   display:flex;
-  padding:12px;
-  border-top:1px solid #203b35;
   gap:8px;
-}
-.terminal-prompt{
-  color:var(--green);
-  font-family:Consolas,monospace;
-  padding:10px 0;
+  padding:12px;
+  border-top:1px solid var(--border);
 }
 .terminal-input{
-  flex:1;
   min-width:0;
+  flex:1;
   color:var(--green);
   background:transparent;
   border:0;
   outline:0;
   font-family:Consolas,monospace;
 }
-.terminal-send{
-  background:var(--green);
-  color:#06130e;
-  border:0;
-  padding:9px 14px;
-  border-radius:6px;
-  font-weight:bold;
+.terminal-prompt{
+  color:var(--green);
+  padding:8px 0;
+  font-family:Consolas,monospace;
 }
-.command-list{
+.commands{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
   margin:15px 0;
 }
-.command-chip{
+.commands button{
+  background:#102536;
   color:var(--green);
   border:1px solid var(--border);
-  background:#101a22;
-  padding:7px 10px;
-  border-radius:7px;
-  font-family:Consolas,monospace;
-  font-size:12px;
+  border-radius:6px;
+  padding:8px 10px;
 }
+
+/* QUIZ */
 .question-box{
-  background:var(--panel);
-  border:1px solid var(--border);
+  max-width:700px;
   padding:22px;
+  background:rgba(13,29,43,.96);
+  border:1px solid var(--border);
   border-radius:12px;
-  max-width:750px;
 }
 .answer{
   display:block;
   width:100%;
   text-align:left;
   padding:13px;
-  border:1px solid var(--border);
-  border-radius:8px;
-  background:#0b141b;
-  color:var(--text);
   margin:9px 0;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:#0a1926;
+  color:white;
 }
 .answer:hover{border-color:var(--green)}
-.answer.correct{border-color:var(--green);background:#0c3022}
-.answer.wrong{border-color:var(--red);background:#35151a}
-.feedback{margin-top:14px;font-weight:bold}
-.table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:15px;
-}
+.answer.correct{border-color:var(--green);background:#0c3528}
+.answer.wrong{border-color:var(--red);background:#351722}
+#feedback{margin:15px 0;line-height:1.6}
+
+/* OTHER */
+.table{width:100%;border-collapse:collapse}
 .table th,.table td{
-  padding:14px;
-  border-bottom:1px solid var(--border);
   text-align:left;
+  padding:13px 9px;
+  border-bottom:1px solid var(--border);
 }
 .table th{color:var(--green);font-size:12px}
-.profile-avatar{
-  width:75px;height:75px;border-radius:50%;
-  background:#123a2c;color:var(--green);
-  display:grid;place-items:center;font-size:30px;
-  margin-bottom:15px;
-}
-.profile-input{
-  width:100%;max-width:350px;
-  padding:12px;background:#081117;
-  border:1px solid var(--border);
-  color:white;border-radius:8px;margin:10px 0;
-}
+.profile-name{color:var(--green);font-size:23px;margin-bottom:10px}
+.muted{color:var(--muted)}
 footer{
-  color:#61786d;
   text-align:center;
   padding:25px;
+  color:#7890a0;
   font-size:12px;
 }
 .mobile-menu{display:none}
-@media(max-width:900px){
+
+@media(max-width:850px){
   .stats{grid-template-columns:repeat(2,1fr)}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:650px){
-  header{padding:0 15px}
+  header{padding:12px 15px}
   .logo{font-size:20px}
   .mobile-menu{display:block}
   .layout{display:block}
-  .sidebar{
-    display:none;
-    width:100%;
-    border-right:0;
-    border-bottom:1px solid var(--border);
-  }
-  .sidebar.open{display:block}
-  main{padding:22px 15px}
+  aside{display:none;width:100%;border-right:0}
+  aside.open{display:block}
+  main{padding:22px 14px}
   .grid{grid-template-columns:1fr}
-  .stats{gap:9px}
-  .stat{padding:13px}
-  .stat-value{font-size:22px}
-  .hero{padding:24px}
+  .hero{padding:23px}
   .hero h1{font-size:27px}
   h1{font-size:25px}
-  .table{font-size:12px}
+  .user-label{display:none}
+  .auth-card{padding:25px 20px}
 }
 </style>
 </head>
+
 <body>
+
+<!-- AKKAUNT OCHISH VA KIRISH OYNASI -->
+<section id="authScreen">
+  <div class="auth-card">
+    <div class="brand">UZCYBER</div>
+    <p class="auth-subtitle">Kiberxavfsizlikni o‘rganish platformasi</p>
+
+    <div class="auth-tabs">
+      <button id="loginTab" class="active" onclick="setAuthMode('login')">Kirish</button>
+      <button id="registerTab" onclick="setAuthMode('register')">Akkaunt ochish</button>
+    </div>
+
+    <form id="authForm">
+      <div class="field hidden" id="nameField">
+        <label>Ismingiz</label>
+        <input id="authName" type="text" placeholder="Ismingizni yozing" maxlength="30">
+      </div>
+
+      <div class="field">
+        <label>Email manzilingiz</label>
+        <input id="authEmail" type="email" placeholder="example@gmail.com" required>
+      </div>
+
+      <div class="field">
+        <label>Parol</label>
+        <input id="authPassword" type="password" placeholder="Kamida 6 ta belgi" minlength="6" required>
+      </div>
+
+      <div class="field hidden" id="confirmField">
+        <label>Parolni qayta kiriting</label>
+        <input id="authConfirm" type="password" placeholder="Parolni qayta yozing">
+      </div>
+
+      <button class="main-btn" id="authSubmit" type="submit">Kirish</button>
+    </form>
+
+    <div class="auth-message" id="authMessage"></div>
+
+    <p class="auth-note">
+      Demo akkauntlar shu brauzerda saqlanadi.
+      Hech qachon boshqa joyda ishlatadigan muhim parolingizni bu yerga kiritmang.
+    </p>
+  </div>
+</section>
+
+<!-- ASOSIY SAYT -->
+<div id="appScreen" class="hidden">
 
 <header>
   <div class="logo">UZ<span>CYBER</span></div>
   <div class="header-right">
+    <span class="user-label" id="headerUser">Foydalanuvchi</span>
     <button class="small-btn mobile-menu" onclick="toggleMenu()">☰</button>
-    <select id="language" onchange="changeLanguage(this.value)">
-      <option value="uz">🇺🇿 O‘zbekcha</option>
-      <option value="ru">🇷🇺 Русский</option>
-      <option value="en">🇬🇧 English</option>
-    </select>
+    <button class="logout" onclick="logout()">Chiqish</button>
   </div>
 </header>
 
 <div class="layout">
-<aside class="sidebar" id="sidebar">
-  <div class="nav-title" data-i18n="menu">ASOSIY MENYU</div>
-  <button class="nav-btn active" onclick="showPage('home',this)">⌂ <span data-i18n="home">Bosh sahifa</span></button>
-  <button class="nav-btn" onclick="showPage('courses',this)">▤ <span data-i18n="courses">Kurslar</span></button>
-  <button class="nav-btn" onclick="showPage('terminal',this)">⌘ Linux Terminal</button>
-  <button class="nav-btn" onclick="showPage('challenges',this)">⚡ <span data-i18n="challenges">Topshiriqlar</span></button>
-  <button class="nav-btn" onclick="showPage('quiz',this)">❖ <span data-i18n="quiz">Testlar</span></button>
-  <div class="nav-title" data-i18n="account">AKKAUNT</div>
-  <button class="nav-btn" onclick="showPage('leaderboard',this)">♛ <span data-i18n="ranking">Reyting</span></button>
-  <button class="nav-btn" onclick="showPage('profile',this)">◉ <span data-i18n="profile">Profil</span></button>
+
+<aside id="sidebar">
+  <div class="nav-title">ASOSIY MENYU</div>
+  <button class="nav-btn active" onclick="showPage('home',this)">⌂ Bosh sahifa</button>
+  <button class="nav-btn" onclick="showPage('courses',this)">📚 Kurslar</button>
+  <button class="nav-btn" onclick="showPage('terminal',this)">⌨ Linux Terminal</button>
+  <button class="nav-btn" onclick="showPage('quiz',this)">❖ Bilim testi</button>
+
+  <div class="nav-title">MENING AKKAUNTIM</div>
+  <button class="nav-btn" onclick="showPage('ranking',this)">🏆 Reyting</button>
+  <button class="nav-btn" onclick="showPage('profile',this)">👤 Profil</button>
 </aside>
 
 <main>
 
-<!-- HOME -->
+<!-- BOSH SAHIFA -->
 <section class="page active" id="home">
   <div class="hero">
-    <div class="tag">CYBERSECURITY LEARNING PLATFORM</div>
-    <h1 data-i18n="welcome">Kiberxavfsizlik olamiga xush kelibsiz!</h1>
-    <p data-i18n="heroText">UZCYBER orqali Linux, tarmoqlar, web xavfsizligi va ethical hacking asoslarini o‘rganing. Bilimingizni amaliy topshiriqlar bilan mustahkamlang.</p>
-    <button class="primary-btn" onclick="showPage('courses') " data-i18n="startLearning">O‘rganishni boshlash →</button>
+    <div class="tag">CYBERSECURITY ACADEMY</div>
+    <h1>UZCYBER ga xush kelibsiz!</h1>
+    <p>
+      Bu yerda Linux, kompyuter tarmoqlari va kiberxavfsizlikni
+      bosqichma-bosqich o‘rganasiz. Har bir darsni o‘qing,
+      topshiriqlarni bajaring va XP to‘plang.
+    </p>
+    <button class="primary-btn" onclick="showPage('courses')">Darslarni boshlash →</button>
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="stat-label" data-i18n="experience">Tajriba (XP)</div><div class="stat-value" id="xp">0 XP</div></div>
-    <div class="stat"><div class="stat-label" data-i18n="level">Daraja</div><div class="stat-value" id="level">1</div></div>
-    <div class="stat"><div class="stat-label" data-i18n="completed">Bajarilgan</div><div class="stat-value" id="completed">0</div></div>
-    <div class="stat"><div class="stat-label" data-i18n="accuracy">Aniqlik</div><div class="stat-value" id="accuracy">0%</div></div>
+    <div class="stat"><small>Umumiy XP</small><strong id="xp">0</strong></div>
+    <div class="stat"><small>Darajangiz</small><strong id="level">1</strong></div>
+    <div class="stat"><small>Bajarilgan darslar</small><strong id="completed">0</strong></div>
+    <div class="stat"><small>Test aniqligi</small><strong id="accuracy">0%</strong></div>
   </div>
 
   <div class="panel">
-    <div class="section-head"><h3 data-i18n="yourProgress">Sizning rivojlanishingiz</h3><span id="progressText" class="muted">0%</span></div>
-    <div class="progress"><div id="mainProgress"></div></div>
-    <p class="muted" data-i18n="progressInfo">Topshiriqlarni bajaring va yangi darajalarga erishing.</p>
+    <h3>Keyingi darajagacha rivojlanish</h3>
+    <div class="progress"><div id="progressBar"></div></div>
+    <p class="muted" id="progressText">0 / 100 XP</p>
   </div>
 
-  <div class="section-head"><h2 data-i18n="popularCourses">O‘quv yo‘nalishlari</h2><button class="secondary-btn" onclick="showPage('courses')" data-i18n="allCourses">Barchasi</button></div>
+  <h2 class="section-title">O‘rganish bo‘limlari</h2>
   <div class="grid">
-    <div class="card"><div class="card-icon">🐧</div><h3>Linux Basics</h3><p data-i18n="linuxDesc">Linux operatsion tizimi va terminal buyruqlarini o‘rganing.</p><button class="secondary-btn room-btn" onclick="showPage('terminal')">Boshlash →</button></div>
-    <div class="card"><div class="card-icon">🌐</div><h3>Networking</h3><p data-i18n="networkDesc">IP, DNS, TCP/IP va tarmoq asoslarini o‘rganing.</p><button class="secondary-btn room-btn" onclick="startCourse('network')">Boshlash →</button></div>
-    <div class="card"><div class="card-icon">🛡️</div><h3>Cyber Security</h3><p data-i18n="securityDesc">Axborot xavfsizligi va himoya tamoyillari.</p><button class="secondary-btn room-btn" onclick="startCourse('security')">Boshlash →</button></div>
+    <div class="card">
+      <div class="card-icon">🐧</div>
+      <h3>Linux asoslari</h3>
+      <p>Terminal, fayllar va Linux buyruqlarini o‘rganing.</p>
+      <button class="secondary-btn full-btn" onclick="showPage('terminal')">O‘rganish</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h3>Kompyuter tarmoqlari</h3>
+      <p>IP, DNS, HTTP va internet qanday ishlashini o‘rganing.</p>
+      <button class="secondary-btn full-btn" onclick="openLesson('network')">O‘rganish</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Kiberxavfsizlik</h3>
+      <p>Parollar, himoya va xavfsizlik qoidalarini o‘rganing.</p>
+      <button class="secondary-btn full-btn" onclick="openLesson('security')">O‘rganish</button>
+    </div>
   </div>
 </section>
 
-<!-- COURSES -->
+<!-- KURSLAR -->
 <section class="page" id="courses">
-  <h1 data-i18n="courses">Kurslar</h1>
-  <p class="subtitle" data-i18n="coursesSub">O‘zingizga kerakli yo‘nalishni tanlang va bilim olishni boshlang.</p>
+  <h1>Kurslar</h1>
+  <p class="subtitle">Mavzuni tanlang. Darsni o‘qing va oxirida XP oling.</p>
+
   <div class="grid">
-    <div class="card"><div class="card-icon">🐧</div><span class="tag">BEGINNER</span><h3>Linux Fundamentals</h3><p>Linux, fayllar, papkalar va terminal buyruqlari.</p><button class="primary-btn" onclick="showPage('terminal')">Kursni ochish</button></div>
-    <div class="card"><div class="card-icon">🌐</div><span class="tag">BEGINNER</span><h3>Computer Networking</h3><p>IP address, DNS, HTTP, portlar va protokollar.</p><button class="primary-btn" onclick="startCourse('network')">Kursni ochish</button></div>
-    <div class="card"><div class="card-icon">🔐</div><span class="tag">BEGINNER</span><h3>Cybersecurity Basics</h3><p>Parollar, autentifikatsiya va xavfsizlik asoslari.</p><button class="primary-btn" onclick="startCourse('security')">Kursni ochish</button></div>
-    <div class="card"><div class="card-icon">🕸️</div><span class="tag">INTERMEDIATE</span><h3>Web Security</h3><p>Web ilovalar xavfsizligi va keng tarqalgan zaifliklar.</p><button class="primary-btn" onclick="startCourse('web')">Kursni ochish</button></div>
-    <div class="card"><div class="card-icon">🧠</div><span class="tag">INTERMEDIATE</span><h3>Cryptography</h3><p>Shifrlash, hash va raqamli imzo tushunchalari.</p><button class="primary-btn" onclick="startCourse('crypto')">Kursni ochish</button></div>
-    <div class="card"><div class="card-icon">🕵️</div><span class="tag">ADVANCED</span><h3>Ethical Hacking</h3><p>Ruxsat bilan xavfsizlik tekshiruvi asoslari.</p><button class="primary-btn" onclick="startCourse('ethical')">Kursni ochish</button></div>
+    <div class="card">
+      <div class="card-icon">🐧</div>
+      <span class="tag">BOSHLANG‘ICH</span>
+      <h3>Linux nima?</h3>
+      <p>Linux operatsion tizimi haqida boshlang‘ich tushunchalar.</p>
+      <button class="primary-btn full-btn" onclick="openLesson('linux')">Darsni ochish</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <span class="tag">BOSHLANG‘ICH</span>
+      <h3>Internet va IP</h3>
+      <p>IP manzil, DNS va tarmoq haqida tushuncha.</p>
+      <button class="primary-btn full-btn" onclick="openLesson('network')">Darsni ochish</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <span class="tag">BOSHLANG‘ICH</span>
+      <h3>Parol xavfsizligi</h3>
+      <p>Akkauntlarni qanday himoyalash kerak?</p>
+      <button class="primary-btn full-btn" onclick="openLesson('security')">Darsni ochish</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🕸️</div>
+      <span class="tag">O‘RTA</span>
+      <h3>Web xavfsizligi</h3>
+      <p>HTTPS va web saytlarni himoyalash asoslari.</p>
+      <button class="primary-btn full-btn" onclick="openLesson('web')">Darsni ochish</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <span class="tag">O‘RTA</span>
+      <h3>Kriptografiya</h3>
+      <p>Shifrlash va hash nima ekanini o‘rganing.</p>
+      <button class="primary-btn full-btn" onclick="openLesson('crypto')">Darsni ochish</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🕵️</div>
+      <span class="tag">O‘RTA</span>
+      <h3>Ethical Hacking</h3>
+      <p>Faqat ruxsat berilgan tizimlarni xavfsiz tekshirish.</p>
+      <button class="primary-btn full-btn" onclick="openLesson('ethical')">Darsni ochish</button>
+    </div>
+  </div>
+</section>
+
+<!-- DARS OYNASI -->
+<section class="page" id="lesson">
+  <button class="secondary-btn" onclick="showPage('courses')">← Kurslarga qaytish</button>
+  <div class="panel" style="margin-top:15px">
+    <span class="tag">UZCYBER DARSI</span>
+    <h1 id="lessonTitle">Dars nomi</h1>
+    <p id="lessonText" style="line-height:1.9;color:#c9dce9"></p>
+    <button class="primary-btn" id="lessonComplete" style="margin-top:20px" onclick="completeLesson()">Darsni tugatdim (+30 XP)</button>
+    <p id="lessonMessage" class="muted" style="margin-top:12px"></p>
   </div>
 </section>
 
 <!-- TERMINAL -->
 <section class="page" id="terminal">
   <h1>🐧 Linux Terminal</h1>
-  <p class="subtitle">Bu haqiqiy server emas, brauzer ichidagi xavfsiz Linux terminal simulyatoridir. Buyruqlarni sinab ko‘ring!</p>
+  <p class="subtitle">
+    Bu haqiqiy Linux serveri emas. Buyruqlarni xavfsiz o‘rganish uchun
+    yaratilgan oddiy simulyator.
+  </p>
 
   <div class="panel">
-    <h3>📚 Terminal buyruqlari</h3>
-    <div class="command-list">
-      <button class="command-chip" onclick="quickCommand('help')">help</button>
-      <button class="command-chip" onclick="quickCommand('ls')">ls</button>
-      <button class="command-chip" onclick="quickCommand('pwd')">pwd</button>
-      <button class="command-chip" onclick="quickCommand('whoami')">whoami</button>
-      <button class="command-chip" onclick="quickCommand('cd home')">cd home</button>
-      <button class="command-chip" onclick="quickCommand('cat readme.txt')">cat readme.txt</button>
-      <button class="command-chip" onclick="quickCommand('clear')">clear</button>
+    <h3>Qanday foydalaniladi?</h3>
+    <p class="muted">Pastdagi qora oynaga buyruq yozing va Enter bosing.</p>
+    <div class="commands">
+      <button onclick="quickCommand('help')">help</button>
+      <button onclick="quickCommand('ls')">ls</button>
+      <button onclick="quickCommand('pwd')">pwd</button>
+      <button onclick="quickCommand('whoami')">whoami</button>
+      <button onclick="quickCommand('date')">date</button>
+      <button onclick="quickCommand('cat readme.txt')">cat readme.txt</button>
+      <button onclick="quickCommand('clear')">clear</button>
     </div>
   </div>
 
   <div class="terminal">
-    <div class="terminal-top"><span>● UZCYBER LINUX SIMULATOR</span><span>bash — user@uzcyber</span></div>
+    <div class="terminal-top">● UZCYBER TERMINAL — user@uzcyber</div>
     <div class="terminal-output" id="terminalOutput">
-      <div class="terminal-line success">UZCYBER Linux Simulator v1.0</div>
-      <div class="terminal-line">Xavfsiz o‘quv terminaliga xush kelibsiz!</div>
-      <div class="terminal-line">Buyruqlar ro‘yxati uchun help yozing.</div>
-      <div class="terminal-line success">user@uzcyber:~$</div>
+      <div class="good">UZCYBER Linux Simulator ishga tushdi!</div>
+      <div>Buyruqlarni ko‘rish uchun help yozing.</div>
     </div>
     <div class="terminal-input-row">
-      <span class="terminal-prompt">user@uzcyber:~$</span>
-      <input id="terminalInput" class="terminal-input" placeholder="Buyruqni kiriting..." autocomplete="off">
-      <button class="terminal-send" onclick="runTerminal()">Yuborish</button>
+      <span class="terminal-prompt">$</span>
+      <input class="terminal-input" id="terminalInput" placeholder="Buyruq yozing..." autocomplete="off">
+      <button class="primary-btn" onclick="runTerminal()">Enter</button>
     </div>
   </div>
-
-  <div class="section-head"><h2>🎯 Linux amaliy topshiriqlari</h2></div>
-  <div class="grid">
-    <div class="card"><span class="tag">+20 XP</span><h3>1. Foydalanuvchini aniqlang</h3><p>Terminalda whoami buyrug‘ini bajaring.</p><button class="secondary-btn room-btn" onclick="quickCommand('whoami')">Bajarish</button></div>
-    <div class="card"><span class="tag">+20 XP</span><h3>2. Fayllarni ko‘ring</h3><p>ls buyrug‘i yordamida fayllar ro‘yxatini chiqaring.</p><button class="secondary-btn room-btn" onclick="quickCommand('ls')">Bajarish</button></div>
-    <div class="card"><span class="tag">+30 XP</span><h3>3. README faylini o‘qing</h3><p>cat readme.txt buyrug‘idan foydalaning.</p><button class="secondary-btn room-btn" onclick="quickCommand('cat readme.txt')">Bajarish</button></div>
-  </div>
 </section>
 
-<!-- CHALLENGES -->
-<section class="page" id="challenges">
-  <h1 data-i18n="challenges">Topshiriqlar</h1>
-  <p class="subtitle">Bilimingizni sinab ko‘ring. Har bir topshiriq uchun XP to‘plang.</p>
-  <div class="grid">
-    <div class="card"><div class="card-icon">🔎</div><span class="tag">+30 XP</span><h3>Network Detective</h3><p>IP manzil va DNS haqida bilimlaringizni tekshiring.</p><button class="primary-btn" onclick="startCourse('network')">Boshlash</button></div>
-    <div class="card"><div class="card-icon">🔑</div><span class="tag">+30 XP</span><h3>Password Security</h3><p>Kuchli parol va autentifikatsiyani o‘rganing.</p><button class="primary-btn" onclick="startCourse('security')">Boshlash</button></div>
-    <div class="card"><div class="card-icon">🌍</div><span class="tag">+30 XP</span><h3>Web Explorer</h3><p>HTTP va HTTPS o‘rtasidagi farqlarni bilib oling.</p><button class="primary-btn" onclick="startCourse('web')">Boshlash</button></div>
-    <div class="card"><div class="card-icon">🧩</div><span class="tag">+30 XP</span><h3>Crypto Challenge</h3><p>Hash va shifrlash tushunchalarini sinab ko‘ring.</p><button class="primary-btn" onclick="startCourse('crypto')">Boshlash</button></div>
-  </div>
-</section>
-
-<!-- QUIZ -->
+<!-- TEST -->
 <section class="page" id="quiz">
-  <h1 data-i18n="quiz">Bilim sinovi</h1>
-  <p class="subtitle">Savolga to‘g‘ri javob bering va tajriba ballarini qo‘lga kiriting.</p>
+  <h1>Bilim testi</h1>
+  <p class="subtitle">Savolga javob bering. Har bir to‘g‘ri javob uchun 10 XP.</p>
   <div class="question-box">
-    <div class="tag" id="quizCategory">CYBERSECURITY</div>
-    <div class="muted" id="questionNumber">1 / 10</div>
-    <h2 id="questionText" style="margin-top:15px">Savol yuklanmoqda...</h2>
+    <span class="tag" id="questionCount">1 / 10</span>
+    <h2 id="questionText">Savol</h2>
     <div id="answers"></div>
-    <div class="feedback" id="feedback"></div>
-    <button class="primary-btn" id="nextQuestion" style="display:none;margin-top:15px" onclick="nextQuiz()">Keyingi savol →</button>
+    <div id="feedback"></div>
+    <button class="primary-btn hidden" id="nextQuestion" onclick="nextQuiz()">Keyingi savol →</button>
   </div>
 </section>
 
-<!-- LEADERBOARD -->
-<section class="page" id="leaderboard">
-  <h1 data-i18n="ranking">Reyting jadvali</h1>
-  <p class="subtitle">UZCYBER platformasidagi natijalaringiz.</p>
+<!-- REYTING -->
+<section class="page" id="ranking">
+  <h1>🏆 Reyting</h1>
+  <p class="subtitle">Ushbu brauzerdagi demo reyting.</p>
   <div class="panel">
     <table class="table">
-      <thead><tr><th>#</th><th>Foydalanuvchi</th><th>Daraja</th><th>XP</th></tr></thead>
-      <tbody id="leaderboardBody"></tbody>
+      <thead><tr><th>#</th><th>Foydalanuvchi</th><th>XP</th></tr></thead>
+      <tbody id="rankingBody"></tbody>
     </table>
-    <p class="muted" style="margin-top:15px;font-size:12px">Bu jadval hozircha faqat ushbu brauzerdagi demo reytingdir. Haqiqiy umumiy reyting uchun server kerak.</p>
+    <p class="muted" style="margin-top:15px;font-size:12px">
+      Bu umumiy internet reytingi emas. Haqiqiy umumiy reyting uchun server kerak.
+    </p>
   </div>
 </section>
 
-<!-- PROFILE -->
+<!-- PROFIL -->
 <section class="page" id="profile">
-  <h1 data-i18n="profile">Profil</h1>
-  <p class="subtitle">Shaxsiy profilingizni sozlang.</p>
+  <h1>Shaxsiy profil</h1>
   <div class="panel" style="max-width:550px">
-    <div class="profile-avatar">👨‍💻</div>
-    <h2 id="profileName">Cyber User</h2>
-    <p class="muted">UZCYBER STUDENT</p>
-    <hr style="border:0;border-top:1px solid var(--border);margin:18px 0">
-    <label>Foydalanuvchi nomi</label>
-    <input class="profile-input" id="nameInput" placeholder="Ismingizni kiriting">
-    <br>
-    <button class="primary-btn" onclick="saveProfile()">Saqlash</button>
-    <div class="section-head"><h3>Statistika</h3></div>
-    <p>XP: <strong id="profileXP">0</strong></p>
-    <p style="margin-top:8px">Daraja: <strong id="profileLevel">1</strong></p>
-    <p style="margin-top:8px">Bajarilgan topshiriqlar: <strong id="profileCompleted">0</strong></p>
+    <div class="card-icon">👨‍💻</div>
+    <div class="profile-name" id="profileName">Foydalanuvchi</div>
+    <p class="muted" id="profileEmail"></p>
+    <hr style="border:0;border-top:1px solid var(--border);margin:20px 0">
+    <p>Umumiy XP: <strong id="profileXP">0</strong></p>
+    <p style="margin-top:10px">Daraja: <strong id="profileLevel">1</strong></p>
+    <p style="margin-top:10px">Bajarilgan darslar: <strong id="profileCompleted">0</strong></p>
   </div>
 </section>
 
-<footer>UZCYBER © 2026 — Learn. Practice. Protect.</footer>
+<footer>UZCYBER © 2026 — Learn • Practice • Protect</footer>
 </main>
+</div>
 </div>
 
 <script>
 "use strict";
 
-/* ==============================
-   UZCYBER — MAIN APPLICATION
-============================== */
+/* =========================
+   1. AKKAUNT TIZIMI
+========================= */
 
-const $ = id => document.getElementById(id);
+const USERS_KEY = "uzcyber_accounts_v2";
+const SESSION_KEY = "uzcyber_session_v2";
 
-let user = JSON.parse(localStorage.getItem("uzcyber_user") || "null") || {
-  name:"Cyber User",
-  xp:0,
-  completed:0,
-  correct:0,
-  answered:0,
-  tasks:[]
-};
+let authMode = "login";
+let currentUser = null;
 
-function saveUser(){
-  localStorage.setItem("uzcyber_user",JSON.stringify(user));
+function getUsers(){
+  try{
+    return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+  }catch(error){
+    return [];
+  }
 }
 
-function level(){
-  return Math.floor(user.xp/100)+1;
+function saveUsers(users){
+  localStorage.setItem(USERS_KEY,JSON.stringify(users));
 }
 
-function addXP(amount,task){
-  if(task && user.tasks.includes(task)) return false;
-  user.xp += amount;
-  user.completed++;
-  if(task) user.tasks.push(task);
-  saveUser();
+async function hashPassword(password){
+  // Parolni oddiy matn ko‘rinishida saqlamaslik uchun SHA-256.
+  const data = new TextEncoder().encode(password);
+  const hash = await crypto.subtle.digest("SHA-256",data);
+  return Array.from(new Uint8Array(hash))
+    .map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+
+function setAuthMode(mode){
+  authMode = mode;
+  $("loginTab").classList.toggle("active",mode==="login");
+  $("registerTab").classList.toggle("active",mode==="register");
+  $("nameField").classList.toggle("hidden",mode!=="register");
+  $("confirmField").classList.toggle("hidden",mode!=="register");
+  $("authSubmit").textContent = mode==="login" ? "Kirish" : "Akkaunt ochish";
+  $("authMessage").textContent = "";
+}
+
+$("authForm").addEventListener("submit",async function(event){
+  event.preventDefault();
+
+  const email = $("authEmail").value.trim().toLowerCase();
+  const password = $("authPassword").value;
+  const message = $("authMessage");
+
+  message.style.color = "var(--red)";
+
+  if(!email || !password){
+    message.textContent = "Email va parolni kiriting.";
+    return;
+  }
+
+  if(password.length < 6){
+    message.textContent = "Parol kamida 6 ta belgidan iborat bo‘lsin.";
+    return;
+  }
+
+  const users = getUsers();
+  const passwordHash = await hashPassword(password);
+
+  if(authMode==="register"){
+    const name = $("authName").value.trim();
+    const confirm = $("authConfirm").value;
+
+    if(name.length < 2){
+      message.textContent = "Ismingizni to‘liq kiriting.";
+      return;
+    }
+
+    if(password !== confirm){
+      message.textContent = "Ikkala parol bir xil emas.";
+      return;
+    }
+
+    if(users.some(u=>u.email===email)){
+      message.textContent = "Bu email bilan akkaunt ochilgan. Kirishni tanlang.";
+      return;
+    }
+
+    const newUser = {
+      id:email,
+      name:name,
+      email:email,
+      passwordHash:passwordHash,
+      xp:0,
+      completed:0,
+      correct:0,
+      answered:0,
+      tasks:[]
+    };
+
+    users.push(newUser);
+    saveUsers(users);
+    currentUser = newUser;
+    localStorage.setItem(SESSION_KEY,email);
+    openApp();
+    return;
+  }
+
+  const found = users.find(u=>u.email===email);
+
+  if(!found || found.passwordHash!==passwordHash){
+    message.textContent = "Email yoki parol noto‘g‘ri.";
+    return;
+  }
+
+  currentUser = found;
+  localStorage.setItem(SESSION_KEY,email);
+  openApp();
+});
+
+function openApp(){
+  $("authScreen").classList.add("hidden");
+  $("appScreen").classList.remove("hidden");
+  $("headerUser").textContent = currentUser.name;
+  updateStats();
+  showPage("home");
+}
+
+function logout(){
+  localStorage.removeItem(SESSION_KEY);
+  currentUser = null;
+  $("appScreen").classList.add("hidden");
+  $("authScreen").classList.remove("hidden");
+  $("authForm").reset();
+  setAuthMode("login");
+}
+
+function restoreSession(){
+  const email = localStorage.getItem(SESSION_KEY);
+  if(!email) return;
+
+  const found = getUsers().find(u=>u.email===email);
+  if(found){
+    currentUser = found;
+    openApp();
+  }else{
+    localStorage.removeItem(SESSION_KEY);
+  }
+}
+
+/* =========================
+   2. UMUMIY FOYDALANUVCHI
+========================= */
+
+function saveCurrentUser(){
+  const users = getUsers();
+  const index = users.findIndex(u=>u.email===currentUser.email);
+  if(index>=0){
+    users[index] = currentUser;
+    saveUsers(users);
+  }
+}
+
+function addXP(amount,taskId){
+  if(!currentUser) return;
+
+  if(taskId && currentUser.tasks.includes(taskId)){
+    return false;
+  }
+
+  currentUser.xp += amount;
+  currentUser.completed++;
+
+  if(taskId) currentUser.tasks.push(taskId);
+
+  saveCurrentUser();
   updateStats();
   return true;
 }
 
 function updateStats(){
-  const accuracy = user.answered
-    ? Math.round(user.correct/user.answered*100)
+  if(!currentUser) return;
+
+  const xp = currentUser.xp || 0;
+  const level = Math.floor(xp/100)+1;
+  const progress = xp%100;
+  const accuracy = currentUser.answered
+    ? Math.round(currentUser.correct/currentUser.answered*100)
     : 0;
-  const progress = Math.min(100,user.xp%100);
 
-  $("xp").textContent=user.xp+" XP";
-  $("level").textContent=level();
-  $("completed").textContent=user.completed;
-  $("accuracy").textContent=accuracy+"%";
-  $("mainProgress").style.width=progress+"%";
-  $("progressText").textContent=progress+"%";
-  $("profileName").textContent=user.name;
-  $("nameInput").value=user.name;
-  $("profileXP").textContent=user.xp;
-  $("profileLevel").textContent=level();
-  $("profileCompleted").textContent=user.completed;
-  renderLeaderboard();
+  $("xp").textContent = xp+" XP";
+  $("level").textContent = level;
+  $("completed").textContent = currentUser.completed;
+  $("accuracy").textContent = accuracy+"%";
+  $("progressBar").style.width = progress+"%";
+  $("progressText").textContent = progress+" / 100 XP";
+  $("profileName").textContent = currentUser.name;
+  $("profileEmail").textContent = currentUser.email;
+  $("profileXP").textContent = xp;
+  $("profileLevel").textContent = level;
+  $("profileCompleted").textContent = currentUser.completed;
+  $("headerUser").textContent = currentUser.name;
+
+  renderRanking();
 }
 
-function saveProfile(){
-  const name=$("nameInput").value.trim();
-  if(!name){
-    alert("Iltimos, ismingizni kiriting!");
-    return;
-  }
-  user.name=name.slice(0,30);
-  saveUser();
-  updateStats();
-  alert("Profil saqlandi!");
-}
+/* =========================
+   3. SAHIFALAR ALMASHTIRISH
+========================= */
 
-/* NAVIGATION */
+function $(id){
+  return document.getElementById(id);
+}
 
 function showPage(page,button){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  const target=$(page);
+
+  const target = $(page);
   if(target) target.classList.add("active");
 
   document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
   if(button) button.classList.add("active");
-  else{
-    const nav=document.querySelectorAll(".nav-btn");
-    const pages=["home","courses","terminal","challenges","quiz","leaderboard","profile"];
-    const index=pages.indexOf(page);
-    if(index>=0 && nav[index]) nav[index].classList.add("active");
-  }
+
   $("sidebar").classList.remove("open");
-  if(page==="leaderboard") renderLeaderboard();
+
+  if(page==="ranking") renderRanking();
 }
 
 function toggleMenu(){
   $("sidebar").classList.toggle("open");
 }
 
-/* LINUX TERMINAL SIMULATOR */
+/* =========================
+   4. DARSLAR
+========================= */
 
-let currentDirectory="~";
-const fileSystem={
-  "~":{
-    type:"dir",
-    items:["Desktop","Documents","Downloads","readme.txt","notes.txt"]
+const lessons = {
+  linux:{
+    title:"Linux nima?",
+    text:"Linux — ochiq kodli operatsion tizim oilasi. U serverlarda, kompyuterlarda va boshqa qurilmalarda ishlatiladi. Linux terminal orqali buyruqlar berish imkonini beradi. Masalan, ls fayllar ro‘yxatini, pwd joriy papkani, whoami esa foydalanuvchi nomini ko‘rsatadi."
   },
-  "Desktop":{
-    type:"dir",
-    items:["welcome.txt","projects"]
+  network:{
+    title:"Internet va IP manzil",
+    text:"IP manzil — tarmoqdagi qurilmani aniqlash uchun ishlatiladigan manzil. DNS esa sayt nomini IP manzilga moslashtiradi. Masalan, brauzer sayt nomini yozganingizda DNS kerakli server manzilini topishga yordam beradi."
   },
-  "Documents":{
-    type:"dir",
-    items:["security.txt","linux.txt"]
+  security:{
+    title:"Parol xavfsizligi",
+    text:"Kuchli parol uzun va taxmin qilish qiyin bo‘lishi kerak. Har bir sayt uchun alohida parol ishlating. Ikki bosqichli autentifikatsiyani yoqing. Parolingizni hech kimga yubormang va noma’lum havolalarga ishonmang."
   },
-  "Downloads":{
-    type:"dir",
-    items:["sample.txt"]
+  web:{
+    title:"Web xavfsizligi",
+    text:"HTTPS brauzer va sayt o‘rtasidagi aloqani TLS yordamida shifrlaydi. Sayt xavfsizligi uchun dasturlarni yangilash, foydalanuvchi ma’lumotlarini tekshirish va maxfiy ma’lumotlarni himoyalash muhim."
   },
-  "projects":{
-    type:"dir",
-    items:["index.html","script.js"]
+  crypto:{
+    title:"Kriptografiya",
+    text:"Kriptografiya ma’lumotlarni himoyalash usullarini o‘rganadi. Shifrlash ma’lumotni kalit yordamida o‘qib bo‘lmaydigan ko‘rinishga o‘tkazadi. Hash esa ma’lumotdan raqamli iz hosil qiladi."
+  },
+  ethical:{
+    title:"Ethical Hacking",
+    text:"Ethical hacking — tizim xavfsizligini faqat egasining aniq ruxsati bilan tekshirish. Tekshiruv doirasi oldindan kelishiladi. Ruxsatsiz tizimlarga kirish yoki ularni sinash mumkin emas."
   }
 };
 
-const fileContents={
-  "readme.txt":"UZCYBER Linux Simulator!\\nLinux buyruqlarini o‘rganishni boshlang.",
-  "notes.txt":"1. Linux — operatsion tizim.\\n2. Terminal — buyruqlar muhiti.",
-  "welcome.txt":"Xush kelibsiz! Linuxni o‘rganing.",
-  "security.txt":"Axborot xavfsizligi — ma'lumotlarni himoyalash.",
-  "linux.txt":"Linux — ochiq kodli operatsion tizim yadrosi.",
-  "sample.txt":"Bu sinov uchun yaratilgan matn fayli.",
-  "index.html":"UZCYBER demo loyiha fayli.",
-  "script.js":"console.log('UZCYBER');"
+let currentLesson = "";
+
+function openLesson(id){
+  const lesson = lessons[id];
+  if(!lesson) return;
+
+  currentLesson = id;
+  $("lessonTitle").textContent = lesson.title;
+  $("lessonText").textContent = lesson.text;
+
+  const alreadyDone = currentUser.tasks.includes("lesson_"+id);
+  $("lessonComplete").disabled = alreadyDone;
+  $("lessonComplete").textContent = alreadyDone
+    ? "Dars bajarilgan ✓"
+    : "Darsni tugatdim (+30 XP)";
+  $("lessonMessage").textContent = alreadyDone
+    ? "Bu darsni avval bajargansiz."
+    : "";
+
+  showPage("lesson");
+}
+
+function completeLesson(){
+  if(!currentLesson) return;
+
+  const added = addXP(30,"lesson_"+currentLesson);
+  if(added){
+    $("lessonMessage").textContent = "Ajoyib! Sizga 30 XP berildi.";
+    $("lessonComplete").textContent = "Dars bajarildi ✓";
+    $("lessonComplete").disabled = true;
+  }else{
+    $("lessonMessage").textContent = "Bu dars avval bajarilgan.";
+  }
+}
+
+/* =========================
+   5. LINUX TERMINAL
+========================= */
+
+const files = {
+  "readme.txt":"UZCYBER o‘quv terminaliga xush kelibsiz!",
+  "linux.txt":"Linux — ochiq kodli operatsion tizim.",
+  "security.txt":"Ma'lumotlaringizni kuchli parollar bilan himoyalang.",
+  "notes.txt":"Bugungi dars: Linux terminal buyruqlari."
 };
 
-function terminalPrint(text,type="normal"){
-  const output=$("terminalOutput");
-  const line=document.createElement("div");
-  line.className="terminal-line "+type;
-  line.textContent=text;
+let terminalHistory = [];
+
+function printTerminal(text,type=""){
+  const output = $("terminalOutput");
+  const line = document.createElement("div");
+  line.textContent = text;
+  if(type) line.className = type;
   output.appendChild(line);
-  output.scrollTop=output.scrollHeight;
+  output.scrollTop = output.scrollHeight;
 }
 
 function runTerminal(){
-  const input=$("terminalInput");
-  const command=input.value.trim();
+  const input = $("terminalInput");
+  const command = input.value.trim();
   if(!command) return;
 
-  terminalPrint("user@uzcyber:"+currentDirectory+"$ "+command,"success");
-  input.value="";
-  executeCommand(command);
-}
+  terminalHistory.push(command);
+  printTerminal("$ "+command,"good");
+  input.value = "";
 
-function quickCommand(command){
-  $("terminalInput").value=command;
-  runTerminal();
-}
-
-function executeCommand(fullCommand){
-  const parts=fullCommand.split(" ");
-  const cmd=parts[0].toLowerCase();
-  const arg=parts.slice(1).join(" ").trim();
+  const parts = command.split(" ");
+  const cmd = parts[0].toLowerCase();
+  const arg = parts.slice(1).join(" ");
 
   switch(cmd){
     case "help":
-      terminalPrint("Mavjud buyruqlar:","info");
-      terminalPrint("help       — buyruqlar ro‘yxati");
-      terminalPrint("ls         — fayllarni ko‘rish");
-      terminalPrint("pwd        — joriy papkani ko‘rish");
-      terminalPrint("whoami     — foydalanuvchini ko‘rish");
-      terminalPrint("cd [papka] — papkani almashtirish");
-      terminalPrint("cat [fayl] — fayl mazmunini ko‘rish");
-      terminalPrint("clear      — terminalni tozalash");
-      terminalPrint("date       — sanani ko‘rish");
-      terminalPrint("echo [matn]— matn chiqarish");
-      terminalPrint("uname      — tizim haqida ma'lumot");
-      terminalPrint("history    — buyruqlar tarixi");
+      printTerminal("Mavjud buyruqlar:");
+      printTerminal("help              — yordam");
+      printTerminal("ls                — fayllar ro‘yxati");
+      printTerminal("pwd               — joriy manzil");
+      printTerminal("whoami            — foydalanuvchi");
+      printTerminal("cat readme.txt    — faylni o‘qish");
+      printTerminal("date              — sana va vaqt");
+      printTerminal("echo salom        — matn chiqarish");
+      printTerminal("history           — buyruqlar tarixi");
+      printTerminal("clear             — terminalni tozalash");
       break;
 
     case "ls":
-      if(currentDirectory==="~"){
-        terminalPrint("Desktop  Documents  Downloads  readme.txt  notes.txt","success");
-      }else if(fileSystem[currentDirectory]){
-        terminalPrint(fileSystem[currentDirectory].items.join("    "),"success");
-      }else{
-        terminalPrint("Bu papka topilmadi.","error");
-      }
-      rewardTerminal("ls",20);
+      printTerminal("Desktop  Documents  Downloads  readme.txt  linux.txt  security.txt","good");
+      terminalReward("terminal_ls",10);
       break;
 
     case "pwd":
-      terminalPrint("/home/user"+(currentDirectory==="~"?"":"/"+currentDirectory),"success");
-      rewardTerminal("pwd",20);
+      printTerminal("/home/user","good");
+      terminalReward("terminal_pwd",10);
       break;
 
     case "whoami":
-      terminalPrint("user","success");
-      rewardTerminal("whoami",20);
-      break;
-
-    case "cd":
-      if(!arg || arg==="~" || arg==="/home/user"){
-        currentDirectory="~";
-        terminalPrint("Bosh papkaga qaytdingiz.","success");
-      }else if(arg===".."){
-        currentDirectory="~";
-        terminalPrint("Yuqori papkaga o‘tdingiz.","success");
-      }else if(fileSystem[arg] && fileSystem[arg].type==="dir"){
-        currentDirectory=arg;
-        terminalPrint("Papka o‘zgartirildi: "+arg,"success");
-      }else{
-        terminalPrint("Papka topilmadi: "+arg,"error");
-      }
+      printTerminal("user","good");
+      terminalReward("terminal_whoami",10);
       break;
 
     case "cat":
-      if(!arg){
-        terminalPrint("Fayl nomini kiriting. Masalan: cat readme.txt","error");
-      }else if(fileContents[arg]){
-        terminalPrint(fileContents[arg],"success");
-        rewardTerminal("cat_"+arg,30);
+      if(files[arg]){
+        printTerminal(files[arg],"good");
+        terminalReward("terminal_cat_"+arg,10);
       }else{
-        terminalPrint("Fayl topilmadi: "+arg,"error");
+        printTerminal("Fayl topilmadi. Masalan: cat readme.txt","bad");
       }
+      break;
+
+    case "date":
+      printTerminal(new Date().toLocaleString(),"good");
+      break;
+
+    case "echo":
+      printTerminal(arg);
+      break;
+
+    case "history":
+      terminalHistory.forEach((item,i)=>printTerminal((i+1)+"  "+item));
       break;
 
     case "clear":
       $("terminalOutput").innerHTML="";
       break;
 
-    case "date":
-      terminalPrint(new Date().toLocaleString(),"success");
-      break;
-
-    case "echo":
-      terminalPrint(arg);
-      break;
-
-    case "uname":
-      terminalPrint("UZCYBER Linux Simulator 1.0 x86_64","success");
-      break;
-
-    case "history":
-      terminalPrint("Buyruqlar tarixi ushbu demo versiyada cheklangan.","info");
-      break;
-
     default:
-      terminalPrint("Buyruq topilmadi: "+cmd+". help yozib ko‘ring.","error");
+      printTerminal("Buyruq topilmadi. Yordam uchun help yozing.","bad");
   }
 }
 
-function rewardTerminal(task,amount){
-  const id="terminal_"+task;
+function terminalReward(id,amount){
   if(addXP(amount,id)){
-    terminalPrint("🎉 +"+amount+" XP! Topshiriq bajarildi.","success");
+    printTerminal("Ajoyib! +"+amount+" XP oldingiz.","good");
   }
 }
 
-$("terminalInput").addEventListener("keydown",function(e){
-  if(e.key==="Enter") runTerminal();
+function quickCommand(command){
+  $("terminalInput").value = command;
+  runTerminal();
+}
+
+$("terminalInput").addEventListener("keydown",function(event){
+  if(event.key==="Enter") runTerminal();
 });
 
-/* QUIZ SYSTEM */
+/* =========================
+   6. BILIM TESTI
+========================= */
 
-const questions=[
+const questions = [
   {
-    category:"Linux",
     q:"Linuxda fayllar ro‘yxatini ko‘rish buyrug‘i qaysi?",
-    a:["ls","pwd","whoami","clear"],
-    correct:0,
-    explanation:"ls joriy papkadagi fayl va papkalarni ko‘rsatadi."
+    a:["ls","pwd","whoami","date"],
+    c:0,
+    e:"ls fayllar va papkalar ro‘yxatini ko‘rsatadi."
   },
   {
-    category:"Networking",
-    q:"IP manzil nima uchun ishlatiladi?",
-    a:["Kompyuterni tarmoqda aniqlash","Rasm chizish","Faylni siqish","Monitorni sozlash"],
-    correct:0,
-    explanation:"IP manzil tarmoqdagi qurilmani aniqlash uchun ishlatiladi."
+    q:"IP manzil nima uchun kerak?",
+    a:["Qurilmani tarmoqda aniqlash","Rasm chizish","Musiqa tinglash","Faylni siqish"],
+    c:0,
+    e:"IP manzil tarmoqdagi qurilmani aniqlaydi."
   },
   {
-    category:"Security",
-    q:"HTTPS nimani ta'minlashga yordam beradi?",
-    a:["Shifrlangan aloqa","Kompyuterni tezlashtirish","Ekran yorqinligi","Fayl hajmini oshirish"],
-    correct:0,
-    explanation:"HTTPS TLS orqali brauzer va sayt orasidagi aloqani himoyalaydi."
+    q:"DNS nima qiladi?",
+    a:["Domenni IP manzilga moslashtiradi","Kompyuterni o‘chiradi","Parolni o‘zgartiradi","Rasmni ochadi"],
+    c:0,
+    e:"DNS domen nomlarini IP manzillarga moslashtiradi."
   },
   {
-    category:"Security",
-    q:"Kuchli parol qanday bo‘lishi kerak?",
-    a:["Uzun va turli belgilar bilan","Faqat 123456","Ism va tug‘ilgan sana","Faqat bitta harf"],
-    correct:0,
-    explanation:"Uzun, noyob va taxmin qilish qiyin parol xavfsizroq."
+    q:"Kuchli parol qanday bo‘ladi?",
+    a:["Uzun va noyob","123456","Faqat ism","Faqat tug‘ilgan sana"],
+    c:0,
+    e:"Uzun va noyob parol xavfsizroq."
   },
   {
-    category:"Linux",
-    q:"Joriy papkani ko‘rsatadigan buyruq qaysi?",
-    a:["pwd","ls","cat","echo"],
-    correct:0,
-    explanation:"pwd joriy ishchi papkaning manzilini chiqaradi."
+    q:"HTTPS nimaga yordam beradi?",
+    a:["Aloqani shifrlashga","Kompyuterni tezlatishga","Fayl o‘chirishga","Monitorni sozlashga"],
+    c:0,
+    e:"HTTPS TLS yordamida aloqani shifrlaydi."
   },
   {
-    category:"Networking",
-    q:"DNS nima vazifani bajaradi?",
-    a:["Domen nomini IP manzilga bog‘laydi","Kompyuterni o‘chiradi","Parol yaratadi","Faylni o‘chiradi"],
-    correct:0,
-    explanation:"DNS domen nomlarini IP manzillarga moslashtiradi."
+    q:"whoami buyrug‘i nima chiqaradi?",
+    a:["Foydalanuvchi nomini","IP manzilni","Sana va vaqtni","Fayllarni"],
+    c:0,
+    e:"whoami joriy foydalanuvchi nomini chiqaradi."
   },
   {
-    category:"Cryptography",
-    q:"Hash funksiyasining asosiy xususiyati nima?",
-    a:["Ma'lumotdan belgilangan uzunlikdagi xesh olish","Faylni ochish","Internetni ulash","Ekranni yozib olish"],
-    correct:0,
-    explanation:"Hash ma'lumotdan belgilangan formatdagi qiymat hosil qiladi."
-  },
-  {
-    category:"Security",
     q:"Phishing nima?",
-    a:["Soxta xabar orqali ma'lumotni qo‘lga kiritishga urinish","Kompyuter yig‘ish","Faylni nusxalash","Internet tezligi"],
-    correct:0,
-    explanation:"Phishing foydalanuvchini aldab maxfiy ma'lumotlarni olishga urinadi."
+    a:["Aldov orqali maxfiy ma'lumot olishga urinish","Kompyuter yig‘ish","Faylni nusxalash","Internet tezligi"],
+    c:0,
+    e:"Phishing foydalanuvchini aldash orqali ma'lumot olishga urinadi."
   },
   {
-    category:"Web",
     q:"HTML nima?",
-    a:["Web sahifa tuzilishini belgilovchi til","Antivirus","Operatsion tizim","Tarmoq kabeli"],
-    correct:0,
-    explanation:"HTML web sahifaning asosiy tuzilishini yaratadi."
+    a:["Web sahifa tuzilish tili","Antivirus","Operatsion tizim","Tarmoq kabeli"],
+    c:0,
+    e:"HTML web sahifaning tuzilishini yaratadi."
   },
   {
-    category:"Security",
+    q:"Hash nima?",
+    a:["Ma'lumotdan raqamli iz olish","Faylni chop etish","Internetga ulanish","Ekranni yozish"],
+    c:0,
+    e:"Hash ma'lumotdan belgilangan formatdagi qiymat hosil qiladi."
+  },
+  {
     q:"2FA nimani anglatadi?",
-    a:["Ikki bosqichli autentifikatsiya","Ikki xil brauzer","Ikki monitor","Ikki fayl"],
-    correct:0,
-    explanation:"2FA hisobga kirishda ikki xil tasdiqlash usulidan foydalanadi."
+    a:["Ikki bosqichli autentifikatsiya","Ikki monitor","Ikki brauzer","Ikki fayl"],
+    c:0,
+    e:"2FA hisobga kirishda qo‘shimcha tasdiqlashni talab qiladi."
   }
 ];
 
-let quizIndex=0;
-let quizAnswered=false;
-let quizSessionId=Date.now();
+let quizIndex = 0;
+let quizLocked = false;
 
 function loadQuiz(){
-  quizAnswered=false;
-  const q=questions[quizIndex];
-  $("quizCategory").textContent=q.category.toUpperCase();
-  $("questionNumber").textContent=(quizIndex+1)+" / "+questions.length;
-  $("questionText").textContent=q.q;
-  $("feedback").textContent="";
-  $("nextQuestion").style.display="none";
-  $("answers").innerHTML="";
+  quizLocked = false;
+  const q = questions[quizIndex];
+
+  $("questionCount").textContent = (quizIndex+1)+" / "+questions.length;
+  $("questionText").textContent = q.q;
+  $("feedback").textContent = "";
+  $("nextQuestion").classList.add("hidden");
+  $("answers").innerHTML = "";
 
   q.a.forEach((answer,index)=>{
-    const btn=document.createElement("button");
-    btn.className="answer";
-    btn.textContent=String.fromCharCode(65+index)+". "+answer;
-    btn.onclick=()=>checkAnswer(index,btn);
-    $("answers").appendChild(btn);
+    const button = document.createElement("button");
+    button.className = "answer";
+    button.textContent = String.fromCharCode(65+index)+". "+answer;
+    button.onclick = ()=>answerQuiz(index,button);
+    $("answers").appendChild(button);
   });
 }
 
-function checkAnswer(index,button){
-  if(quizAnswered) return;
-  quizAnswered=true;
-  const q=questions[quizIndex];
-  const buttons=$("answers").querySelectorAll("button");
+function answerQuiz(index,button){
+  if(quizLocked) return;
+  quizLocked = true;
 
-  buttons.forEach((b,i)=>{
-    b.disabled=true;
-    if(i===q.correct) b.classList.add("correct");
+  const q = questions[quizIndex];
+  const all = $("answers").querySelectorAll("button");
+
+  currentUser.answered++;
+
+  all.forEach((b,i)=>{
+    b.disabled = true;
+    if(i===q.c) b.classList.add("correct");
   });
 
-  user.answered++;
-  if(index===q.correct){
-    user.correct++;
-    user.xp+=10;
-    user.completed++;
-    $("feedback").textContent="✓ To‘g‘ri! +10 XP. "+q.explanation;
-    $("feedback").style.color="var(--green)";
+  if(index===q.c){
+    currentUser.correct++;
+    const task = "quiz_"+quizIndex+"_"+q.q;
+    currentUser.xp += 10;
+    currentUser.completed++;
+    $("feedback").textContent = "✓ To‘g‘ri! +10 XP. "+q.e;
+    $("feedback").style.color = "var(--green)";
   }else{
     button.classList.add("wrong");
-    $("feedback").textContent="✗ Noto‘g‘ri. "+q.explanation;
-    $("feedback").style.color="var(--red)";
+    $("feedback").textContent = "✗ Noto‘g‘ri. "+q.e;
+    $("feedback").style.color = "var(--red)";
   }
 
-  saveUser();
+  saveCurrentUser();
   updateStats();
-  $("nextQuestion").style.display="inline-block";
+  $("nextQuestion").classList.remove("hidden");
 }
 
 function nextQuiz(){
   quizIndex++;
+
   if(quizIndex>=questions.length){
-    $("questionText").textContent="🎉 Test yakunlandi!";
-    $("answers").innerHTML="";
-    $("feedback").textContent="Natija: "+user.correct+" ta to‘g‘ri javob.";
-    $("nextQuestion").style.display="none";
-    quizIndex=0;
+    $("questionText").textContent = "🎉 Test tugadi!";
+    $("answers").innerHTML = "";
+    $("feedback").textContent = "Testni yakunladingiz. Boshidan boshlash uchun tugmani bosing.";
+    $("nextQuestion").textContent = "Testni qayta boshlash";
+    $("nextQuestion").onclick = restartQuiz;
     return;
   }
+
   loadQuiz();
 }
 
-/* COURSE MINI LESSONS */
-
-const courseLessons={
-  network:{
-    title:"Networking asoslari",
-    text:"IP manzil — tarmoqdagi qurilmani aniqlaydi. DNS domen nomlarini IP manzillarga moslashtiradi. TCP ma'lumot yetkazilishini nazorat qiladi."
-  },
-  security:{
-    title:"Cybersecurity asoslari",
-    text:"Axborot xavfsizligining uchta asosiy tamoyili: maxfiylik, yaxlitlik va mavjudlik. Kuchli parollar va ikki bosqichli autentifikatsiya hisoblarni himoyalashga yordam beradi."
-  },
-  web:{
-    title:"Web Security",
-    text:"HTTPS web aloqa xavfsizligini oshiradi. Saytlarni himoyalashda kiruvchi ma'lumotlarni tekshirish, xavfsiz autentifikatsiya va yangilanishlar muhim."
-  },
-  crypto:{
-    title:"Cryptography",
-    text:"Shifrlash ma'lumotni maxfiy saqlashga yordam beradi. Hash esa ma'lumotning raqamli izini hosil qiladi. Hash va shifrlash bir xil tushuncha emas."
-  },
-  ethical:{
-    title:"Ethical Hacking",
-    text:"Ethical hacking — faqat egasining aniq ruxsati bilan tizim xavfsizligini tekshirish. Har qanday test belgilangan doira va qoidalarga rioya qilishi kerak."
-  }
-};
-
-function startCourse(name){
-  const lesson=courseLessons[name];
-  if(!lesson) return;
-  $("questionText").textContent=lesson.title;
-  $("quizCategory").textContent="O‘QUV DARSI";
-  $("questionNumber").textContent="UZCYBER LESSON";
-  $("answers").innerHTML="";
-  $("feedback").textContent=lesson.text;
-  $("feedback").style.color="var(--text)";
-  $("nextQuestion").style.display="none";
-  showPage("quiz");
-  $("questionText").scrollIntoView({behavior:"smooth",block:"center"});
+function restartQuiz(){
+  quizIndex = 0;
+  $("nextQuestion").textContent = "Keyingi savol →";
+  $("nextQuestion").onclick = nextQuiz;
+  loadQuiz();
 }
 
-/* LEADERBOARD */
+/* =========================
+   7. REYTING
+========================= */
 
-function renderLeaderboard(){
-  const body=$("leaderboardBody");
-  if(!body) return;
-  const people=[
-    {name:"Cyber Master",xp:850},
-    {name:"Linux Expert",xp:620},
-    {name:"Net Guardian",xp:410},
-    {name:user.name,xp:user.xp,me:true}
-  ];
-  people.sort((a,b)=>b.xp-a.xp);
-  body.innerHTML="";
-  people.forEach((p,i)=>{
-    const tr=document.createElement("tr");
-    const values=[i+1,p.name,p.me?level():Math.floor(p.xp/100)+1,p.xp+" XP"];
+function renderRanking(){
+  if(!currentUser) return;
+
+  const users = getUsers().slice().sort((a,b)=>b.xp-a.xp);
+  const body = $("rankingBody");
+  body.innerHTML = "";
+
+  users.forEach((u,index)=>{
+    const tr = document.createElement("tr");
+    const values = [index+1,u.name,u.xp+" XP"];
+
     values.forEach(value=>{
-      const td=document.createElement("td");
-      td.textContent=value;
+      const td = document.createElement("td");
+      td.textContent = value;
       tr.appendChild(td);
     });
-    if(p.me) tr.style.color="var(--green)";
+
+    if(u.email===currentUser.email){
+      tr.style.color = "var(--green)";
+    }
+
     body.appendChild(tr);
   });
 }
 
-/* LANGUAGE SYSTEM */
-
-const translations={
-  uz:{
-    menu:"ASOSIY MENYU",home:"Bosh sahifa",courses:"Kurslar",
-    challenges:"Topshiriqlar",quiz:"Testlar",ranking:"Reyting",
-    profile:"Profil",account:"AKKAUNT",
-    welcome:"Kiberxavfsizlik olamiga xush kelibsiz!",
-    heroText:"UZCYBER orqali Linux, tarmoqlar, web xavfsizligi va ethical hacking asoslarini o‘rganing. Bilimingizni amaliy topshiriqlar bilan mustahkamlang.",
-    startLearning:"O‘rganishni boshlash →",experience:"Tajriba (XP)",
-    level:"Daraja",completed:"Bajarilgan",accuracy:"Aniqlik",
-    yourProgress:"Sizning rivojlanishingiz",
-    progressInfo:"Topshiriqlarni bajaring va yangi darajalarga erishing.",
-    popularCourses:"O‘quv yo‘nalishlari",allCourses:"Barchasi",
-    linuxDesc:"Linux operatsion tizimi va terminal buyruqlarini o‘rganing.",
-    networkDesc:"IP, DNS, TCP/IP va tarmoq asoslarini o‘rganing.",
-    securityDesc:"Axborot xavfsizligi va himoya tamoyillari.",
-    coursesSub:"O‘zingizga kerakli yo‘nalishni tanlang va bilim olishni boshlang."
-  },
-  ru:{
-    menu:"ГЛАВНОЕ МЕНЮ",home:"Главная",courses:"Курсы",
-    challenges:"Задания",quiz:"Тесты",ranking:"Рейтинг",
-    profile:"Профиль",account:"АККАУНТ",
-    welcome:"Добро пожаловать в мир кибербезопасности!",
-    heroText:"Изучайте Linux, сети, веб-безопасность и основы этичного хакинга с UZCYBER.",
-    startLearning:"Начать обучение →",experience:"Опыт (XP)",
-    level:"Уровень",completed:"Выполнено",accuracy:"Точность",
-    yourProgress:"Ваш прогресс",
-    progressInfo:"Выполняйте задания и достигайте новых уровней.",
-    popularCourses:"Направления обучения",allCourses:"Все курсы",
-    linuxDesc:"Изучайте Linux и команды терминала.",
-    networkDesc:"Изучайте IP, DNS, TCP/IP и основы сетей.",
-    securityDesc:"Основы информационной безопасности.",
-    coursesSub:"Выберите направление и начните обучение."
-  },
-  en:{
-    menu:"MAIN MENU",home:"Home",courses:"Courses",
-    challenges:"Challenges",quiz:"Quiz",ranking:"Leaderboard",
-    profile:"Profile",account:"ACCOUNT",
-    welcome:"Welcome to the world of cybersecurity!",
-    heroText:"Learn Linux, networking, web security and ethical hacking fundamentals with UZCYBER.",
-    startLearning:"Start learning →",experience:"Experience (XP)",
-    level:"Level",completed:"Completed",accuracy:"Accuracy",
-    yourProgress:"Your progress",
-    progressInfo:"Complete challenges and reach new levels.",
-    popularCourses:"Learning paths",allCourses:"All courses",
-    linuxDesc:"Learn the Linux operating system and terminal commands.",
-    networkDesc:"Learn IP, DNS, TCP/IP and networking fundamentals.",
-    securityDesc:"Information security and protection fundamentals.",
-    coursesSub:"Choose a learning path and start learning."
-  }
-};
-
-function changeLanguage(lang){
-  const dict=translations[lang]||translations.uz;
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const key=el.getAttribute("data-i18n");
-    if(dict[key]) el.textContent=dict[key];
-  });
-  localStorage.setItem("uzcyber_language",lang);
-}
-
-/* STARTUP */
+/* =========================
+   8. SAYTNI ISHGA TUSHIRISH
+========================= */
 
 function init(){
-  updateStats();
   loadQuiz();
-  const savedLanguage=localStorage.getItem("uzcyber_language")||"uz";
-  $("language").value=savedLanguage;
-  changeLanguage(savedLanguage);
+  restoreSession();
 }
 
 init();
 </script>
+
 </body>
 </html>
