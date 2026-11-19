@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UZCYBER | Dashboard</title>
+<title>UZCYBER | Cybersecurity Dashboard</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-:root{--bg:#151e2e;--nav:#202c43;--card:#1d293f;--card2:#222f49;--line:#2c3a53;--green:#a8ed19;--text:#f4f6fc;--muted:#8799b7;--blue:#6d9df8}
+:root{--bg:#151e2e;--nav:#202c43;--card:#1d293f;--card2:#222f49;--line:#2c3a53;--text:#f4f6fc;--muted:#8799b7;--green:#a8ed19;--blue:#6d9df8}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--text);font-size:14px}
 button,a,select{font:inherit}
@@ -20,39 +20,40 @@ a{text-decoration:none;color:inherit}
 .brand small{font-size:8px;display:block;letter-spacing:2px}
 .navlinks{display:flex;align-items:center;gap:27px;height:100%}
 .navlink{height:100%;display:flex;align-items:center;gap:8px;color:#aab5c9;font-size:13px;white-space:nowrap}
-.navlink.active{color:white}
+.navlink.active,.navlink:hover{color:white}
 .navlink.active .navico{color:var(--green)}
 .navico{font-size:21px;color:#8796ad}
-.navright{margin-left:auto;display:flex;align-items:center;gap:18px}
-.navicon{font-size:20px;color:#aab5c9;position:relative}
-.dot{position:absolute;right:-5px;top:-5px;background:#ff455c;color:white;border-radius:20px;font-size:9px;padding:2px 5px}
+.navright{margin-left:auto;display:flex;align-items:center;gap:15px}
+.navicon{font-size:20px;color:#aab5c9;cursor:pointer}
+.dot{background:#ff455c;color:white;border-radius:20px;font-size:9px;padding:2px 5px}
 .premium{background:var(--green);border:0;color:#18220d;padding:9px 17px;border-radius:4px;font-weight:700}
 .sep{height:29px;width:1px;background:#42516a}
 .counter{font-weight:700;color:white}
 .avatar{width:47px;height:47px;border:3px solid #465779;border-radius:50%;display:grid;place-items:center;background:#8019a7;font-size:23px}
 .lang{background:transparent;border:1px solid #4b5a71;color:white;padding:7px;border-radius:5px}
+.lang option{background:#202c43}
 .container{max-width:1120px;margin:20px auto 0;display:grid;grid-template-columns:minmax(0,737px) minmax(300px,358px);gap:20px}
 .left,.right{min-width:0}
 .panel{background:var(--card);border-radius:6px;margin-bottom:20px;overflow:hidden}
-.welcome{height:81px;display:flex;align-items:center;padding:13px 20px;gap:15px}
+.welcome{min-height:81px;display:flex;align-items:center;padding:13px 20px;gap:15px}
 .mascot{width:53px;height:54px;flex-shrink:0;position:relative}
 .mascot:before{content:"";position:absolute;width:45px;height:45px;background:var(--green);border-radius:65% 35% 55% 45%;transform:rotate(-20deg);top:3px;left:2px;border:2px solid #101c2a}
 .mascot:after{content:"◉";position:absolute;top:15px;left:13px;font-size:24px;color:#111b2a;text-shadow:8px 2px 0 white}
 .mascot span{position:absolute;right:0;top:2px;color:var(--green);font-size:22px}
 .welcome h2{font-size:19px;margin:0 0 6px}
-.welcome p{font-size:12px;margin:0;font-weight:600}
+.welcome p{font-size:12px;margin:0;font-weight:600;line-height:1.5}
 .learning{padding:25px 21px 17px}
 .sectionhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:29px}
 .sectionhead h3{font-size:17px;margin:0}
-.tabs{display:flex;gap:20px;color:#b5c1d4}
+.tabs{display:flex;gap:16px;color:#b5c1d4}
 .tab{background:none;border:0;color:#b5c1d4;padding:9px 4px 12px;border-bottom:3px solid transparent}
 .tab.active{color:white;border-color:var(--green);font-weight:700}
-.module{height:92px;background:#222f48;border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:15px 26px;margin-bottom:20px}
+.module{min-height:92px;background:#222f48;border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:15px 26px;margin-bottom:20px;gap:12px}
 .module small{color:white;font-weight:600}
 .module h2{font-size:20px;margin:8px 0 0}
-.module-art{width:115px;height:67px;border-radius:9px;background:linear-gradient(145deg,#075f83,#132b49);border:5px solid #34778c;display:grid;place-items:center;font-size:42px;box-shadow:inset 0 0 15px #071b31}
+.module-art{width:115px;height:67px;flex-shrink:0;border-radius:9px;background:linear-gradient(145deg,#075f83,#132b49);border:5px solid #34778c;display:grid;place-items:center;font-size:42px;box-shadow:inset 0 0 15px #071b31}
 .maparea{height:355px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 54% 50%,#202e45 0%,#1d293f 65%)}
-.binary{position:absolute;color:#46536b;opacity:.4;font-family:monospace;font-size:9px;line-height:14px;white-space:pre;top:150px}
+.binary{position:absolute;color:#46536b;opacity:.4;font-family:monospace;font-size:9px;line-height:14px;white-space:pre;top:150px;pointer-events:none}
 .binary.leftbin{left:0}.binary.rightbin{right:0;top:230px}
 .route{position:absolute;width:350px;height:260px;left:50%;top:48%;transform:translate(-50%,-50%)}
 .route svg{width:100%;height:100%;position:absolute}
@@ -71,14 +72,16 @@ a{text-decoration:none;color:inherit}
 .switch{display:flex;gap:9px;align-items:center;font-weight:600}
 .switch input{accent-color:var(--green);width:29px;height:17px}
 .outline{background:transparent;color:white;border:1px solid var(--green);border-radius:5px;padding:8px 14px}
+.outline:hover,.follow-user button:hover{background:#2c3c50}
 .bronze{padding:23px 22px 29px}
 .bronze h3{font-size:17px;margin:0 0 8px}
 .bronze>p{color:var(--muted);margin:0 0 30px}
 .bronzeinner{background:#222f48;border-radius:6px;min-height:286px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px}
-.medal{font-size:55px;margin-bottom:13px;filter:drop-shadow(0 3px 2px #0005)}
+.medal{font-size:55px;margin-bottom:13px}
 .bronzeinner h3{max-width:390px;line-height:1.5;margin:0 0 10px;font-size:15px}
 .bronzeinner p{color:var(--muted);font-size:12px}
 .darkbtn{background:#151e2e;color:white;border:1px solid #34435c;padding:8px 14px;border-radius:5px}
+.darkbtn:hover{border-color:var(--green)}
 .session{padding:17px 20px;display:grid;grid-template-columns:1.4fr 1fr auto;align-items:center;gap:15px}
 .session small{color:#8ea0bc;font-size:9px;letter-spacing:1px}
 .session h3{font-size:16px;margin:5px 0}
@@ -98,13 +101,13 @@ a{text-decoration:none;color:inherit}
 .mini-progress i{height:100%;display:block;background:linear-gradient(90deg,#d6f51c,#28b51c);border-radius:20px}
 .bonus{border:1px solid #3a4860;border-radius:7px;padding:14px;display:flex;align-items:center;gap:12px;margin-top:23px}
 .bonusicon{font-size:28px}
-.bonus p{font-size:12px;line-height:1.6;margin:0}
+.bonus p{font-size:12px;line-height:1.6;margin:0;flex:1}
 .feed{text-align:center;background:#222f48;padding:22px 12px;border-radius:5px;color:#b4c2d8;font-size:12px;line-height:1.6;margin-top:20px}
 .right h3{font-size:16px;margin:0 0 17px}
 .statslock{background:#1c2d50;padding:25px 13px;text-align:center;border-radius:5px;color:#d7e0f2;line-height:1.5;font-size:12px}
 .lock{font-size:26px;color:#7da7f9;margin-right:12px}
 .follow{padding:20px}
-.follow-head{display:flex;justify-content:space-between;align-items:center}
+.follow-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .follow-head h3{margin:0}
 .follow-user{display:flex;align-items:center;gap:10px;margin:13px 0}
 .userpic{width:33px;height:33px;border-radius:50%;background:linear-gradient(140deg,#7fdc44,#245d9b);border:2px solid #50617a;display:grid;place-items:center}
@@ -117,9 +120,10 @@ a{text-decoration:none;color:inherit}
 footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:22px 0 30px;display:flex;justify-content:space-between;color:#d1d9e7;font-size:12px}
 .social{display:flex;gap:16px;color:#8795ac;font-weight:800;font-size:16px}
 .chat{position:fixed;right:17px;bottom:17px;width:43px;height:43px;border-radius:50%;background:#1e2e43;border:1px solid #30435c;display:grid;place-items:center;color:var(--green);font-size:22px}
-.hidden{display:none!important}
-@media(max-width:850px){.container{grid-template-columns:1fr;margin:12px}.right{display:grid;grid-template-columns:1fr 1fr;gap:12px}.right .panel{margin:0}footer{margin:15px;padding:20px}.navinner{gap:10px}.navlinks{gap:10px}.navlink{font-size:11px}.premium{display:none}}
-@media(max-width:560px){.top{height:auto;min-height:68px}.navinner{flex-wrap:wrap;padding:10px 0}.brand{width:auto}.navlinks{order:3;width:100%;height:35px;justify-content:space-between}.navright{gap:10px}.container{display:block}.right{display:block}.right .panel{margin-bottom:15px}.welcome{height:auto;min-height:80px}.welcome p{font-size:10px}.sectionhead{align-items:flex-start;gap:10px;flex-direction:column}.tabs{gap:10px}.module{padding:12px}.module h2{font-size:15px}.module-art{width:70px}.maparea{height:340px}.route{transform:translate(-50%,-50%) scale(.85)}.session{grid-template-columns:1fr}.session>div{border:0!important}.bronzeinner{padding:20px 12px}footer{font-size:10px;gap:10px}.social{gap:7px}}
+.toast{position:fixed;bottom:75px;right:20px;background:#25364e;border:1px solid #52647e;padding:14px 20px;border-radius:8px;z-index:30;display:none;max-width:300px;box-shadow:0 5px 25px #0006}
+.toast.show{display:block}
+@media(max-width:850px){.container{grid-template-columns:1fr;margin:12px}.right{display:grid;grid-template-columns:1fr 1fr;gap:12px}.right .panel{margin:0}.navinner{gap:10px}.navlinks{gap:10px}.navlink{font-size:11px}.premium{display:none}}
+@media(max-width:560px){.top{height:auto;min-height:68px}.navinner{flex-wrap:wrap;padding:10px 0}.brand{width:auto}.navlinks{order:3;width:100%;height:35px;justify-content:space-between}.navright{gap:9px}.container{display:block}.right{display:block}.right .panel{margin-bottom:15px}.welcome{height:auto;min-height:80px}.welcome p{font-size:10px}.sectionhead{align-items:flex-start;gap:10px;flex-direction:column}.tabs{gap:10px}.module{padding:12px}.module h2{font-size:15px}.module-art{width:70px}.maparea{height:340px}.route{transform:translate(-50%,-50%) scale(.85)}.session{grid-template-columns:1fr}.session>div{border:0!important}.bronzeinner{padding:20px 12px}footer{font-size:10px;gap:10px}.social{gap:7px}}
 </style>
 </head>
 <body>
@@ -127,22 +131,23 @@ footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:2
  <div class="navinner">
   <a class="brand" href="#"><span class="brandmark">☁</span><span>UZ<small>CYBER</small></span></a>
   <nav class="navlinks">
-   <a class="navlink active" href="#"><span class="navico">▣</span><span data-t="dashboard">Boshqaruv paneli</span></a>
+   <a class="navlink active" href="#dashboard"><span class="navico">▣</span><span data-t="dashboard">Boshqaruv paneli</span></a>
    <a class="navlink" href="#learning"><span class="navico">▤</span><span data-t="learn">O‘rganish</span></a>
    <a class="navlink" href="#practice"><span class="navico">◎</span><span data-t="practice">Amaliyot</span></a>
    <a class="navlink" href="#ranking"><span class="navico">♜</span><span data-t="ranking">Raqobatlashish</span></a>
   </nav>
   <div class="navright">
-   <span class="navicon">⌕</span><span class="navicon">♧<b class="dot">1</b></span>
-   <button class="premium" data-t="premium">Premiumga o'ting</button>
+   <span class="navicon" id="searchButton" title="Search">⌕</span>
+   <span class="navicon" id="notificationButton">♧<b class="dot">1</b></span>
+   <button class="premium" id="premiumButton" data-t="premium">Premiumga o'ting</button>
    <span class="sep"></span><span class="counter">◆ 0</span><span class="counter">🔥 0</span>
-   <select class="lang" id="language"><option value="uz">UZ</option><option value="ru">RU</option><option value="en">EN</option></select>
+   <select class="lang" id="language" aria-label="Language"><option value="uz">UZ</option><option value="ru">RU</option><option value="en">EN</option></select>
    <div class="avatar">F</div>
   </div>
  </div>
 </header>
 
-<div class="container">
+<div class="container" id="dashboard">
  <main class="left">
   <section class="panel welcome">
    <div class="mascot"><span>⌁</span></div>
@@ -153,9 +158,9 @@ footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:2
    <div class="sectionhead">
     <h3 data-t="mylearning">Mening o‘rganishim</h3>
     <div class="tabs">
-     <button class="tab active" onclick="setTab(this)" data-t="current">▣ Hozirgi</button>
-     <button class="tab" onclick="setTab(this)" data-t="recent">◴ Yaqinda</button>
-     <button class="tab" onclick="setTab(this)" data-t="saved">♧ Saqlandi</button>
+     <button class="tab active" data-tab="current" data-t="current">▣ Hozirgi</button>
+     <button class="tab" data-tab="recent" data-t="recent">◴ Yaqinda</button>
+     <button class="tab" data-tab="saved" data-t="saved">♧ Saqlandi</button>
     </div>
    </div>
    <div class="module">
@@ -167,20 +172,15 @@ footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:2
     <div class="binary rightbin">001010<br>1100110101<br>1100011<br>001011</div>
     <div class="route">
      <svg viewBox="0 0 350 260"><path d="M180 30 L65 145 L185 220 L65 250" fill="none" stroke="#17243a" stroke-width="8"/><path d="M180 30 L65 145 L185 220" fill="none" stroke="#293a53" stroke-width="2" stroke-dasharray="5 8"/></svg>
-     <div class="node one">
-      <div class="continuebubble" data-t="continue">Davom eting</div>
-      <div class="platform">⚔️</div>
-      <div class="percent">40%</div>
-      <label data-t="attack">Hujumkor<br> xavfsizlikka kirish</label>
-     </div>
-     <div class="node two"><div class="platform">🛡️</div><label data-t="defense">Mudofaa xavfsizligi<br> bo‘yicha kirish</label></div>
-     <div class="node three"><div class="platform">🔎</div><label data-t="searchskills">Qidiruv<br> ko‘nikmalari</label></div>
+     <div class="node one"><div class="continuebubble" data-t="continue">Davom eting</div><div class="platform">⚔️</div><div class="percent">40%</div><label data-t="attack">Hujumkor xavfsizlikka kirish</label></div>
+     <div class="node two"><div class="platform">🛡️</div><label data-t="defense">Mudofaa xavfsizligi bo‘yicha kirish</label></div>
+     <div class="node three"><div class="platform">🔎</div><label data-t="searchskills">Qidiruv ko‘nikmalari</label></div>
      <div class="node four"><div class="platform">💻</div></div>
     </div>
    </div>
    <div class="mapbottom">
     <label class="switch"><input type="checkbox" id="classic"><span data-t="classic">Klassik ko‘rinish</span></label>
-    <button class="outline" onclick="alert(msg('route'))" data-t="viewroute">Yo‘lni ko‘rish</button>
+    <button class="outline" id="viewRoute" data-t="viewroute">Yo‘lni ko‘rish</button>
    </div>
   </section>
 
@@ -191,7 +191,7 @@ footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:2
     <div class="medal">🟤</div>
     <h3 data-t="bronzetext">Siz baribir bunga erisha olasiz. Bugun 2 ta xona yoki viktorinalarni yakunlang va bronza o‘riningizni egallang.</h3>
     <p>🥇🥈🥉 <span data-t="bestplayers">Eng yaxshi o‘yinchilar allaqachon ichkarida.</span></p>
-    <button class="darkbtn" onclick="alert(msg('league'))" data-t="viewleague">Ligani ko‘rish</button>
+    <button class="darkbtn" id="viewLeague" data-t="viewleague">Ligani ko‘rish</button>
    </div>
   </section>
 
@@ -206,11 +206,11 @@ footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:2
     <div class="days">
      <button class="day">T</button><button class="day selected">F</button><button class="day">S</button><button class="day">S</button><button class="day">M</button><button class="day">T</button><button class="day">G‘</button>
     </div>
-    <button class="time" onclick="changeTime()">‹</button>
+    <button class="time" id="previousTime">‹</button>
     <button class="time" id="time">13:30 PM</button>
-    <button class="time" onclick="changeTime()">›</button>
+    <button class="time" id="nextTime">›</button>
    </div>
-   <button class="premium" onclick="alert(msg('session'))" data-t="book">Kitob sessiyasi</button>
+   <button class="premium" id="bookSession" data-t="book">Kitob sessiyasi</button>
   </section>
  </main>
 
@@ -218,7 +218,7 @@ footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:2
   <section class="panel">
    <div class="countdown">◷ <span data-t="countdown">Keyingi missiyaga 3 kun qoldi</span></div>
    <div class="welcomechallenge">
-    <h3>🧰 <span data-t="welcome">TryHackMe’ga xush kelibsiz!</span></h3>
+    <h3>🧰 <span data-t="welcome">UZCYBER’ga xush kelibsiz!</span></h3>
     <p data-t="welcomeinfo">Birinchi haftalik topshiriqni bajarish bilan sayohatingizni boshlang.</p>
    </div>
    <div class="challenge-row"><div class="challenge-title"><span data-t="questions">10 ta savolga javob bering</span><span>2 / 10</span></div><div class="mini-progress"><i style="width:20%"></i></div></div>
@@ -233,26 +233,27 @@ footer{max-width:1120px;margin:8px auto 0;border-top:1px solid #2b3950;padding:2
   </section>
 
   <section class="panel">
-   <div class="follow-head"><h3 data-t="statistics">Sizning statistikangiz</h3><button class="darkbtn" data-t="profile">Profilga o'tish</button></div>
+   <div class="follow-head"><h3 data-t="statistics">Sizning statistikangiz</h3><button class="darkbtn" id="profileButton" data-t="profile">Profilga o'tish</button></div>
    <div class="statslock"><span class="lock">🔒</span><span data-t="locked">Ushbu xususiyatni ochish uchun yo‘lingizdagi birinchi xonani to‘ldiring.</span></div>
   </section>
 
   <section class="panel follow">
-   <div class="follow-head"><h3 data-t="recommended">Tavsiya etilgan kuzatuvchilar</h3><button class="darkbtn">⌕</button></div>
-   <div class="follow-user"><div class="userpic">🟢</div><span>siprob</span><button onclick="follow(this)" data-t="follow">Kuzatib boring</button></div>
-   <div class="follow-user"><div class="userpic">🌌</div><span>.RCDM.exe</span><button onclick="follow(this)" data-t="follow">Kuzatib boring</button></div>
-   <div class="follow-user"><div class="userpic">🌊</div><span>Nirajstha10</span><button onclick="follow(this)" data-t="follow">Kuzatib boring</button></div>
-   <div class="center"><button class="darkbtn" data-t="seeall">Barchasini ko‘rish</button></div>
+   <div class="follow-head"><h3 data-t="recommended">Tavsiya etilgan kuzatuvchilar</h3><button class="darkbtn" id="searchPeople">⌕</button></div>
+   <div class="follow-user"><div class="userpic">🟢</div><span>siprob</span><button class="follow-button" data-following="no" data-t="follow">Kuzatib boring</button></div>
+   <div class="follow-user"><div class="userpic">🌌</div><span>.RCDM.exe</span><button class="follow-button" data-following="no" data-t="follow">Kuzatib boring</button></div>
+   <div class="follow-user"><div class="userpic">🌊</div><span>Nirajstha10</span><button class="follow-button" data-following="no" data-t="follow">Kuzatib boring</button></div>
+   <div class="center"><button class="darkbtn" id="seeAll" data-t="seeall">Barchasini ko‘rish</button></div>
   </section>
 
   <section class="panel follow">
-   <div class="watchtabs"><button class="active" onclick="watchTab(this)" data-t="watching">Kuzatilmoqda</button><button onclick="watchTab(this)" data-t="followers">Kuzatuvchilar</button></div>
+   <div class="watchtabs"><button class="active" data-watch="following" data-t="watching">Kuzatilmoqda</button><button data-watch="followers" data-t="followers">Kuzatuvchilar</button></div>
    <div class="feed" id="watchcontent" data-t="watchempty">Siz hali hech kimni kuzatmayapsiz</div>
   </section>
  </aside>
 </div>
 <footer><span data-t="copyright">Mualliflik huquqi UZCYBER 2026 yilga tegishli</span><div class="social"><span>𝕏</span><span>in</span><span>◉</span><span>f</span><span>▶</span><span>◎</span></div></footer>
-<button class="chat" onclick="alert(msg('chat'))">☁</button>
+<button class="chat" id="chatButton">☁</button>
+<div class="toast" id="toast"></div>
 
 <script>
 const translations={
@@ -261,11 +262,11 @@ dashboard:"Boshqaruv paneli",learn:"O‘rganish",practice:"Amaliyot",ranking:"Ra
 hello:"Salom",fact:"Qiziqarli fakt: men bilan suhbatlashgan o‘quvchilar ko‘pincha o‘rganganlarini ko‘proq eslab qolishadi.",
 mylearning:"Mening o‘rganishim",current:"▣ Hozirgi",recent:"◴ Yaqinda",saved:"♧ Saqlandi",module:"1- modul",startjourney:"Kiberxavfsizlik bo‘yicha sayohatingizni boshlang",continue:"Davom eting",
 attack:"Hujumkor xavfsizlikka kirish",defense:"Mudofaa xavfsizligi bo‘yicha kirish",searchskills:"Qidiruv ko‘nikmalari",classic:"Klassik ko‘rinish",viewroute:"Yo‘lni ko‘rish",
-bronze:"Bronza ligasi",leftdays:"Faqat 3 kun qoldi!",bronzetext:"Siz baribir bunga erisha olasiz. Bugun 2 ta xona yoki viktorinalarni yakunlang va bronza o‘riningizni egallang.",bestplayers:"Eng yaxshi o‘yinchilar allaqachon ichkarida.",viewleague:"Ligani ko‘rish",
-nextsession:"KEYINGI SESSIYA",plan:"Keyingi mashg‘ulotingizni rejalashtiring",reminder:"Yo‘lingizni davom ettirish uchun vaqt belgilang. Sizga eslatib o‘tamiz.",choose:"KUN VA VAQTNI TANLANG",book:"Kitob sessiyasi",
+bronze:"Bronza ligasi",leftdays:"Faqat 3 kun qoldi!",bronzetext:"Siz bunga erisha olasiz. Bugun 2 ta xona yoki viktorinani yakunlang va bronza o‘riningizni egallang.",bestplayers:"Eng yaxshi o‘yinchilar allaqachon ichkarida.",viewleague:"Ligani ko‘rish",
+nextsession:"KEYINGI SESSIYA",plan:"Keyingi mashg‘ulotingizni rejalashtiring",reminder:"Yo‘lingizni davom ettirish uchun vaqt belgilang. Sizga eslatib o‘tamiz.",choose:"KUN VA VAQTNI TANLANG",book:"Sessiyani band qilish",
 countdown:"Keyingi missiyaga 3 kun qoldi",welcome:"UZCYBER’ga xush kelibsiz!",welcomeinfo:"Birinchi haftalik topshiriqni bajarish bilan sayohatingizni boshlang.",questions:"10 ta savolga javob bering",rooms3:"3 ta to‘liq xona",streak2:"2 kunlik seriyani davom ettiring",bonus:"4 ta topshiriqni bajaring",bonusdesc:"Bonus sandig‘ini oching.",
-feed:"Oziqlantirish",feedempty:"Tarmog‘ingizdan hali hech qanday faollik yo‘q. Yangilanishlarni bu yerda ko‘rish uchun odamlarni kuzatib boring.",statistics:"Sizning statistikangiz",profile:"Profilga o'tish",locked:"Ushbu xususiyatni ochish uchun yo‘lingizdagi birinchi xonani to‘ldiring.",recommended:"Tavsiya etilgan kuzatuvchilar",follow:"Kuzatib boring",unfollow:"Kuzatishni to‘xtatish",seeall:"Barchasini ko‘rish",watching:"Kuzatilmoqda",followers:"Kuzatuvchilar",watchempty:"Siz hali hech kimni kuzatmayapsiz",copyright:"Mualliflik huquqi UZCYBER 2026 yilga tegishli",
-route:"O‘quv yo‘nalishi ochildi (demo).",league:"Bronza ligasi (demo).",session:"Sessiya saqlandi (demo).",chat:"UZCYBER yordam markazi (demo)."
+feed:"Oziqlantirish",feedempty:"Tarmog‘ingizda hali faollik yo‘q. Yangilanishlarni ko‘rish uchun odamlarni kuzatib boring.",statistics:"Sizning statistikangiz",profile:"Profilga o'tish",locked:"Ushbu xususiyatni ochish uchun birinchi xonani to‘ldiring.",recommended:"Tavsiya etilgan kuzatuvchilar",follow:"Kuzatib boring",unfollow:"Kuzatishni to‘xtatish",seeall:"Barchasini ko‘rish",watching:"Kuzatilmoqda",followers:"Kuzatuvchilar",watchempty:"Siz hali hech kimni kuzatmayapsiz",copyright:"Mualliflik huquqi UZCYBER 2026 yilga tegishli",
+route:"O‘quv yo‘nalishi ochildi. Bu demo rejim.",league:"Bronza ligasi ochildi. Bu demo rejim.",session:"Mashg‘ulot vaqti tanlandi.",chat:"UZCYBER yordam markazi. Bu demo rejim.",profilemsg:"Profil demo rejimida.",premiummsg:"Premium xizmati hozircha ulanmagan.",searchmsg:"Qidiruv demo rejimida.",notifications:"Sizda 1 ta bildirishnoma bor.",people:"Tavsiya etilgan foydalanuvchilar."
 },
 ru:{
 dashboard:"Панель управления",learn:"Обучение",practice:"Практика",ranking:"Соревнование",premium:"Перейти на Premium",
@@ -276,7 +277,7 @@ bronze:"Бронзовая лига",leftdays:"Осталось всего 3 д�
 nextsession:"СЛЕДУЮЩАЯ СЕССИЯ",plan:"Запланируйте следующую тренировку",reminder:"Выберите время для продолжения обучения. Мы напомним вам.",choose:"ВЫБЕРИТЕ ДЕНЬ И ВРЕМЯ",book:"Записать сессию",
 countdown:"До следующей миссии осталось 3 дня",welcome:"Добро пожаловать в UZCYBER!",welcomeinfo:"Начните своё путешествие с выполнения первого недельного задания.",questions:"Ответьте на 10 вопросов",rooms3:"Завершите 3 комнаты",streak2:"Продолжите серию из 2 дней",bonus:"Выполните 4 задания",bonusdesc:"Откройте бонусный сундук.",
 feed:"Лента активности",feedempty:"В вашей сети пока нет активности. Подписывайтесь на пользователей, чтобы видеть обновления.",statistics:"Ваша статистика",profile:"Перейти в профиль",locked:"Чтобы открыть эту функцию, завершите первую комнату.",recommended:"Рекомендуемые пользователи",follow:"Подписаться",unfollow:"Отписаться",seeall:"Посмотреть всех",watching:"Подписки",followers:"Подписчики",watchempty:"Вы пока ни на кого не подписаны",copyright:"Авторские права UZCYBER 2026",
-route:"Учебный путь открыт (демо).",league:"Бронзовая лига (демо).",session:"Сессия сохранена (демо).",chat:"Центр помощи UZCYBER (демо)."
+route:"Учебный путь открыт. Демонстрационный режим.",league:"Бронзовая лига открыта. Демонстрационный режим.",session:"Время тренировки выбрано.",chat:"Центр помощи UZCYBER. Демонстрационный режим.",profilemsg:"Профиль работает в демо-режиме.",premiummsg:"Премиум пока не подключён.",searchmsg:"Поиск работает в демо-режиме.",notifications:"У вас 1 уведомление.",people:"Рекомендуемые пользователи."
 },
 en:{
 dashboard:"Dashboard",learn:"Learn",practice:"Practice",ranking:"Compete",premium:"Go Premium",
@@ -287,42 +288,97 @@ bronze:"Bronze league",leftdays:"Only 3 days left!",bronzetext:"You can still ma
 nextsession:"NEXT SESSION",plan:"Plan your next training session",reminder:"Choose a time to continue your journey. We will remind you.",choose:"CHOOSE DAY AND TIME",book:"Book session",
 countdown:"3 days until the next mission",welcome:"Welcome to UZCYBER!",welcomeinfo:"Start your journey by completing your first weekly challenge.",questions:"Answer 10 questions",rooms3:"Complete 3 rooms",streak2:"Maintain a 2-day streak",bonus:"Complete 4 tasks",bonusdesc:"Open your bonus chest.",
 feed:"Activity feed",feedempty:"There is no activity in your network yet. Follow people to see updates here.",statistics:"Your statistics",profile:"Go to profile",locked:"Complete your first room to unlock this feature.",recommended:"Recommended users",follow:"Follow",unfollow:"Unfollow",seeall:"See all",watching:"Following",followers:"Followers",watchempty:"You are not following anyone yet",copyright:"Copyright UZCYBER 2026",
-route:"Learning path opened (demo).",league:"Bronze league (demo).",session:"Session saved (demo).",chat:"UZCYBER help center (demo)."
-}};
+route:"Learning path opened. Demo mode.",league:"Bronze league opened. Demo mode.",session:"Training time selected.",chat:"UZCYBER Help Center. Demo mode.",profilemsg:"Profile is currently in demo mode.",premiummsg:"Premium is not connected yet.",searchmsg:"Search is in demo mode.",notifications:"You have 1 notification.",people:"Recommended users."
+}
+};
+
 let lang="uz";
+let timeIndex=0;
+const times=["13:30 PM","14:00 PM","15:00 PM","16:30 PM","17:00 PM"];
+
 function msg(key){return translations[lang][key]||key}
+function showToast(message){
+ const toast=document.getElementById("toast");
+ toast.textContent=message;
+ toast.classList.add("show");
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>toast.classList.remove("show"),3000);
+}
 function setLanguage(value){
  lang=value;
+ document.documentElement.lang=value;
  document.querySelectorAll("[data-t]").forEach(el=>{
-  let key=el.getAttribute("data-t");
-  if(translations[lang][key])el.textContent=translations[lang][key];
+  const key=el.getAttribute("data-t");
+  if(translations[value][key])el.textContent=translations[value][key];
  });
- document.documentElement.lang=lang;
+ document.title="UZCYBER | Dashboard";
 }
 document.getElementById("language").addEventListener("change",e=>setLanguage(e.target.value));
-function setTab(button){
- document.querySelectorAll(".tabs .tab").forEach(x=>x.classList.remove("active"));
- button.classList.add("active");
+
+document.querySelectorAll(".tabs .tab").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".tabs .tab").forEach(el=>el.classList.remove("active"));
+  button.classList.add("active");
+  showToast(button.textContent.trim());
+ });
+});
+
+document.querySelectorAll(".follow-button").forEach(button=>{
+ button.addEventListener("click",()=>{
+  const active=button.dataset.following==="yes";
+  button.dataset.following=active?"no":"yes";
+  button.textContent=active?msg("follow"):msg("unfollow");
+  showToast(button.parentElement.querySelector("span").textContent+" — "+(active?msg("unfollow"):msg("follow")));
+ });
+});
+
+document.querySelectorAll(".watchtabs button").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".watchtabs button").forEach(el=>el.classList.remove("active"));
+  button.classList.add("active");
+  document.getElementById("watchcontent").textContent=msg("watchempty");
+ });
+});
+
+document.querySelectorAll(".day").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".day").forEach(el=>el.classList.remove("selected"));
+  button.classList.add("selected");
+ });
+});
+
+function updateTime(step){
+ timeIndex=(timeIndex+step+times.length)%times.length;
+ document.getElementById("time").textContent=times[timeIndex];
 }
-function follow(button){
- let active=button.dataset.following==="yes";
- button.dataset.following=active?"no":"yes";
- button.textContent=active?msg("follow"):msg("unfollow");
-}
-function watchTab(button){
- document.querySelectorAll(".watchtabs button").forEach(x=>x.classList.remove("active"));
- button.classList.add("active");
- document.getElementById("watchcontent").textContent=button===document.querySelector(".watchtabs button")?msg("watchempty"):msg("watchempty");
-}
-document.querySelectorAll(".day").forEach(button=>button.addEventListener("click",()=>{
- document.querySelectorAll(".day").forEach(x=>x.classList.remove("selected"));
- button.classList.add("selected");
-}));
-let times=["13:30 PM","14:00 PM","15:00 PM","16:30 PM","17:00 PM"];
-let timeIndex=0;
-function changeTime(){timeIndex=(timeIndex+1)%times.length;document.getElementById("time").textContent=times[timeIndex]}
+document.getElementById("previousTime").addEventListener("click",()=>updateTime(-1));
+document.getElementById("nextTime").addEventListener("click",()=>updateTime(1));
+
 document.getElementById("classic").addEventListener("change",e=>{
- document.querySelector(".maparea").style.background=e.target.checked?"#1b273a":"radial-gradient(ellipse at 54% 50%,#202e45 0%,#1d293f 65%)";
+ const map=document.querySelector(".maparea");
+ map.style.background=e.target.checked?"#1b273a":"";
+ showToast(e.target.checked?"Classic view enabled":"Classic view disabled");
+});
+
+document.getElementById("viewRoute").addEventListener("click",()=>showToast(msg("route")));
+document.getElementById("viewLeague").addEventListener("click",()=>showToast(msg("league")));
+document.getElementById("bookSession").addEventListener("click",()=>showToast(msg("session")));
+document.getElementById("premiumButton").addEventListener("click",()=>showToast(msg("premiummsg")));
+document.getElementById("profileButton").addEventListener("click",()=>showToast(msg("profilemsg")));
+document.getElementById("chatButton").addEventListener("click",()=>showToast(msg("chat")));
+document.getElementById("notificationButton").addEventListener("click",()=>showToast(msg("notifications")));
+document.getElementById("searchButton").addEventListener("click",()=>{
+ const query=prompt(lang==="uz"?"Nimani qidirmoqchisiz?":lang==="ru"?"Что вы хотите найти?":"What do you want to search?");
+ if(query)showToast((lang==="uz"?"Qidiruv: ":lang==="ru"?"Поиск: ":"Search: ")+query);
+});
+document.getElementById("searchPeople").addEventListener("click",()=>showToast(msg("people")));
+document.getElementById("seeAll").addEventListener("click",()=>showToast(msg("people")));
+
+document.querySelectorAll(".navlink").forEach(link=>{
+ link.addEventListener("click",()=>{
+  document.querySelectorAll(".navlink").forEach(el=>el.classList.remove("active"));
+  link.classList.add("active");
+ });
 });
 </script>
 </body>
