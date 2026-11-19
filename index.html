@@ -1,146 +1,401 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07110e">
-  <meta name="description" content="UZCYBER — o‘zbek tilidagi amaliy kiberxavfsizlik akademiyasi.">
-  <title>UZCYBER — Kiberxavfsizlik akademiyasi</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UZCYBER | Cybersecurity Learning Platform</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+:root{
+ --bg:#080d0b;--panel:#101914;--panel2:#14221a;
+ --green:#42ff91;--green2:#18c96b;--text:#edf7f0;
+ --muted:#87968c;--border:#23372a;--red:#ff5c68;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{display:flex;min-height:100vh}
+.sidebar{width:255px;background:#0c130f;border-right:1px solid var(--border);padding:25px 17px;position:fixed;height:100vh;overflow-y:auto;z-index:10}
+.logo{display:flex;align-items:center;gap:10px;margin:0 8px 35px}
+.logo-icon{width:39px;height:39px;border-radius:11px;background:var(--green);color:#07110a;display:grid;place-items:center;font-size:23px;font-weight:900}
+.logo-name{font-size:21px;font-weight:900;letter-spacing:-1px}
+.logo-name span{color:var(--green)}
+.nav-label{font-size:10px;color:#66766c;font-weight:800;letter-spacing:1.7px;margin:24px 10px 10px}
+.nav-item{width:100%;display:flex;align-items:center;gap:13px;padding:12px 13px;border:0;background:transparent;color:#9eafa4;border-radius:9px;text-align:left;font-size:13px;font-weight:600;margin:3px 0;transition:.2s}
+.nav-item:hover,.nav-item.active{background:#17271c;color:var(--green)}
+.nav-item.active{box-shadow:inset 3px 0 var(--green)}
+.nav-icon{font-size:17px;width:20px;text-align:center}
+.sidebar-bottom{position:absolute;bottom:22px;left:17px;right:17px}
+.user-mini{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center}
+.avatar{width:37px;height:37px;border-radius:50%;background:#214d32;color:var(--green);display:grid;place-items:center;font-weight:900}
+.user-mini strong{font-size:12px}.user-mini small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.main{margin-left:255px;width:calc(100% - 255px);padding:28px 36px 60px;max-width:1600px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px;gap:15px}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.top-actions{display:flex;gap:10px;align-items:center}
+.lang-select,.icon-btn{background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px}
+.icon-btn:hover,.lang-select:hover{border-color:var(--green)}
+h1{font-size:30px;letter-spacing:-1px;margin-bottom:9px}
+h1 span{color:var(--green)}
+.subtitle{color:var(--muted);font-size:13px;line-height:1.7}
+.welcome{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:20px}
+.welcome-tag{font-size:11px;color:var(--green);font-weight:800;letter-spacing:1.5px;margin-bottom:10px}
+.primary{background:var(--green);color:#06110a;border:0;border-radius:8px;padding:12px 18px;font-size:12px;font-weight:900;transition:.2s}
+.primary:hover{background:#72ffad;transform:translateY(-2px)}
+.secondary{background:var(--panel2);color:var(--green);border:1px solid var(--border);border-radius:8px;padding:10px 15px;font-size:12px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}
+.stat{background:var(--panel);border:1px solid var(--border);padding:19px;border-radius:12px;position:relative;overflow:hidden}
+.stat:after{content:"";position:absolute;width:60px;height:60px;border-radius:50%;background:#42ff9109;right:-12px;top:-15px}
+.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:600}
+.stat-icon{font-size:18px}
+.stat-number{font-size:27px;font-weight:900;margin-top:12px;letter-spacing:-1px}
+.stat-number.green{color:var(--green)}
+.stat-foot{font-size:10px;color:var(--muted);margin-top:6px}
+.section{margin-top:32px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px}
+.section-head h2{font-size:17px;letter-spacing:-.4px}
+.section-head p{font-size:11px;color:var(--muted);margin-top:5px}
+.text-btn{color:var(--green);font-size:11px;background:none;border:0;font-weight:800}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:20px}
+.level-panel{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
+.level-row{display:flex;align-items:center;gap:14px}
+.level-circle{width:58px;height:58px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;color:var(--green);font-size:19px;font-weight:900;box-shadow:0 0 20px #42ff9120}
+.level-info strong{font-size:15px}.level-info small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.progress-head{display:flex;justify-content:space-between;font-size:11px;margin-bottom:10px}
+.progress-head span:last-child{color:var(--green)}
+.progress{height:7px;border-radius:20px;background:#26352b;overflow:hidden}
+.progress-fill{height:100%;background:var(--green);border-radius:20px;transition:width .4s}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px;transition:.2s;min-width:0}
+.card:hover{border-color:#42ff9177;transform:translateY(-3px)}
+.card-icon{font-size:25px;margin-bottom:14px}
+.card h3{font-size:14px;margin-bottom:8px}
+.card p{font-size:11px;color:var(--muted);line-height:1.7;min-height:37px}
+.card-meta{display:flex;justify-content:space-between;align-items:center;margin-top:17px;padding-top:13px;border-top:1px solid var(--border);font-size:10px;color:var(--muted)}
+.tag{background:#183b25;color:var(--green);padding:5px 8px;border-radius:5px;font-size:9px;font-weight:800}
+.tag.orange{background:#382c17;color:#ffc46a}
+.tag.red{background:#3b1b20;color:#ff8290}
+.room-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.room{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--border);padding:15px;border-radius:11px}
+.room-icon{width:44px;height:44px;flex-shrink:0;background:#193021;border-radius:9px;display:grid;place-items:center;font-size:21px}
+.room-info{flex:1;min-width:0}
+.room-info strong{font-size:12px;display:block;margin-bottom:5px}
+.room-info small{font-size:10px;color:var(--muted)}
+.room button{background:transparent;border:1px solid var(--border);color:var(--green);padding:7px 10px;border-radius:6px;font-size:10px}
+.room button:hover{background:var(--green);color:#06110a}
+.challenge{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.challenge-info{display:flex;align-items:center;gap:12px}
+.challenge-info strong{font-size:12px;display:block}
+.challenge-info small{font-size:10px;color:var(--muted);display:block;margin-top:5px}
+.challenge-right{text-align:right;flex-shrink:0}
+.challenge-right strong{color:var(--green);font-size:12px;display:block;margin-bottom:7px}
+.challenge-right button{background:var(--green);border:0;padding:7px 10px;border-radius:6px;font-size:10px;font-weight:800}
+.search{width:100%;background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:12px 14px;color:white;font-size:12px;outline:none;margin-bottom:15px}
+.search:focus{border-color:var(--green)}
+.page{display:none}.page.active{display:block}
+.empty{text-align:center;padding:50px 15px;color:var(--muted);background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.empty b{display:block;color:var(--text);font-size:16px;margin:10px}
+.leader-row{display:grid;grid-template-columns:40px 1fr 80px;align-items:center;gap:10px;padding:14px;border-bottom:1px solid var(--border);font-size:12px}
+.leader-row:last-child{border:0}
+.rank{font-weight:900;color:var(--green);font-size:15px}
+.leader-xp{text-align:right;color:var(--green);font-weight:800}
+.profile-box{text-align:center;padding:35px}
+.big-avatar{width:80px;height:80px;border-radius:50%;background:#1c462b;color:var(--green);display:grid;place-items:center;font-size:30px;font-weight:900;margin:0 auto 15px}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;z-index:50;padding:15px}
+.modal.show{display:grid}
+.modal-content{width:100%;max-width:430px;background:#111b14;border:1px solid var(--border);border-radius:15px;padding:25px;position:relative}
+.modal-content h2{font-size:20px;margin-bottom:12px}
+.modal-content p{font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:15px}
+.modal-content input{width:100%;padding:12px;background:#09110c;border:1px solid var(--border);color:white;border-radius:7px;margin:7px 0 14px;outline:none}
+.close{position:absolute;right:17px;top:15px;background:none;border:0;color:var(--muted);font-size:22px}
+.terminal{background:#050b07;border:1px solid #1c3a25;border-radius:9px;padding:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#73ff9f;line-height:2;margin:15px 0;overflow-wrap:anywhere}
+.footer{text-align:center;color:#536358;font-size:10px;margin-top:50px;padding:20px;border-top:1px solid var(--border)}
+.mobile-menu{display:none}
+.toast{position:fixed;bottom:25px;right:25px;background:#173b24;color:var(--green);padding:13px 20px;border:1px solid #42ff9166;border-radius:9px;font-size:12px;z-index:100;display:none}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){
+ .sidebar{transform:translateX(-100%);transition:.3s;width:255px;box-shadow:10px 0 30px #0008}
+ .sidebar.open{transform:translateX(0)}
+ .main{margin-left:0;width:100%;padding:20px 15px 45px}
+ .mobile-menu{display:block}
+ .topbar{margin-bottom:25px}
+ .welcome{align-items:flex-start;flex-direction:column}
+ h1{font-size:25px}
+ .stats{gap:9px}
+ .stat{padding:13px}
+ .stat-number{font-size:23px}
+ .cards,.room-list{grid-template-columns:1fr}
+ .level-panel{grid-template-columns:1fr}
+ .challenge{padding:12px}
+}
+</style>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#" aria-label="UZCYBER bosh sahifa">
-        <span class="brand-mark"><span></span><span></span><span></span></span>
-        <span>UZ<span class="green">CYBER</span><small>CYBERSECURITY ACADEMY</small></span>
-      </a>
-      <div class="side-label">ASOSIY</div>
-      <nav class="nav">
-        <button class="nav-link active" data-view="dashboard"><span class="nav-icon">◫</span> Bosh sahifa</button>
-        <button class="nav-link" data-view="paths"><span class="nav-icon">⌘</span> O‘quv yo‘llari <span class="nav-count">5</span></button>
-        <button class="nav-link" data-view="labs"><span class="nav-icon">⌁</span> Laboratoriyalar</button>
-        <button class="nav-link" data-view="challenges"><span class="nav-icon">⚑</span> CTF topshiriqlar</button>
-        <button class="nav-link" data-view="leaderboard"><span class="nav-icon">♜</span> Reyting</button>
-      </nav>
-      <div class="side-label side-label-spaced">SHAXSIY</div>
-      <nav class="nav">
-        <button class="nav-link" data-view="achievements"><span class="nav-icon">✧</span> Yutuqlar</button>
-        <button class="nav-link" data-view="profile"><span class="nav-icon">◎</span> Profilim</button>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="upgrade-card">
-          <div class="upgrade-orb">✳</div>
-          <strong>Bilimingni sinab ko‘r</strong>
-          <p>Har kuni yangi vazifalar va amaliy mashqlar.</p>
-          <button class="text-button" data-go="labs">Laboratoriyalarni ko‘r <span>→</span></button>
-        </div>
-        <div class="user-mini">
-          <div class="avatar">F</div><div class="user-mini-info"><strong>Feruz</strong><small>Yangi boshlovchi</small></div><button class="dots" aria-label="Profil">···</button>
-        </div>
-      </div>
-    </aside>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+ <div class="logo"><div class="logo-icon">⌘</div><div class="logo-name">UZ<span>CYBER</span></div></div>
+ <div class="nav-label" data-i="menu">ASOSIY MENYU</div>
+ <button class="nav-item active" data-page="dashboard" onclick="go('dashboard',this)"><span class="nav-icon">▦</span><span data-i="dashboard">Dashboard</span></button>
+ <button class="nav-item" data-page="paths" onclick="go('paths',this)"><span class="nav-icon">◈</span><span data-i="paths">Learning Paths</span></button>
+ <button class="nav-item" data-page="rooms" onclick="go('rooms',this)"><span class="nav-icon">⌘</span><span data-i="rooms">Rooms</span></button>
+ <button class="nav-item" data-page="challenges" onclick="go('challenges',this)"><span class="nav-icon">⚡</span><span data-i="challenges">Challenges</span></button>
+ <div class="nav-label" data-i="community">JAMIYAT</div>
+ <button class="nav-item" data-page="leaderboard" onclick="go('leaderboard',this)"><span class="nav-icon">♛</span><span data-i="leaderboard">Leaderboard</span></button>
+ <button class="nav-item" data-page="profile" onclick="go('profile',this)"><span class="nav-icon">◉</span><span data-i="profile">Profil</span></button>
+ <div class="sidebar-bottom">
+  <div class="user-mini"><div class="avatar" id="miniAvatar">G</div><div><strong id="miniName">Guest Hacker</strong><small id="miniLevel">Level 1 · Beginner</small></div></div>
+ </div>
+</aside>
 
-    <main class="main">
-      <header class="topbar">
-        <button class="mobile-menu" id="mobileMenu" aria-label="Menyuni ochish">☰</button>
-        <div class="breadcrumb"><span>UZCYBER</span><b>/</b><strong id="crumb">Bosh sahifa</strong></div>
-        <div class="top-actions">
-          <div class="status-pill"><i></i> TIZIM ISHLAMOQDA</div>
-          <button class="icon-btn" id="searchOpen" aria-label="Qidirish">⌕</button>
-          <button class="icon-btn notification" id="notifyBtn" aria-label="Bildirishnomalar">♧<i></i></button>
-          <div class="top-avatar">F</div>
-        </div>
-      </header>
-
-      <div class="content" id="content">
-        <section class="welcome-row">
-          <div><div class="eyebrow"><span class="eyebrow-line"></span> 2026 / KIBERXAVFSIZLIK AKADEMIYASI</div>
-            <h1>Xush kelibsan, <span class="gradient-text">Feruz.</span></h1>
-            <p class="muted welcome-sub">Bugun yangi bilim va ko‘nikmalarni egallash uchun ajoyib kun.</p>
-          </div>
-          <div class="date-chip"><span>◷</span><span id="todayDate">18-NOYABR, 2026</span></div>
-        </section>
-
-        <section class="hero">
-          <div class="hero-grid"></div><div class="hero-glow"></div>
-          <div class="hero-content">
-            <div class="hero-tag"><span class="pulse-dot"></span> SIZNING KIBER SAYOHATINGIZ</div>
-            <h2>Raqamli dunyoni<br><span>himoya qilishni</span> o‘rgan.</h2>
-            <p>Bilimni amaliyotga aylantir. Xavfsizlikni tushun. Kelajak mutaxassisi bo‘l.</p>
-            <button class="primary-btn" data-go="paths">O‘rganishni boshlash <span>→</span></button>
-          </div>
-          <div class="hero-visual" aria-hidden="true">
-            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-            <div class="shield"><div class="shield-inner">⌑</div></div>
-            <div class="float-code code-one">01001010<br>10110101</div>
-            <div class="float-code code-two">ACCESS_GRANTED<br><span>● SECURE</span></div>
-            <div class="hero-cross">+</div>
-          </div>
-          <div class="hero-footer"><span><b>01</b> / 05 BOSQICH</span><span>HAR BIR MUTAXASSIS NOLDAN BOSHLAGAN</span></div>
-        </section>
-
-        <section class="stats-grid">
-          <article class="stat-card"><div class="stat-top"><span>UMUMIY TAJRIBA</span><span class="stat-icon green-icon">✳</span></div><div class="stat-value"><strong id="xpValue">120</strong><small>XP</small></div><div class="stat-foot"><span class="trend">↗ 20 XP</span> <span>so‘nggi 7 kunda</span></div></article>
-          <article class="stat-card"><div class="stat-top"><span>JORIY DARAJA</span><span class="stat-icon">⌁</span></div><div class="stat-value"><strong id="levelValue">02</strong><small>LEVEL</small></div><div class="level-track"><i id="levelBar" style="width:40%"></i></div><div class="stat-foot"><span>Keyingi darajagacha</span><b id="nextXp">180 XP</b></div></article>
-          <article class="stat-card"><div class="stat-top"><span>BAJARILGAN LABLAR</span><span class="stat-icon">▤</span></div><div class="stat-value"><strong id="labsDone">03</strong><small>/ 24</small></div><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="stat-foot"><span>Faollik ko‘rsatkichi</span><b>Yaxshi</b></div></article>
-          <article class="stat-card"><div class="stat-top"><span>KUNLIK SERIYA</span><span class="stat-icon orange-icon">♨</span></div><div class="stat-value"><strong>04</strong><small>KUN</small></div><div class="streak-dots"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i></i><i></i><i></i></div><div class="stat-foot"><span>Davom et!</span><b class="orange-text">🔥 4 kun</b></div></article>
-        </section>
-
-        <div class="section-grid">
-          <section class="panel learning-panel">
-            <div class="section-heading"><div><div class="eyebrow">SENING RIVOJLANISHING</div><h3>O‘quv yo‘ling</h3></div><button class="link-btn" data-go="paths">Barchasini ko‘r <span>→</span></button></div>
-            <div class="path-feature">
-              <div class="path-icon"><span>⌘</span></div>
-              <div class="path-info"><div class="path-meta"><span class="tag tag-green">BOSHLANG‘ICH</span><span>6 ta modul</span><span>•</span><span>4 soat</span></div><h4>Linux asoslari</h4><p>Terminal bilan tanishish va Linux tizimini boshqarish.</p><div class="progress-row"><div class="progress"><i style="width:35%"></i></div><b>35%</b></div></div>
-              <button class="round-arrow" data-go="paths" aria-label="Davom etish">↗</button>
-            </div>
-            <div class="path-list">
-              <div class="path-row"><div class="small-path-icon purple">⌁</div><div><strong>Tarmoq asoslari</strong><small>IP, DNS, portlar va protokollar</small></div><span class="difficulty">BOSHLANG‘ICH</span><span class="row-lock">◷</span></div>
-              <div class="path-row"><div class="small-path-icon blue">⌗</div><div><strong>Web xavfsizligi</strong><small>Veb zaifliklar va himoyalanish</small></div><span class="difficulty intermediate">O‘RTA</span><span class="row-lock">◷</span></div>
-            </div>
-          </section>
-
-          <section class="panel daily-panel">
-            <div class="section-heading"><div><div class="eyebrow">BUGUNGI MAQSAD</div><h3>Kunlik vazifalar</h3></div><span class="task-count" id="taskCount">1/3</span></div>
-            <div class="task-progress"><div class="progress"><i id="taskProgress" style="width:33%"></i></div></div>
-            <div class="task-list">
-              <label class="task-item completed"><input type="checkbox" checked disabled><span class="checkmark">✓</span><span class="task-copy"><strong>Platforma bilan tanish</strong><small>Profilni ko‘zdan kechir</small></span><b>+10 XP</b></label>
-              <label class="task-item"><input type="checkbox" class="task-check"><span class="checkmark"></span><span class="task-copy"><strong>Birinchi laboratoriya</strong><small>Linux terminaliga kir</small></span><b>+25 XP</b></label>
-              <label class="task-item"><input type="checkbox" class="task-check"><span class="checkmark"></span><span class="task-copy"><strong>Bilimingni tekshir</strong><small>5 ta savolga javob ber</small></span><b>+15 XP</b></label>
-            </div>
-            <div class="daily-footer"><span>Vazifalarni bajarsang, XP olasan.</span><span>✦</span></div>
-          </section>
-        </div>
-
-        <section class="panel labs-panel">
-          <div class="section-heading"><div><div class="eyebrow">AMALIY TAJRIBA</div><h3>Tavsiya etilgan laboratoriyalar</h3><p class="muted section-desc">Nazariyani amaliy ko‘nikmaga aylantir.</p></div><button class="link-btn" data-go="labs">Barcha lablar <span>→</span></button></div>
-          <div class="lab-grid" id="featuredLabs">
-            <article class="lab-card" data-level="Boshlang‘ich" data-title="Terminalga kirish"><div class="lab-art terminal-art"><span class="art-label">LAB_001</span><div class="terminal-window"><div class="terminal-head"><i></i><i></i><i></i><span>uzcyber@linux:~</span></div><div class="terminal-body"><span>$ whoami</span><b>student</b><span>$ <i class="cursor"></i></span></div></div></div><div class="lab-card-body"><div class="lab-card-meta"><span class="tag tag-green">BOSHLANG‘ICH</span><span>⏱ 15 daqiqa</span></div><h4>Terminalga kirish</h4><p>Linux terminalidagi dastlabki buyruqlarni o‘rgan.</p><div class="lab-bottom"><span>✦ 50 XP</span><button class="small-btn" data-lab="terminal">Boshlash <b>→</b></button></div></div></article>
-            <article class="lab-card" data-level="Boshlang‘ich" data-title="Tarmoqni kashf et"><div class="lab-art network-art"><span class="art-label">LAB_002</span><div class="network-nodes"><i></i><i></i><i></i><i></i><b>⌘</b><span></span><span></span><span></span></div></div><div class="lab-card-body"><div class="lab-card-meta"><span class="tag tag-green">BOSHLANG‘ICH</span><span>⏱ 20 daqiqa</span></div><h4>Tarmoqni kashf et</h4><p>IP manzillar va tarmoq tushunchalarini anglab ol.</p><div class="lab-bottom"><span>✦ 75 XP</span><button class="small-btn" data-lab="network">Boshlash <b>→</b></button></div></div></article>
-            <article class="lab-card" data-level="O‘rta" data-title="Web xavfsizligi"><div class="lab-art web-art"><span class="art-label">LAB_003</span><div class="browser-art"><div class="browser-top"><i></i><i></i><i></i></div><div class="browser-lines"><b></b><i></i><i></i><i></i><span>01</span></div></div></div><div class="lab-card-body"><div class="lab-card-meta"><span class="tag tag-purple">O‘RTA</span><span>⏱ 30 daqiqa</span></div><h4>Web xavfsizligi</h4><p>Veb ilovalar qanday himoyalanishini o‘rgan.</p><div class="lab-bottom"><span>✦ 100 XP</span><button class="small-btn" data-lab="web">Boshlash <b>→</b></button></div></div></article>
-          </div>
-        </section>
-
-        <div class="bottom-grid">
-          <section class="panel leaderboard-panel"><div class="section-heading"><div><div class="eyebrow">HAMJAMIYAT</div><h3>Haftalik reyting</h3></div><button class="link-btn" data-go="leaderboard">To‘liq reyting →</button></div>
-            <div class="leader-row"><span class="rank gold">01</span><div class="leader-avatar av1">A</div><div class="leader-name"><strong>Azizbek</strong><small>Cyber explorer</small></div><b>2 450 <small>XP</small></b></div>
-            <div class="leader-row"><span class="rank silver">02</span><div class="leader-avatar av2">M</div><div class="leader-name"><strong>Madina</strong><small>Web guardian</small></div><b>2 180 <small>XP</small></b></div>
-            <div class="leader-row"><span class="rank bronze">03</span><div class="leader-avatar av3">S</div><div class="leader-name"><strong>Sardor</strong><small>Linux beginner</small></div><b>1 960 <small>XP</small></b></div>
-            <div class="leader-row current-user"><span class="rank">14</span><div class="leader-avatar av4">F</div><div class="leader-name"><strong>Feruz <em>SEN</em></strong><small>Yangi boshlovchi</small></div><b id="leaderXp">120 <small>XP</small></b></div>
-          </section>
-          <section class="panel quote-panel"><div class="quote-mark">“</div><div class="eyebrow">HAFTANING FIKRI</div><h3>Eng kuchli himoya — bu bilim.</h3><p>Kiberxavfsizlik bir martalik manzil emas, doimiy o‘rganish yo‘lidir.</p><div class="quote-author"><span></span><b>UZCYBER AKADEMIYASI</b></div><div class="quote-decoration">⌑</div></section>
-        </div>
-        <footer class="footer"><span>© 2026 UZCYBER ACADEMY</span><span>O‘ZBEKISTONDA YARATILDI <b>✳</b></span><span>V 1.0.0 — BETA</span></footer>
-      </div>
-    </main>
+<main class="main">
+ <header class="topbar">
+  <div style="display:flex;gap:12px;align-items:center">
+   <button class="icon-btn mobile-menu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+   <div class="breadcrumb">UZCYBER / <span id="crumb">Dashboard</span></div>
   </div>
+  <div class="top-actions">
+   <select class="lang-select" id="language" onchange="setLang(this.value)">
+    <option value="uz">🇺🇿 UZ</option><option value="ru">🇷🇺 RU</option><option value="en">🇬🇧 EN</option>
+   </select>
+   <button class="icon-btn" onclick="openLogin()">👤 <span data-i="login">Kirish</span></button>
+  </div>
+ </header>
 
-  <div class="modal-backdrop" id="modal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
-  <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
+<section class="page active" id="dashboard">
+ <div class="welcome">
+  <div><div class="welcome-tag">● SYSTEM ONLINE / VERSION 1.0</div>
+  <h1 data-i="welcome">Xush kelibsan, <span>Hacker!</span></h1>
+  <p class="subtitle" data-i="welcomeSub">Kiberxavfsizlik sayohatingni bugun davom ettir. Yangi bilimlar seni kutmoqda.</p></div>
+  <button class="primary" onclick="goByName('paths')" data-i="explore">O‘rganishni boshlash →</button>
+ </div>
+
+ <div class="stats">
+  <div class="stat"><div class="stat-top"><span data-i="totalxp">JAMI XP</span><span class="stat-icon">⚡</span></div><div class="stat-number green" id="xp">0</div><div class="stat-foot" data-i="earned">To‘plangan tajriba</div></div>
+  <div class="stat"><div class="stat-top"><span data-i="level">DARAJA</span><span class="stat-icon">♛</span></div><div class="stat-number" id="level">1</div><div class="stat-foot" data-i="currentlevel">Joriy daraja</div></div>
+  <div class="stat"><div class="stat-top"><span data-i="completed">TUGALLANGAN</span><span class="stat-icon">✓</span></div><div class="stat-number" id="completed">0</div><div class="stat-foot" data-i="tasks">Vazifalar</div></div>
+  <div class="stat"><div class="stat-top"><span data-i="streak">STREAK</span><span class="stat-icon">🔥</span></div><div class="stat-number" id="streak">1</div><div class="stat-foot" data-i="days">O‘quv kunlari</div></div>
+ </div>
+
+ <div class="panel level-panel">
+  <div class="level-row"><div class="level-circle" id="levelCircle">1</div><div class="level-info"><strong id="rankName">Script Kiddie</strong><small data-i="yourrank">Sening hacker darajang</small></div></div>
+  <div><div class="progress-head"><span data-i="nextlevel">Keyingi darajagacha</span><span id="progressText">0 / 500 XP</span></div><div class="progress"><div class="progress-fill" id="progressFill" style="width:0%"></div></div><p class="stat-foot" style="margin-top:9px" data-i="progressdesc">Mashqlarni bajaring va XP to‘plang.</p></div>
+ </div>
+
+ <div class="section">
+  <div class="section-head"><div><h2 data-i="paths">Learning Paths</h2><p data-i="pathdesc">O‘z mahoratingni yangi bosqichga olib chiq.</p></div><button class="text-btn" onclick="goByName('paths')" data-i="allpaths">Barchasi →</button></div>
+  <div class="cards" id="dashPaths"></div>
+ </div>
+ <div class="section">
+  <div class="section-head"><div><h2 data-i="popularrooms">Mashhur laboratoriyalar</h2><p data-i="roomdesc">Amaliy bilimlarni sinab ko‘r.</p></div><button class="text-btn" onclick="goByName('rooms')" data-i="allrooms">Barchasi →</button></div>
+  <div class="room-list" id="dashRooms"></div>
+ </div>
+</section>
+
+<section class="page" id="paths">
+ <h1 data-i="paths">Learning Paths</h1><p class="subtitle" data-i="pathdesc">Kiberxavfsizlikni noldan o‘rgan.</p><div class="section"><input class="search" id="pathSearch" placeholder="🔎 Search paths..." oninput="renderPaths()"><div class="cards" id="allPaths"></div></div>
+</section>
+
+<section class="page" id="rooms">
+ <h1 data-i="rooms">Rooms</h1><p class="subtitle" data-i="roomdesc">Amaliy laboratoriyalar va interaktiv darslar.</p><div class="section"><input class="search" id="roomSearch" placeholder="🔎 Search rooms..." oninput="renderRooms()"><div class="room-list" id="allRooms"></div></div>
+</section>
+
+<section class="page" id="challenges">
+ <h1 data-i="challenges">Challenges</h1><p class="subtitle" data-i="challengedesc">Bilimingni sinovdan o‘tkaz.</p>
+ <div class="section" id="challengeList"></div>
+</section>
+
+<section class="page" id="leaderboard">
+ <h1 data-i="leaderboard">Leaderboard</h1><p class="subtitle" data-i="leaderdesc">UZCYBER hamjamiyatining eng faol ishtirokchilari.</p>
+ <div class="section panel" id="leaders"></div>
+</section>
+
+<section class="page" id="profile">
+ <div class="panel profile-box"><div class="big-avatar" id="bigAvatar">G</div><h2 id="profileName">Guest Hacker</h2><p class="subtitle" id="profileRank">Level 1 · Script Kiddie</p><div class="section stats" style="text-align:left"><div class="stat"><div class="stat-top">XP</div><div class="stat-number green" id="pXP">0</div></div><div class="stat"><div class="stat-top" data-i="completed">TUGALLANGAN</div><div class="stat-number" id="pCompleted">0</div></div></div><button class="primary" onclick="openLogin()" data-i="editprofile">Profilni tahrirlash</button></div>
+ <div class="section panel"><h3 data-i="about">Platforma haqida</h3><p class="subtitle" style="margin-top:10px">UZCYBER — kiberxavfsizlikni qonuniy va xavfsiz muhitda o‘rganish uchun ta’lim platformasi.</p><div class="terminal">root@uzcyber:~# whoami<br>ethical_hacker<br>root@uzcyber:~# echo "Learn. Hack. Defend."<br>Learn. Hack. Defend.</div></div>
+</section>
+
+<footer class="footer">UZCYBER © 2026 · LEARN. HACK. DEFEND. · EDUCATIONAL PLATFORM</footer>
+</main>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+ <div class="modal-content"><button class="close" onclick="closeModal()">×</button><div id="modalBody"></div></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+
+const translations={
+uz:{
+menu:"ASOSIY MENYU",community:"JAMIYAT",dashboard:"Dashboard",paths:"Learning Paths",rooms:"Rooms",challenges:"Challenges",leaderboard:"Leaderboard",profile:"Profil",login:"Kirish",
+welcome:'Xush kelibsan, <span>Hacker!</span>',welcomeSub:"Kiberxavfsizlik sayohatingni bugun davom ettir. Yangi bilimlar seni kutmoqda.",explore:"O‘rganishni boshlash →",totalxp:"JAMI XP",earned:"To‘plangan tajriba",level:"DARAJA",currentlevel:"Joriy daraja",completed:"TUGALLANGAN",tasks:"Vazifalar",streak:"STREAK",days:"O‘quv kunlari",yourrank:"Sening hacker darajang",nextlevel:"Keyingi darajagacha",progressdesc:"Mashqlarni bajaring va XP to‘plang.",pathdesc:"O‘z mahoratingni yangi bosqichga olib chiq.",allpaths:"Barchasi →",popularrooms:"Mashhur laboratoriyalar",roomdesc:"Amaliy bilimlarni sinab ko‘r.",allrooms:"Barchasi →",challengedesc:"Bilimingni sinovdan o‘tkaz.",leaderdesc:"UZCYBER hamjamiyatining eng faol ishtirokchilari.",editprofile:"Profilni tahrirlash",about:"Platforma haqida",start:"Boshlash",continue:"Davom etish",completedText:"Bajarildi",search:"Qidirish...",noResults:"Natija topilmadi",available:"Mavjud",beginner:"Boshlang‘ich",intermediate:"O‘rta",advanced:"Yuqori",points:"XP",name:"Isming",save:"Saqlash",close:"Yopish",loginTitle:"Profilga kirish",loginDesc:"Ismingni kiriting va o‘rganishni boshlang.",hello:"Xush kelibsan!",correct:"To‘g‘ri javob! +",wrong:"Noto‘g‘ri javob. Qayta urinib ko‘r.",flag:"Javobni kiriting",submit:"Tekshirish",rank:"O‘rin"
+},
+ru:{
+menu:"ГЛАВНОЕ МЕНЮ",community:"СООБЩЕСТВО",dashboard:"Панель",paths:"Пути обучения",rooms:"Лаборатории",challenges:"Задания",leaderboard:"Рейтинг",profile:"Профиль",login:"Войти",
+welcome:'Добро пожаловать, <span>Хакер!</span>',welcomeSub:"Продолжай свой путь в кибербезопасности. Новые знания ждут тебя.",explore:"Начать обучение →",totalxp:"ВСЕГО XP",earned:"Накопленный опыт",level:"УРОВЕНЬ",currentlevel:"Текущий уровень",completed:"ЗАВЕРШЕНО",tasks:"Задания",streak:"СЕРИЯ",days:"Учебные дни",yourrank:"Твой уровень хакера",nextlevel:"До следующего уровня",progressdesc:"Выполняй задания и получай XP.",pathdesc:"Выведи свои навыки на новый уровень.",allpaths:"Все →",popularrooms:"Популярные лаборатории",roomdesc:"Проверь свои практические знания.",allrooms:"Все →",challengedesc:"Проверь свои знания.",leaderdesc:"Самые активные участники сообщества UZCYBER.",editprofile:"Изменить профиль",about:"О платформе",start:"Начать",continue:"Продолжить",completedText:"Выполнено",available:"Доступно",beginner:"Начальный",intermediate:"Средний",advanced:"Продвинутый",points:"XP",name:"Твоё имя",save:"Сохранить",close:"Закрыть",loginTitle:"Вход в профиль",loginDesc:"Введи своё имя и начни обучение.",hello:"Добро пожаловать!",correct:"Правильно! +",wrong:"Неверный ответ. Попробуй ещё раз.",flag:"Введи ответ",submit:"Проверить",rank:"Место"
+},
+en:{
+menu:"MAIN MENU",community:"COMMUNITY",dashboard:"Dashboard",paths:"Learning Paths",rooms:"Rooms",challenges:"Challenges",leaderboard:"Leaderboard",profile:"Profile",login:"Login",
+welcome:'Welcome back, <span>Hacker!</span>',welcomeSub:"Continue your cybersecurity journey. New knowledge is waiting for you.",explore:"Start learning →",totalxp:"TOTAL XP",earned:"Experience earned",level:"LEVEL",currentlevel:"Current level",completed:"COMPLETED",tasks:"Tasks",streak:"STREAK",days:"Learning days",yourrank:"Your hacker rank",nextlevel:"Next level progress",progressdesc:"Complete exercises and earn XP.",pathdesc:"Take your skills to the next level.",allpaths:"View all →",popularrooms:"Popular labs",roomdesc:"Test your practical knowledge.",allrooms:"View all →",challengedesc:"Test your knowledge.",leaderdesc:"The most active members of the UZCYBER community.",editprofile:"Edit profile",about:"About platform",start:"Start",continue:"Continue",completedText:"Completed",available:"Available",beginner:"Beginner",intermediate:"Intermediate",advanced:"Advanced",points:"XP",name:"Your name",save:"Save",close:"Close",loginTitle:"Profile login",loginDesc:"Enter your name and start learning.",hello:"Welcome!",correct:"Correct! +",wrong:"Incorrect answer. Try again.",flag:"Enter your answer",submit:"Check",rank:"Rank"
+}
+};
+
+const paths=[
+{icon:"🌐",name:"Cybersecurity Fundamentals",uz:"Kiberxavfsizlik asoslari",ru:"Основы кибербезопасности",desc:"Learn security fundamentals, threats and defense.",level:"Beginner",xp:100,lessons:8},
+{icon:"🐧",name:"Linux Fundamentals",uz:"Linux asoslari",ru:"Основы Linux",desc:"Master Linux commands, terminal and permissions.",level:"Beginner",xp:150,lessons:10},
+{icon:"🌍",name:"Web Security",uz:"Web xavfsizligi",ru:"Безопасность веба",desc:"Understand HTTP, vulnerabilities and web security.",level:"Intermediate",xp:200,lessons:12},
+{icon:"🔍",name:"Network Security",uz:"Tarmoq xavfsizligi",ru:"Безопасность сетей",desc:"Learn networking, protocols and traffic analysis.",level:"Intermediate",xp:200,lessons:9},
+{icon:"🪟",name:"Windows Security",uz:"Windows xavfsizligi",ru:"Безопасность Windows",desc:"Explore Windows security and system administration.",level:"Intermediate",xp:250,lessons:10},
+{icon:"🛡️",name:"Defensive Security",uz:"Himoya xavfsizligi",ru:"Защитная безопасность",desc:"Learn monitoring, incident response and defense.",level:"Advanced",xp:300,lessons:15},
+{icon:"🔐",name:"Cryptography",uz:"Kriptografiya",ru:"Криптография",desc:"Understand encryption, hashing and authentication.",level:"Intermediate",xp:200,lessons:8},
+{icon:"📡",name:"Digital Forensics",uz:"Raqamli kriminalistika",ru:"Цифровая криминалистика",desc:"Discover digital evidence and forensic methods.",level:"Advanced",xp:300,lessons:11},
+{icon:"🏴",name:"CTF Masterclass",uz:"CTF ustaxonasi",ru:"Мастерская CTF",desc:"Practice problem solving in legal CTF labs.",level:"Advanced",xp:400,lessons:20}
+];
+
+const rooms=[
+{icon:"🐧",name:"Linux Basics",desc:"Learn terminal commands and file systems.",xp:50,level:"Beginner"},
+{icon:"🌐",name:"How the Web Works",desc:"Explore HTTP, DNS and browser technology.",xp:50,level:"Beginner"},
+{icon:"🔎",name:"Search Skills",desc:"Learn effective OSINT research techniques.",xp:75,level:"Beginner"},
+{icon:"🔐",name:"Cryptography 101",desc:"Explore encoding and encryption basics.",xp:75,level:"Beginner"},
+{icon:"🛡️",name:"Security Principles",desc:"Learn core principles of digital defense.",xp:100,level:"Beginner"},
+{icon:"📡",name:"Network Fundamentals",desc:"Understand IP addresses and network layers.",xp:100,level:"Intermediate"},
+{icon:"🧪",name:"Web Security Lab",desc:"Practice identifying common web vulnerabilities in a safe lab.",xp:150,level:"Intermediate"},
+{icon:"🖥️",name:"Windows Fundamentals",desc:"Understand Windows users and security settings.",xp:150,level:"Intermediate"}
+];
+
+const challenges=[
+{icon:"🐧",name:"Linux Explorer",question:"Which command displays the current working directory in Linux?",answer:"pwd",xp:30,level:"Easy"},
+{icon:"🌐",name:"HTTP Detective",question:"Which HTTP status code means Not Found?",answer:"404",xp:30,level:"Easy"},
+{icon:"🔐",name:"Hash Master",question:"Which cryptographic hash algorithm produces a 256-bit digest and belongs to the SHA-2 family?",answer:"sha256",xp:50,level:"Medium"},
+{icon:"🔎",name:"Network Detective",question:"Which protocol translates domain names into IP addresses?",answer:"dns",xp:50,level:"Medium"},
+{icon:"🛡️",name:"Security Expert",question:"What does the CIA triad stand for? Answer: confidentiality, integrity, availability",answer:"confidentiality, integrity, availability",xp:100,level:"Hard"}
+];
+
+let user=JSON.parse(localStorage.getItem("uzcyber_user")||'{"name":"Guest Hacker","xp":0,"completed":[],"streak":1}');
+let lang=localStorage.getItem("uzcyber_lang")||"uz";
+let activeChallenge=null;
+
+function save(){localStorage.setItem("uzcyber_user",JSON.stringify(user))}
+function tr(k){return translations[lang][k]||k}
+function title(item){return lang==="uz"?item.uz||item.name:lang==="ru"?item.ru||item.name:item.name}
+function rankName(l){return l<3?"Script Kiddie":l<6?"Apprentice Hacker":l<10?"Cyber Explorer":l<15?"Security Specialist":l<20?"Elite Hacker":"Cyber Legend"}
+function getLevel(){return Math.floor(user.xp/500)+1}
+function notify(msg){let t=document.getElementById("toast");t.textContent=msg;t.style.display="block";setTimeout(()=>t.style.display="none",2500)}
+function update(){
+ let l=getLevel(),p=user.xp%500;
+ document.getElementById("xp").textContent=user.xp;
+ document.getElementById("level").textContent=l;
+ document.getElementById("completed").textContent=user.completed.length;
+ document.getElementById("streak").textContent=user.streak;
+ document.getElementById("levelCircle").textContent=l;
+ document.getElementById("rankName").textContent=rankName(l);
+ document.getElementById("progressText").textContent=p+" / 500 XP";
+ document.getElementById("progressFill").style.width=(p/5)+"%";
+ document.getElementById("miniName").textContent=user.name;
+ document.getElementById("miniAvatar").textContent=user.name[0].toUpperCase();
+ document.getElementById("miniLevel").textContent="Level "+l+" · "+rankName(l);
+ document.getElementById("bigAvatar").textContent=user.name[0].toUpperCase();
+ document.getElementById("profileName").textContent=user.name;
+ document.getElementById("profileRank").textContent="Level "+l+" · "+rankName(l);
+ document.getElementById("pXP").textContent=user.xp;
+ document.getElementById("pCompleted").textContent=user.completed.length;
+}
+
+function setLang(l){
+ lang=l;localStorage.setItem("uzcyber_lang",l);
+ document.documentElement.lang=l;
+ document.querySelectorAll("[data-i]").forEach(el=>{let k=el.dataset.i;if(translations[l][k])el.innerHTML=translations[l][k]});
+ document.getElementById("language").value=l;
+ renderAll();update();
+}
+function go(page,btn){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(page).classList.add("active");
+ document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
+ if(btn)btn.classList.add("active");
+ else document.querySelector('[data-page="'+page+'"]').classList.add("active");
+ document.getElementById("crumb").textContent=tr(page);
+ document.getElementById("sidebar").classList.remove("open");
+}
+function goByName(page){go(page)}
+function pathCard(p,i){
+ let done=user.completed.includes("path"+i);
+ return `<article class="card"><div class="card-icon">${p.icon}</div><h3>${title(p)}</h3><p>${p.desc}</p><div class="card-meta"><span>${p.lessons} lessons · ${p.xp} XP</span><span class="tag">${tr(p.level.toLowerCase())}</span></div><button class="secondary" style="width:100%;margin-top:13px" onclick="openPath(${i})">${done?tr("completedText"):tr("start")}</button></article>`
+}
+function roomCard(r,i){
+ let done=user.completed.includes("room"+i);
+ return `<div class="room"><div class="room-icon">${r.icon}</div><div class="room-info"><strong>${r.name}</strong><small>${r.desc}</small></div><button onclick="openRoom(${i})">${done?"✓":tr("start")}</button></div>`
+}
+function renderPaths(){
+ let q=(document.getElementById("pathSearch")?.value||"").toLowerCase();
+ let html=paths.map((p,i)=>pathCard(p,i)).filter((x,i)=>{let p=paths[i];return (p.name+" "+p.uz+" "+p.ru).toLowerCase().includes(q)});
+ document.getElementById("allPaths").innerHTML=html.join("")||`<div class="empty">${tr("noResults")}</div>`;
+}
+function renderRooms(){
+ let q=(document.getElementById("roomSearch")?.value||"").toLowerCase();
+ document.getElementById("allRooms").innerHTML=rooms.map((r,i)=>roomCard(r,i)).filter((x,i)=>{let r=rooms[i];return (r.name+" "+r.desc).toLowerCase().includes(q)}).join("")||`<div class="empty">${tr("noResults")}</div>`;
+}
+function renderChallenges(){
+ document.getElementById("challengeList").innerHTML=challenges.map((c,i)=>{
+ let done=user.completed.includes("challenge"+i);
+ return `<div class="challenge"><div class="challenge-info"><div class="room-icon">${c.icon}</div><div><strong>${c.name}</strong><small>${c.level} · ${done?tr("completedText"):tr("available")}</small></div></div><div class="challenge-right"><strong>+${c.xp} XP</strong><button onclick="openChallenge(${i})">${done?"✓":tr("start")}</button></div></div>`
+ }).join("");
+}
+function renderLeaders(){
+ let list=[{name:user.name,xp:user.xp}, {name:"CyberWolf",xp:1250},{name:"ShadowRoot",xp:950},{name:"NetGuardian",xp:700},{name:"ZeroTrace",xp:500},{name:"LinuxMaster",xp:300}].sort((a,b)=>b.xp-a.xp);
+ document.getElementById("leaders").innerHTML=list.map((x,i)=>`<div class="leader-row"><div class="rank">#${i+1}</div><div>👤 ${x.name}</div><div class="leader-xp">${x.xp} XP</div></div>`).join("");
+}
+function renderAll(){
+ document.getElementById("dashPaths").innerHTML=paths.slice(0,3).map(pathCard).join("");
+ document.getElementById("dashRooms").innerHTML=rooms.slice(0,4).map(roomCard).join("");
+ renderPaths();renderRooms();renderChallenges();renderLeaders();
+}
+function openPath(i){
+ let p=paths[i],done=user.completed.includes("path"+i);
+ showModal(`<h2>${p.icon} ${title(p)}</h2><p>${p.desc}</p><div class="terminal">root@uzcyber:~# start-learning<br>Path: ${p.name}<br>Lessons: ${p.lessons}<br>Reward: ${p.xp} XP<br>Status: ${done?"COMPLETED":"READY"}</div><p>Ushbu o‘quv yo‘nalishi uchun amaliy darslar keyingi versiyalarda qo‘shiladi.</p><button class="primary" style="width:100%" onclick="complete('path${i}',${p.xp})" ${done?"disabled":""}>${done?tr("completedText"):tr("start")}</button>`);
+}
+function openRoom(i){
+ let r=rooms[i],done=user.completed.includes("room"+i);
+ showModal(`<h2>${r.icon} ${r.name}</h2><p>${r.desc}</p><div class="terminal">root@uzcyber:~# lab --info<br>Room: ${r.name}<br>Difficulty: ${r.level}<br>Reward: ${r.xp} XP<br>Environment: Educational simulation</div><p>Bu xona hozircha demo rejimida. Haqiqiy laboratoriya serveri hali ulanmagan.</p><button class="primary" style="width:100%" onclick="complete('room${i}',${r.xp})" ${done?"disabled":""}>${done?tr("completedText"):tr("start")}</button>`);
+}
+function openChallenge(i){
+ let c=challenges[i];
+ if(user.completed.includes("challenge"+i)){notify(tr("completedText"));return}
+ activeChallenge=i;
+ showModal(`<h2>${c.icon} ${c.name}</h2><p>${c.question}</p><input id="challengeAnswer" placeholder="${tr("flag")}" autocomplete="off"><button class="primary" style="width:100%" onclick="checkAnswer()">${tr("submit")}</button>`);
+}
+function checkAnswer(){
+ let i=activeChallenge,c=challenges[i],a=document.getElementById("challengeAnswer").value.trim().toLowerCase();
+ if(a===c.answer){
+ closeModal();complete("challenge"+i,c.xp);notify(tr("correct")+c.xp+" XP");
+ }else notify(tr("wrong"));
+}
+function complete(id,xp){
+ if(user.completed.includes(id)){notify(tr("completedText"));return}
+ user.completed.push(id);user.xp+=xp;save();update();renderAll();closeModal();notify("+"+xp+" XP 🎉");
+}
+function showModal(html){document.getElementById("modalBody").innerHTML=html;document.getElementById("modal").classList.add("show")}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function openLogin(){
+ showModal(`<h2>${tr("loginTitle")}</h2><p>${tr("loginDesc")}</p><label style="font-size:11px">${tr("name")}</label><input id="nameInput" maxlength="25" value="${user.name.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}"><button class="primary" style="width:100%" onclick="saveName()">${tr("save")}</button>`);
+}
+function saveName(){
+ let n=document.getElementById("nameInput").value.trim();
+ if(!n){notify(tr("name"));return}
+ user.name=n;save();update();renderAll();closeModal();notify(tr("hello"));
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")closeModal();
+ if(e.key==="Enter"&&document.getElementById("modal").classList.contains("show")&&document.getElementById("challengeAnswer"))checkAnswer();
+});
+document.getElementById("language").value=lang;
+setLang(lang);
+update();
+</script>
 </body>
 </html>
